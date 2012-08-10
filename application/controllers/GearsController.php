@@ -113,12 +113,8 @@ class GearsController extends Zend_Controller_Action {
                 $category = $form->getValue('category');
                 $subcategory = $form->getValue('subcategory');
                 $subsubcategory = $form->getValue('subsubcategory');
-                $description = $form->getValue('description');
-                if(empty($photo)) {
-                    $photo = "dummy.jpg";
-                } else {
-                    $photo = $form->getValue('photo');
-                }                
+                $description = $form->getValue('description');                
+                $photo = $form->getValue('photo');                
                 $thumbnail = $form->getValue('thumbnail');
                 $featured = "0";
                 $active = "1";

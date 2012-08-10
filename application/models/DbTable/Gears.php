@@ -15,7 +15,7 @@ class Model_DbTable_Gears extends Zend_Db_Table_Abstract {
 
     public function getItemsActive() {
         $select = $this->select()
-                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
+                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.gear_thumbnail_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
                 ->joinLeft(array('gearoscope_gears_subsubcategories'), 'gearoscope_gears_subsubcategories.gears_subsubcategory_id=gearoscope_gears.gears_subsubcategory_id', array('gearoscope_gears_subsubcategories.subsubcategory'))
                 ->joinLeft(array('gearoscope_gears_subcategories'), 'gearoscope_gears_subcategories.gears_subcategory_id=gearoscope_gears.gears_subcategory_id', array('gearoscope_gears_subcategories.subcategory'))
                 ->joinLeft(array('gearoscope_gears_categories'), 'gearoscope_gears_categories.gears_category_id=gearoscope_gears.gears_category_id', array('gearoscope_gears_categories.category'))
@@ -69,7 +69,7 @@ class Model_DbTable_Gears extends Zend_Db_Table_Abstract {
     public function getByUser($user_id) {
         $user_id = (int) $user_id;
         $select = $this->select()
-                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
+                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.gear_thumbnail_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
                 ->joinLeft(array('gearoscope_gears_subsubcategories'), 'gearoscope_gears_subsubcategories.gears_subsubcategory_id=gearoscope_gears.gears_subsubcategory_id', array('gearoscope_gears_subsubcategories.subsubcategory'))
                 ->joinLeft(array('gearoscope_gears_subcategories'), 'gearoscope_gears_subcategories.gears_subcategory_id=gearoscope_gears.gears_subcategory_id', array('gearoscope_gears_subcategories.subcategory'))
                 ->joinLeft(array('gearoscope_gears_categories'), 'gearoscope_gears_categories.gears_category_id=gearoscope_gears.gears_category_id', array('gearoscope_gears_categories.category'))

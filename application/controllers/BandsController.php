@@ -281,7 +281,7 @@ class BandsController extends Zend_Controller_Action {
         parent::init();
         $layout = Zend_Layout::getMvcInstance();
         $layout->setLayoutPath(APPLICATION_PATH . '/layouts/scripts');
-        $layout->setLayout('iframe');
+        $layout->setLayout('iframe');       
 
         $baseUrl = $this->view->baseUrl();
 
