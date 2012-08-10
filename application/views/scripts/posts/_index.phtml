@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="/public/skins/mobilers/css/anythingslider.css">
+<link rel="stylesheet" href="/public/skins/mobilers/css/theme-cs-portfolio.css">
+<script src="/public/js/jquery.anythingslider.js"></script>
+<!--[if lte IE 7]>
+	<link rel="stylesheet" href="/public/skins/mobilers/css/anythingslider-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+
+<!-- FEATURED -->
+<script>
+    // DOM Ready
+    $(function(){
+        $('#featured').anythingSlider({
+            theme               : "cs-portfolio",
+            width               : "625px",     
+            height              : "290px",
+            buildArrows         : true,
+            buildNavigation     : true,
+            buildStartStop      : false
+        });
+    });
+</script>
+<ul id="featured">
+    <li>
+        <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+        <div class="post-column">
+            <h2 class="post-title"><a href="#">Panel1</a></h2>
+            <div class="clearbar"></div>
+            <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <div class="commentcount">23</div>
+        </div>
+    </li>
+    <li>
+        <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+        <div class="post-column">
+            <h2 class="post-title"><a href="#">Panel2</a></h2>
+            <div class="clearbar"></div>
+            <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <div class="commentcount">23</div>
+        </div>
+    </li>
+    <li>
+        <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+        <div class="post-column">
+            <h2 class="post-title"><a href="#">Panel3</a></h2>
+            <div class="clearbar"></div>
+            <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <div class="commentcount">23</div>
+        </div>
+    </li>
+    <li>
+        <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+        <div class="post-column">
+            <h2 class="post-title"><a href="#">Panel4</a></h2>
+            <div class="clearbar"></div>
+            <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <div class="commentcount">23</div>
+        </div>
+    </li>
+    <li>
+        <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+        <div class="post-column">
+            <h2 class="post-title"><a href="#">Panel5</a></h2>
+            <div class="clearbar"></div>
+            <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <div class="commentcount">23</div>
+        </div>
+    </li>
+</ul>
+<!--<div id="featured">
+    <div class="post-cover"><img src="/public/skins/mobilers/images/dummy-featured-pics.jpg" /><span></span></div>
+    <div class="post-column">
+        <h2 class="post-title"><a href="#">Pellentesque habitant morbi</a></h2>
+        <div class="clearbar"></div>
+        <p class="post-body">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        <div class="commentcount">23</div>
+    </div>
+</div>-->
+<!-- END OF FEATURED -->
+
+
+<!-- 3 COL -->
+
+<div id="recentposts">
+
+    <h2 class="blockhead">Legfrissebb bejegyzések</h2>
+
+    <?php foreach ($this->samsung as $post): ?>
+        <div class="post-column">
+            <div class="post-category">Samsung</div>
+            <div class="clear"></div>
+            <div class="post-cover"><img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=196&height=196" alt="<?php print $post['title']; ?>"
+                                         title="<?php print $post['title']; ?>" /><span></span></div>
+            <h2 class="post-title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a></h2>
+            <p class="post-body"><?php echo nl2br(strip_tags($post['lead'])); ?></p>
+            <div class="post-footer">
+                <div class="commentcount"><?php print $post['comments']; ?></div>
+                <div class="clearbar"></div>
+                <div class="post-author"><?php echo $this->escape($post['username']); ?></div>
+                <div class="post-date"><?php echo $post['date']; ?></div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <?php foreach ($this->new as $post): ?>
+            <div class="post-column">
+                <div class="post-category">Új készülékek</div>
+                <div class="clear"></div>
+                <div class="post-cover"><img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=196&height=196" alt="<?php print $post['title']; ?>"
+                                             title="<?php print $post['title']; ?>" /><span></span></div>
+                <h2 class="post-title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a></h2>
+                <p class="post-body"><?php echo nl2br(strip_tags($post['lead'])); ?></p>
+                <div class="post-footer">
+                    <div class="commentcount"><?php print $post['comments']; ?></div>
+                    <div class="clearbar"></div>
+                    <div class="post-author"><?php echo $this->escape($post['username']); ?></div>
+                    <div class="post-date"><?php echo $post['date']; ?></div>
+                </div>
+            </div>
+    <?php endforeach; ?>
+
+    <?php foreach ($this->smartphone as $post): ?>
+                <div class="post-column">
+                    <div class="post-category">Smartlife</div>
+                    <div class="clear"></div>
+                    <div class="post-cover"><img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=196&height=196" alt="<?php print $post['title']; ?>"
+                                                 title="<?php print $post['title']; ?>" /><span></span></div>
+                    <h2 class="post-title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a></h2>
+                    <p class="post-body"><?php echo nl2br(strip_tags($post['lead'])); ?></p>
+                    <div class="post-footer">
+                        <div class="commentcount"><?php print $post['comments']; ?></div>
+                        <div class="clearbar"></div>
+                        <div class="post-author"><?php echo $this->escape($post['username']); ?></div>
+                        <div class="post-date"><?php echo $post['date']; ?></div>
+                    </div>
+                </div>
+    <?php endforeach; ?>
+
+</div>
+<!-- END OF 3 COL -->
+
+<!-- VIDEO BOX -->
+
+<div id="featuredvideo">
+
+    <h2 class="blockhead">Kiemelt videó</h2>
+
+    <iframe width="625" height="318" src="http://www.youtube.com/embed/7Sevfu9JXrE" frameborder="0" allowfullscreen></iframe>
+</div>
+<!-- END OF VIDEO BOX -->

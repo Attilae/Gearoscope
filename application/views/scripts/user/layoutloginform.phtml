@@ -1,0 +1,21 @@
+
+<form class="login active" action="" method="POST">
+    <h3>Bejelentkezés</h3>
+    <div>
+        <label>Felhasználónév:</label>
+        <?php print $this->element->username; ?>
+        <span class="error">This is an error</span>
+    </div>
+    <div>
+        <label>Jelszó: <a href="forgot_password.html" rel="forgot_password" class="forgot linkform">Elfelejetted a jelszavad?</a></label>
+        <?php print $this->element->password; ?>
+        <span class="error">This is an error</span>
+    </div>
+    <div class="bottom">
+        <div class="remember"><input type="checkbox" /><span>Keep me logged in</span></div>
+        <input type="submit" value="Login"></input>
+        <?php print $this->element->submit; ?>
+        <a href="register.html" rel="register" class="linkform">Még nem regisztráltál? Itt megteheted!</a>
+        <div class="clear"></div>
+    </div>
+</form>

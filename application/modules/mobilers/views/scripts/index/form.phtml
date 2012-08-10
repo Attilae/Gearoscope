@@ -1,0 +1,39 @@
+<form action="/arajanlat/index" method="POST">
+<table width="730" cellspacing="2" cellpadding="1" border="0" class="cms" summary="Cégadatok">
+    <tr>
+        <td width="620">Cégnév *</td>
+        <td width="340"><?php print $this->element->job_name; ?></td>
+    </tr>
+    <tr>
+        <td>Cím: *</td>
+        <td><?php print $this->element->address; ?></td>
+    </tr>
+    <tr>
+        <td>Név: *</td>
+        <td><?php print $this->element->name; ?></td>
+    </tr>
+    <tr>
+        <td>Beosztás: *</td>
+        <td><?php print $this->element->position; ?></td>
+    </tr>
+    <tr>
+        <td>Telefon: *</td>
+        <td><?php print $this->element->phone; ?></td>
+    </tr>
+    <tr>
+        <td>E-mail cím: *</td>
+        <td><?php print $this->element->email; ?></td>
+    </tr>
+    <tr>
+        <td>Üzenet: *</td>
+        <td>
+            <?php print $this->element->message; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <?php print $this->element->küldés; ?>
+        </td>
+    </tr>
+</table>
+</form>

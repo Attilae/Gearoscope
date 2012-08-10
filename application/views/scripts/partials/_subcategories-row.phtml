@@ -1,0 +1,9 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><?php print $this->gears_subcategory_id ?></td>
+    <td><?php print $this->subcategory ?></td>
+    <td class="options-width">
+        <a href='<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gearssubcategory/edit/subcategoryid/<?php echo $this->gears_subcategory_id; ?>' class="icon-1 info-tooltip"></a>
+        <a href='<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gearssubsubcategory/list/subcategoryid/<?php echo $this->gears_subcategory_id; ?>' class="icon-3 info-tooltip"></a>            
+        <a onclick="return confirm('Biztos benne?');" href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gearssubcategory/delete/subcategoryid/<?php echo $this->gears_subcategory_id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>                                            

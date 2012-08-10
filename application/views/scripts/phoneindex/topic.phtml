@@ -1,0 +1,17 @@
+<div data-role="content" id="one">        
+        <?php foreach ($this->paginator as $post): ?>
+                        <div class="post_box">
+            <div class="username-date">
+                <span class="username" ><?php print $post['username']; ?></span>
+                <span class="date"><?php print substr($post['date'], 0, 10); ?></span>
+            </div>
+            <a href="/phoneindex/view/id/<?php print $post["post_id"]; ?>">
+                <h3><?php print $post["title"]; ?></h3>
+            </a>
+            <a href="/phoneindex/view/id/<?php print $post["post_id"]; ?>"><img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=165&h=110&zc=1" alt="<?php print $this->mobiler['username']; ?>" /></a>
+            <?php print $post["lead"]; ?>
+    </div>
+    <div class="clear"></div>
+        <?php endforeach; ?>
+    
+</div>

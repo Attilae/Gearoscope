@@ -1,0 +1,18 @@
+<div id="content">
+
+	<div class="wrapper">
+<div id="placeHolder"></div>
+
+<ul id="artists">
+	<?php foreach($this->gears as $gear): ?>
+	<li data-genre="<?php print $gear['category']; ?>">
+		<a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gears/view/id/<?php print $gear['gear_id']; ?>">
+			<strong><?php print $gear['gear_name']; ?></strong>		
+			<img src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $gear['gear_thumbnail_url']; ?>&w=160&w=160&zc=1">
+			<i><?php print $gear['category']; ?></i>
+		</a>
+	</li>
+	<?php endforeach; ?>	
+</ul>
+</div>
+</div>

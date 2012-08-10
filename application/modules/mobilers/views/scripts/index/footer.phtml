@@ -1,0 +1,11 @@
+<p>
+    <?php foreach ($this->mobilers as $mobiler): ?>
+    <div class="mobface">
+        <a href="/mobilers/profile/index/user/<?php print $mobiler["user_id"] ?>">
+        <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/users/' . $mobiler['photo_url']; ?>&w=30&h=30&zc=1" alt="<?php print $mobiler['username']; ?>"
+             title="<?php print $mobiler['username']; ?>" /></a>
+    </div>
+<?php
+        endforeach;
+?>
+</p>

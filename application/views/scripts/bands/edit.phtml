@@ -1,0 +1,38 @@
+<div id="content">
+	<div class="wrapper">
+		<div id="sidebar-2" class="right">
+          	<div class="moduletable">
+				<h3>Adminok</h3>
+				<div class="box-indent">
+					<?php if($this->editors) { ?>
+                                            <?php
+                                            foreach($this->editors as $editor):
+                                            ?>
+                                                <p>
+                                                    <?php print $editor["user_username"]; ?>
+                                                    <?php if(!$editor["active"]) {
+                                                            print " (Pending)";                                                        
+                                                          };
+                                                    ?>
+                                                </p>
+                                            <?php  
+                                            endforeach;                                            
+                                         } else { ?>
+                                            Nincs más admin csak Te
+                                        <?php } ?>
+				</div>
+				<ul class="user-links">
+					<li>
+						<a class="addeditor" href="<?php print $this->baseUrl(); ?>/<?php $locale = Zend_Registry::get('Zend_Locale'); print $locale; ?>/bands/addeditor/band_id/<?php print $this->band_id; ?>">Admin hozzáadása</a>
+					</li>
+					<li>
+						<a href="#">Create an account</a>
+					</li>
+				</ul>
+			</div>      
+		</div>
+        <div class="blog">
+			<?php print $this->form; ?>
+		</div>
+	</div>
+</div>

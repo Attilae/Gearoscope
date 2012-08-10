@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+    <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+    </header>
+    <body>
+        <tu tuid='login'>
+            <tuv xml:lang="hu">
+                <seg>Belépés</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Log in</seg>
+            </tuv>
+        </tu>       
+        <tu tuid='signup'>
+            <tuv xml:lang="hu">
+                <seg>Regisztráció</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Sign up</seg>
+            </tuv>
+        </tu>
+        <tu tuid='logout'>
+            <tuv xml:lang="hu">
+                <seg>Kilépés</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Logout</seg>
+            </tuv>
+        </tu>
+        <tu tuid='contact'>
+            <tuv xml:lang="hu">
+                <seg>Kapcsolat</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Contact</seg>
+            </tuv>
+        </tu>
+        <tu tuid='or'>
+            <tuv xml:lang="hu">
+                <seg>vagy</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>or</seg>
+            </tuv>
+        </tu>
+        <tu tuid='edit'>
+            <tuv xml:lang="hu">
+                <seg>Adatmódosítás</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Edit</seg>
+            </tuv>
+        </tu>
+        <tu tuid='profile'>
+            <tuv xml:lang="hu">
+                <seg>Profil</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Profile</seg>
+            </tuv>
+        </tu>
+        <tu tuid='favourites'>
+            <tuv xml:lang="sa">
+                <seg>Arabic</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Favourites</seg>
+            </tuv>
+        </tu>
+        <tu tuid='createYourListings'>
+            <tuv xml:lang="sa">
+                <seg>Arabic</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Create a Listing</seg>
+            </tuv>            
+        </tu>
+        <tu tuid='help'>
+            <tuv xml:lang="hu">
+                <seg>Segítség</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Help</seg>
+            </tuv>            
+        </tu>
+        <tu tuid='formCategory'>
+            <tuv xml:lang="sa">
+                <seg>Arabic</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Category:</seg>
+            </tuv>
+        </tu>
+        <tu tuid='formSquare'>
+            <tuv xml:lang="sa">
+                <seg>Arabic</seg>
+            </tuv>
+            <tuv xml:lang="en">
+                <seg>Size:</seg>
+            </tuv>
+        </tu>
+        
+        <!--
+		FORM VALIDATION
+		-->
+
+		<tu tuid='validatorEmailInvalid'>
+			<tuv xml:lang="hu">
+				<seg>Kérjük add meg helyesen az e-mail címed!</seg>
+			</tuv>
+			<tuv xml:lang="en">
+				<seg>Please enter a valid email address!</seg>
+			</tuv>
+		</tu>
+		<tu tuid='validatorDate'>
+			<tuv xml:lang="sa">
+				<seg>Arabic</seg>
+			</tuv>
+			<tuv xml:lang="en">
+				<seg>Invalid date format!</seg>
+			</tuv>
+		</tu>		
+		<tu tuid='validatorNotEmpty'>
+			<tuv xml:lang="hu">
+				<seg>A mező nem lehet üres!</seg>
+			</tuv>
+			<tuv xml:lang="en">
+				<seg>This field cannot be empty!</seg>
+			</tuv>
+		</tu>
+		<tu tuid='validatorDbEmail'>
+			<tuv xml:lang="hu">
+				<seg>Ezzel az e-mail címmel már létezik regisztráció!</seg>
+			</tuv>
+			<tuv xml:lang="en">
+				<seg>This email address is already registered!</seg>
+			</tuv>
+		</tu>
+		<tu tuid='validatorDbUsername'>
+			<tuv xml:lang="hu">
+				<seg>Ezzel a felhasználónévvel már létezik regisztráció!</seg>
+			</tuv>
+			<tuv xml:lang="en">
+				<seg>This username is already registered!</seg>
+			</tuv>
+		</tu>
+    </body>
+</tmx>

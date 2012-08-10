@@ -1,0 +1,18 @@
+<?php
+if ($this->identity == null) {
+?>
+    <a href="#" onclick="$('#form_wrapper').fadeIn(400);">Belépés</a> | <a href="/user/register">Regisztráció</a>
+<?php
+} else {
+    if ($this->identity->role == "mobiler") {
+?>
+    <a href="/posts/add">Új bejegyzés</a> | <a href="/posts/list">Bejegyzéseim</a> | <a href="/messages/list/tab/get">Üzenetek</a> | <a href="/mobilers/profile/edit" >Profil módosítás</a> |
+<?php
+    } elseif($this->identity->role == "user") {
+?>
+    <a href="/user/edit/" >Profil módosítás</a> | <a href="/comments/listown/" >Kommentjeim</a> |
+    <?php
+    }
+    ?>
+    <a href="/user/logout">Kijelentkezés</a> | <?php echo $this->identity->username; ?>
+<?php } ?>

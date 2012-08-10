@@ -1,0 +1,51 @@
+<h3>Gear hozzáadása</h3>
+<form enctype="multipart/form-data" action="" method="post" class="gear">
+<dl class="zend_form">
+	<dt id="gear_name-label"><label for="gear_name" class="required">Cucc
+	neve</label></dt>
+	<dd id="gear_name-element">
+		<?php print $this->element->gear_name; ?>
+	</dd>
+	<dt id="serial_number-label"><label for="serial_number"
+		class="required">Sorozatszám:</label></dt>
+	<dd id="serial_number-element">
+		<?php print $this->element->serial_number; ?>
+	</dd>
+	<dt id="category-label">Kategória</dt>
+	<dd id="category-element">
+		<?php print $this->element->category; ?>
+	</dd>
+	<div style="display: none" id="div-subcategory">
+		<dt id="subcategory-label">Alkategória</dt>
+		<dd id="subcategory-element">
+			<?php print $this->element->subcategory; ?>
+		</dd>
+	</div>
+	<div style="display: none" id="div-subsubcategory">
+		<dt id="subsubcategory-label">Al-alkategória</dt>
+		<dd id="subsubcategory-element">
+			<?php print $this->element->subsubcategory; ?>
+		</dd>
+		<a class='addsubsubcategory' href="<?php print $this->baseUrl(); ?>/<?php $locale = Zend_Registry::get('Zend_Locale'); print $locale; ?>/gearssubsubcategory/useradd">Hozzáadás</a>
+	</div>
+        <dt id="description-label"><label for="description"
+		class="required">Leírás:</label></dt>
+	<dd id="description-element">
+		<?php print $this->element->description; ?>
+	</dd>
+	<dt id="photo-label"><label for="photo" class="optional">Kép:</label></dt>
+	<dd id="uploader">
+		<?php //print $this->element->photo; ?>		
+	</dd>
+    
+    <a id='picture_upload' href="<?php print $this->baseUrl(); ?>/public/upload_crop/index.php">Képfeltöltés</a>
+	
+	<dd id="uploaded" style="display: none;">
+		
+	</dd>
+	<?php print $this->element->photo; ?><?php print $this->element->thumbnail; ?>
+	<dd id="submit-element">
+		<?php print $this->element->submit; ?>
+	</dd>
+</dl>
+</form>

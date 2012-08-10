@@ -1,0 +1,123 @@
+<noscript>A böngésződön nincs bekapcsolva a Javascript! Enélkül sajnos nem működik rendesen az oldal.</noscript>
+<script language="javascript" type="text/javascript">
+    function textCounter( field, countfield, maxlimit ) {
+        if ( field.value.length > maxlimit )
+        {
+            field.value = field.value.substring( 0, maxlimit );            
+            return false;
+        }
+        else
+        {
+            var kar = document.getElementById('char');
+            kar.innerHTML = maxlimit - field.value.length;
+        }
+    }
+</script>
+
+<form id="formElem" name="formElem" action="" method="post">
+    <fieldset class="step">        
+        <p>
+            <label for="username">Név *</label>
+<!--            <input id="username" name="username" />-->
+            <?php print $this->element->name; ?>
+        </p>
+        <p>
+            <label for="username">Nem *</label>
+            <?php print $this->element->sex; ?>
+        </p>
+        <p>
+            <label for="username">Lakhely /város/ *</label>
+            <?php print $this->element->city; ?>
+        </p>
+        <p>
+            <label for="phone">Kor *</label>
+            <?php print $this->element->age; ?>
+        </p>
+    </fieldset>
+    <fieldset class="step">
+        <p>
+            <label for="website">E-mail cím *</label>
+            <?php print $this->element->email; ?>
+        </p>
+        <p>
+            <label for="website">Telefonszám *</label>
+            <?php print $this->element->phone; ?>
+        </p>
+        <p>
+            <label for="name">Végzettség *</label>
+            <?php print $this->element->graduate; ?>
+        </p>
+        <p>
+            <label for="country">Foglalkozás *</label>
+            <?php print $this->element->job; ?>
+        </p>
+
+    </fieldset>
+    <fieldset class="step">
+        <p>
+            <label for="cardtype">Hobbyd *</label>
+            <?php print $this->element->activate; ?>
+            <span class="note">(természetesen nem kell hivatásszerűen űznöd, elég, ha szereted, és gyakorlatod van benne. Ezek megléte azonban nem elsőszámú feltétel. Kamuzni nem érdemes, mert hamar kiderül…)</span>
+        </p>                                        
+        
+        <p>
+            <label for="cardnumber">Fent vagy Facebookon? *</label>
+            <?php print $this->element->facebook; ?>
+        </p>
+        <p>
+            <label for="cardnumber">Hány ismerősöd van?</label>
+            <?php print $this->element->facebook_users; ?>
+        </p>
+    </fieldset>
+    <fieldset class="step">
+        <p>
+            <label for="cardnumber">Fent vagy Twitteren? *</label>
+            <?php print $this->element->twitter; ?>
+        </p>
+        <p>
+            <label for="cardnumber">Hány követőd van?</label>
+            <?php print $this->element->twitter_users; ?>
+        </p>
+        <p>
+            <label for="cardnumber">Van saját blogod? *</label>
+            <?php print $this->element->blog; ?>
+        </p>
+        <p>
+            <label for="website">Blogod címe:
+                <span class="note">Van olyan online oldal, ahová rendszeresen publikálsz?
+                (ha van saját blogod, akkor azon kívül. Publikáció alatt nem a kommentálást értjük)</span>
+            </label>
+            <?php print $this->element->blog_address; ?>
+        </p>
+    </fieldset>
+    <fieldset class="step">
+        <p>
+            <label for="website">Kedvenc appod neve</label>
+            <?php print $this->element->app; ?>
+        </p>
+        <p>
+            <label for="website">Írj magadról 160 karakterben! *<br/>
+                <span class="note">(Írd le, milyen vagy! Írd le, milyennek tartanak Téged mások! Írd le, mit gondolsz a világról Írd le, miért lennél Te ideális Mob!ler! Olyat írj, amiből kiderül az egyéniséged és az írásbeli kommunikációs készséged.)</span>
+            </label>
+            <?php print $this->element->bio; ?>
+        </p>
+    </fieldset>
+    <fieldset class="step">
+        <p align="justify">A Samsung Mob!lers 2011-es kampányra (a továbbiakban: Kampány) történő jelentkezés automatikusan nem vonja maga után a kampányban történő részvételt is.
+            -	A jelentkezők közül azon résztvevőket, akikkel a Samsung Electronics Magyar Zrt. (a továbbiakban: Samsung) és a lebonyolítást végző Ügynökség (a továbbiakban: Ügynökség) a Kampány során együttműködni kíván, egy a Samsung és Ügynökség munkatársaiból ezen célból létrejövő grémium választja ki. A kiválasztás a jelentkező által kitöltött online adatlapon megadott válaszok és adatok alapján történik.
+
+            -	A kiválasztott személy (a továbbiakban: Mobiler) vállalja, hogy a Kampány során Samsunggal és Ügynökséggel együttműködik a Kampány sikeres lebonyolítása érdekében. Vállalja, hogy egy Együttműködési Nyilatkozat aláírásával bizonyos aktivitásokat elvégez a Kampány során.
+
+
+            -	A Mobiler együttműködése nem eredményez foglalkoztatásra, munkavégzésre irányuló tevékenységet, annak nem minősül. A Mobiler az együttműködésért anyagi juttatásra nem tart igényt, azt nem kap.
+        </p>        
+        <p align="left">
+            Elfogadom a szabályzatot
+            <?php print $this->element->terms; ?>
+        </p>
+        <p class="submit">
+            <button id="registerButton" type="submit">Register</button>
+            <?php //print $this->element->submit; ?>
+        </p>
+    </fieldset>
+</form>

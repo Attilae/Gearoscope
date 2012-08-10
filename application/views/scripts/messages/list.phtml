@@ -1,0 +1,38 @@
+<div id="messages-page">
+<a class="tab" href="/messages/list/tab/get">Beérkező</a>
+<a class="tab" href="/messages/list/tab/sent">Kimenő</a>
+<div class="clearbar"></div>
+<table class="adminlist" border="0" width="100%" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr >
+            <?php if($this->tab=="get") { ?>
+            <th class="title">Feladó</th>
+            <?php } else { ?>
+            <th class="title">Címzett</th>
+            <?php } ?>
+            <th>Tárgy</th>            
+            <th>Üzenet</th>
+            <th>Dátum</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($this->messages as $p) {
+        ?>
+            <tr align="center">
+                <td class="title"><?php print $p["username"]; ?></td>
+                <?php if($this->tab=="sent") { ?>
+                <td><a href="/messages/viewin/thread/<?php print $p["thread_id"]; ?>"><?php print $p["subject"]; ?></a></td>
+                <?php } else { ?>
+                <td><a href="/messages/view/thread/<?php print $p["thread_id"]; ?>"><?php print $p["subject"]; ?></a></td>
+                <?php } ?>
+                <td><?php print mb_substr($p["message"],0, 50, "UTF-8"). "..."; ?></td>
+                <td><?php print $p["date"]; ?></td>
+                <td class="options-width">
+                    <a href="<?php print $this->url(array('controller' => 'posts', 'action' => 'adminedit', 'id' => $p["post_id"])); ?>" class="icon-1 info-tooltip"></a>
+                    <?php if($this->tab=="get") { ?>
+                    <a href="<?php print $this->url(array('controller' => 'messages', 'action' => 'answer', 'thread' => $p["thread_id"], 'id' => $p["message_id"])); ?>">Válasz</a>
+                    <?php } ?>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>          
+</div>

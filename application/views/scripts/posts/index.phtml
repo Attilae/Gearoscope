@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="/public/skins/mobilers/css/anythingslider.css">
+<link rel="stylesheet" href="/public/skins/mobilers/css/theme-cs-portfolio.css">
+<script type="text/javascript" src="/public/js/jquery.anythingslider.js"></script>
+<!--[if lte IE 7]>
+	<link rel="stylesheet" href="/public/skins/mobilers/css/anythingslider-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+
+<!-- FEATURED -->
+<script type="text/javascript">
+    // DOM Ready
+    $(function(){
+        $('#featured').anythingSlider({
+            theme               : "cs-portfolio",
+            width               : "625px",     
+            height              : "290px",
+            buildArrows         : true,
+            buildNavigation     : true,
+            buildStartStop      : false
+        });
+    });
+</script>
+<ul id="featured">
+    <?php foreach ($this->priors as $post): ?>
+        <li>
+            <div class="post-cover"><img align="center" src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=410&h=310&zc=1" alt="<?php print $post['title']; ?>"title="<?php print $post['title']; ?>" /><span></span></div>
+            <div class="post-column">
+                <h2 class="post-title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php print $post["title"]; ?></a></h2>
+                <div class="clearbar"></div>
+                <p class="post-body"><?php print $post["lead"]; ?></p>
+                <div class="commentcount">
+                <?php
+                $browser = $_SERVER['HTTP_USER_AGENT'];
+
+                if (strlen(strstr($browser, "MSIE 7.0")) > 0) {
+ ?>
+                    <a href="/posts/view/id/<?php print $post["post_id"] ?>"><?php print $post["comments"]; ?></a>
+<?php } else { ?>
+                    <a href="/posts/view/id/<?php print $post["post_id"] ?>#comments"><?php print $post["comments"]; ?></a>
+<?php } ?>
+            </div>
+        </div>
+    </li>
+    <?php endforeach; ?>
+
+                    </ul>
+                    <!-- END OF FEATURED -->
+
+
+                    <!-- 3 COL -->
+
+                    <div id="recentposts">
+
+                        <h2 class="blockhead">Legfrissebb bejegyzések</h2>
+
+<?php foreach ($this->firstthree as $post): ?>
+            <?php if ($post["topic"] == "samsung") {
+ ?>
+                        <div class="post-column samsung">
+                <?php } elseif ($post["topic"] == "smartphones") {
+ ?>
+                        <div class="post-column new-phones">
+<?php } elseif ($post["topic"] == "blog") { ?>
+                            <div class="post-column smartlife">
+<?php } ?>
+                <?php if ($post["topic"] == "samsung") {
+ ?>
+                                <div class="post-category samsung">Samsung</div>
+<?php } elseif ($post["topic"] == "smartphones") { ?>
+                                <div class="post-category new-phones">Okostelefonok</div>
+<?php } elseif ($post["topic"] == "blog") { ?>
+                                <div class="post-category smartlife">Blog</div>
+<?php } ?>
+                            <div class="clear"></div>
+                            <div class="post-cover"><img class="center" src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=200&h=200&zc=1" alt="<?php print $post['title']; ?>"
+                                                 title="<?php print $post['title']; ?>" /><span></span></div>
+                    <h2 class="post-title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a></h2>
+                    <p class="post-body"><?php echo nl2br(strip_tags($post['lead'])); ?></p>
+                    <div class="post-footer">
+                        <div class="commentcount">
+                        <?php
+                            $browser = $_SERVER['HTTP_USER_AGENT'];
+
+                            if (strlen(strstr($browser, "MSIE 7.0")) > 0) {
+                        ?>
+                                <a href="/posts/view/id/<?php print $post["post_id"] ?>"><?php print $post["comments"]; ?></a>
+<?php } else { ?>
+                                <a href="/posts/view/id/<?php print $post["post_id"] ?>#comments"><?php print $post["comments"]; ?></a>
+<?php } ?>
+                                    </div>
+                                    <div class="clearbar"></div>
+                                    <div class="post-author"><a href="/mobilers/profile/index/user/<?php print $post['user_id']; ?>"><?php echo $this->escape($post['username']); ?></a></div>
+                                    <div class="post-date"><?php echo substr($post['date'], 0, 10); ?></div>
+                                </div>
+                            </div>
+<?php endforeach; ?>   
+                        </div>
+                        <!-- END OF 3 COL -->
+
+                        <!-- VIDEO BOX -->
+
+                        <div id="featuredvideo">
+
+                            <h2 class="blockhead">Kiemelt videó</h2>
+                            <iframe width="625" height="318" src="http://www.youtube.com/embed/-fr516BDhkQ" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <!-- END OF VIDEO BOX -->
+
+                        <div class="clear"></div>
+
+                        <link rel="stylesheet" href="/public/skins/mobilers/css/jqcarousel.css">
+                        <script type="text/javascript" src="/public/js/jquery.jcarousel.min.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('#footbox').jcarousel();
+                            });
+                        </script>
+
+                        <div class="blockhead" id="promob">Samsung készülékek</div>
+                        <ul id="footbox" class="jcarousel-skin-tango">                    
+<?php foreach ($this->activities as $activities): ?>
+                                <li>
+                                    <div class="post-column">
+                                        <div class="post-cover"><img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/activities/' . $activities['photo']; ?>&w=196&h=196&zc=1" alt="<?php print $activities['title']; ?>"
+                                                                     title="<?php print $activities['title']; ?>" /><span></span></div>
+                                        <div class="clear"></div>
+                                        <h2 class="post-title"><a target="_blank" href="<?php echo $activities['link']; ?>"><?php echo $this->escape($activities['title']); ?></a></h2>
+                                    </div>
+                                </li>                               
+<?php endforeach; ?>
+        </ul>

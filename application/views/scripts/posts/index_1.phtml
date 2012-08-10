@@ -1,0 +1,74 @@
+<?php foreach ($this->firstthreecomment as $f3): ?>
+                <div>
+                    <img  width="25" src="/public/uploads/users/<?php print $f3["photo_url"]; ?>" />
+<?php
+                print $f3["name"] . "<br/>";
+                print $f3["description"] . "<br/>";
+?>
+            </div>
+            <?php endforeach; ?>
+
+<?php foreach ($this->samsung as $post): ?>
+    <div class="post">
+        <img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=60&height=60" alt="<?php print $post['title']; ?>"
+title="<?php print $post['title']; ?>" style="float:left; margin-right:10px;" />
+        <div class="title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a><br/>
+        <?php echo $this->escape($post['username']); ?><br/>
+        <?php echo $post['date']; ?>
+    </div>
+    <div class="description"><?php echo nl2br(strip_tags($post['lead'])); ?></div>
+    <ul>
+        <?php
+        $modelTag = new Model_DbTable_Tags();
+        $tags = $modelTag->findByPost($post["post_id"]);
+        foreach ($tags as $tag): ?>
+            <li><?php print $tag["tag"]; ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <div class="commentscount">Comments( <?php print $post['comments']; ?> )</div>
+    </div>
+<?php endforeach; ?>
+
+<?php foreach ($this->new as $post): ?>
+                <div class="post">
+                    <img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=60&height=60" alt="<?php print $post['title']; ?>"
+title="<?php print $post['title']; ?>" style="float:left; margin-right:10px;" />
+                    <div class="title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a>
+                        <br/>
+        <?php echo $this->escape($post['username']); ?><br/>
+        <?php echo $post['date']; ?>
+            </div>
+            <div class="description"><?php echo nl2br(strip_tags($post['lead'])); ?></div>
+            <ul>
+        <?php
+                $modelTag = new Model_DbTable_Tags();
+                $tags = $modelTag->findByPost($post["post_id"]);
+                foreach ($tags as $tag): ?>
+                    <li><?php print $tag["tag"]; ?></li>
+        <?php endforeach; ?>
+                </ul>
+                <div class="commentscount">Comments( <?php print $post['comments']; ?> )</div>
+            </div>
+<?php endforeach; ?>
+
+<?php foreach ($this->smartphone as $post): ?>
+                        <div class="post">
+                            <img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=60&height=60" alt="<?php print $post['title']; ?>"
+title="<?php print $post['title']; ?>" style="float:left; margin-right:10px;" />
+                            <div class="title"><a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a>
+                                <br/>                        
+        <?php echo $this->escape($post['username']); ?><br/>
+        <?php echo $post['date']; ?>
+                    </div>
+                    <div class="description"><?php echo nl2br(strip_tags($post['lead'])); ?></div>
+                    <ul>
+        <?php
+                        $modelTag = new Model_DbTable_Tags();
+                        $tags = $modelTag->findByPost($post["post_id"]);
+                        foreach ($tags as $tag): ?>
+                            <li><?php print $tag["tag"]; ?></li>
+        <?php endforeach; ?>
+                        </ul>
+                        <div class="commentscount">Comments( <?php print $post['comments']; ?> )</div>
+                    </div>
+<?php endforeach; ?>

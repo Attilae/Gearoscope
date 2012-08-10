@@ -1,0 +1,23 @@
+<div id="messages-page">
+<a class="tab" href="/messages/list/tab/get">Beérkező</a>
+<a class="tab" href="/messages/list/tab/sent">Kimenő</a>
+<div class="clearbar"></div>
+<h2><?php print $this->message[0]["subject"]; ?></h2>
+<?php foreach ($this->message as $message): ?>
+    <p>Feladó: <strong>
+<?php
+    $modelUser = new Model_DbTable_User();
+    $user = $modelUser->getUser($message["sender"]);
+    print $user["username"];
+?></strong>
+</p>
+<p>Címzett:<strong>
+<?php
+    $user = $modelUser->getUser($message["receiver"]);
+    print $user["username"];
+?></strong>
+</p>
+<div><?php print $message["message"]; ?></div>
+<div class="clearbar"></div>
+<?php endforeach; ?>
+</div>

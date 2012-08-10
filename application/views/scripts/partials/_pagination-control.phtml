@@ -1,0 +1,33 @@
+<?php
+    // you need to add each of the request parameters to url
+    $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+    // remove the system parameters
+    unset($params['module']);
+    unset($params['controller']);
+    unset($params['action']);
+    ?>
+<div class="pagination">	
+				<ul>
+					<?php if (isset($this->previous)) { ?>
+						<span class="pagenav"><a class="prev" href="<?php echo $this->url(array_merge($params, array('page' => $this->previous))); ?>">Prev</a></span>
+					<?php } else { ?>
+						<span class="pagenav">Prev</span>
+					<?php } ?>			
+												
+					<?php foreach ($this->pagesInRange as $page) { ?>
+					  	<?php if ($page != $this->current) { ?>
+					  	<span class="pagenav">
+					    <a href="<?php echo $this->url(array_merge($params, array('page' => $page))); ?>"><?php print $page ?></a>
+					    </span>
+						<?php } else { ?>						
+						<span class="pagenav"><?php print $page ?></span>
+						<?php } ?> 
+					<?php } ?>
+																				
+					<?php if (isset($this->next)) { ?>
+						<span class="pagenav"><a class="prev" href="<?php echo $this->url(array_merge($params, array('page' => $this->next))); ?>">Next</a></span>
+					<?php } else { ?>
+						<span class="pagenav">Next</span>
+					<?php } ?>	
+				</ul>
+</div>

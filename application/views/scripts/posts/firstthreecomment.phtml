@@ -1,0 +1,10 @@
+<?php
+foreach($this->firstthreecomment as $f3): ?>
+<div>
+    <img  width="25" src="/public/uploads/users/<?php print $f3["photo_url"]; ?>" />
+    <?php
+    print $f3["name"] . "<br/>";
+    print $f3["description"] . "<br/>";
+    ?>
+</div>
+    <?php endforeach; ?>

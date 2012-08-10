@@ -1,0 +1,39 @@
+
+<!-- POST LAYOUT -->
+
+    <h1 class="post-title"><?php echo $this->post['title']; ?></h1>
+    <?php $auth = Zend_Auth::getInstance(); print $auth->getIdentity()->username; ?> | <?php print substr($this->post['date'], 0, 10); ?> |
+    <!-- POST COLUMN -->
+    <div id="post-column">
+        <!-- start slipsum code -->
+        <div class="clearbar"></div>
+        <p class="intro"><?php echo $this->post['lead']; ?></p>
+
+        <div class="post-cover">
+            <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $this->post['photo']; ?>&w=445&h=310&zc=1" alt="<?php print $this->post['title']; ?>"
+                 title="<?php print $this->post['title']; ?>"/>
+            <span></span>
+        </div>
+
+        <div class="post-body">
+
+            <?php echo $this->post['content']; ?>
+            <?php
+            if ($this->post["video"] != "") {
+                $video = Model_Youtube::generateEmbed($this->post['video']);
+                print $video;
+            }
+            ?>
+        </div>
+
+        <!-- end slipsum code -->
+
+        <div class="clearbar"></div>
+
+
+    </div><!-- END OF POST COLUMN -->
+
+    <!-- END OF POST LAYOUT -->
+
+
+    <a href="/posts/<?php print $this->editLink; ?>">Szerkesztés</a>

@@ -1,0 +1,69 @@
+<form id="member-registration"
+	action="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/register" method="post"
+	class="form-validate">
+	<fieldset>
+		<legend>User Registration</legend>
+		<dl>
+			<dt>
+				<span class="spacer"><span class="before"></span><span class="text"><label
+						id="jform_spacer-lbl" class=""><strong class="red">*</strong>
+							Required field</label> </span><span class="after"></span> </span>
+			</dt>
+			<dd></dd>
+			<dt>
+				<label id="jform_name-lbl" for="jform_name" class="hasTip required"
+					title="Name::Enter your full name">Name:<span class="star">&#160;*</span>
+				</label>
+			</dt>
+			<dd>
+					<?php print $this->element->name_reg; ?> 
+			</dd>
+			<dt>
+				<label id="jform_username-lbl" for="jform_username"
+					class="hasTip required"
+					title="Username::Enter your desired user name">Username:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->username_reg; ?> 
+			</dd>
+			<dt>
+				<label id="jform_password1-lbl" for="jform_password1"
+					class="hasTip required"
+					title="Password::Enter your desired password - Enter a minimum of 4 characters">Password:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->password_reg; ?> 
+			</dd>
+			<dt>
+				<label id="jform_password2-lbl" for="jform_password2"
+					class="hasTip required"
+					title="Confirm Password::Confirm your password">Confirm Password:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->password_reg_confirm; ?>
+			</dd>
+			<dt>
+				<label id="jform_email1-lbl" for="jform_email1"
+					class="hasTip required"
+					title="Email Address::Enter your email address">Email Address:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->email ?>
+			</dd>
+			<dd>
+			<?php print $this->element->captcha; ?>
+			</dd>
+		</dl>
+	</fieldset>
+	<div>
+		<button type="submit" class="validate">Register</button>
+		or <a href="/joomla_34465/" title="Cancel">Cancel</a> <input
+			type="hidden" name="option" value="com_users" /> <input type="hidden"
+			name="task" value="registration.register" /> <input type="hidden"
+			name="12db47ca459f15d82ed7f4f7ee1d866d" value="1" />
+	</div>
+</form>

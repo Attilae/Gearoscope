@@ -1,0 +1,48 @@
+<div id="content">
+	<div class="wrapper">
+	<?php if($this->loginError): ?>
+		<div class="error">
+
+			<h2>Notice</h2>
+
+
+			<dl id="system-message">
+				<dt class="error">Error</dt>
+				<dd class="error message">
+					<ul>
+						<li>Username and password do not match or you do not have activate your
+							account yet.</li>
+					</ul>
+				</dd>
+			</dl>
+
+		</div>
+
+		<?php endif; ?>
+		<div class="login">
+			<div class="login-description"></div>
+			<form action="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/login"
+				method="post">
+				<fieldset>
+					<div class="login-fields">
+						<label id="username-lbl" for="username" class=" required">User
+							Name<span class="star">&nbsp;*</span> </label> <input type="text"
+							name="username" id="username" value=""
+							class="validate-username required" size="25">
+					</div>
+					<div class="login-fields">
+						<label id="password-lbl" for="password" class=" required">Password<span
+							class="star">&nbsp;*</span> </label> <input type="password"
+							name="password" id="password" value=""
+							class="validate-password required" size="25">
+					</div>
+					<button type="submit" class="button">Log in</button>
+					<input type="hidden" name="return"
+						value="aW5kZXgucGhwP0l0ZW1pZD00NjQ="> <input type="hidden"
+						name="f9d471479dcd6cdbf2762f6b8af6e97d" value="1">
+				</fieldset>
+			</form>
+		</div>
+
+	</div>
+</div>

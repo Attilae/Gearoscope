@@ -1,0 +1,28 @@
+<?php
+$paginationControl = $this->paginationControl($this->comments, 'All', 'partials/paginator.phtml') ?>
+<?php //if (count($this->paginator) >= 4) : ?>
+    <div class="pagination-control">
+    <?php echo $paginationControl ?>
+</div>
+<?php //endif; ?>
+
+    <div class="paged-data">
+        <div class="data">
+        <?php if (count($this->comments)) : ?>
+        <?php
+            foreach ($this->comments as $comment) :
+        ?>
+                <div class="postedby"><a href="<?php echo $comment['Webpage']; ?>" ><?php echo $this->escape($comment['name']); ?></a> on <span><?php echo $this->escape(date('d-m-Y', $comment['date'])); ?></span></div>
+                <div class="comment"><?php echo $this->escape($comment['description']); ?></div>
+        <?php endforeach ?>
+        <?php else : ?>
+                    <p class="notice">No items found</p>
+        <?php endif ?>
+                </div>
+            </div>
+
+<?php if ($this->comments) : ?>
+                        <div class="pagination-control">
+    <?php echo $paginationControl ?>
+                    </div>
+<?php endif; ?>

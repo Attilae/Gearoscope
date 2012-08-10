@@ -1,0 +1,7 @@
+.border-1,
+.border-3,
+blockquote {zoom:1;}
+.banner strong.text1 {display:inline;}
+.banner .text3 {margin-top:-10px;}
+
+*+html .banner .text3 {margin-top:0px;}

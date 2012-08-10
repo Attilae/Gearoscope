@@ -1,0 +1,131 @@
+<div id="admin-content">
+    <!--  start page-heading -->
+    <div id="page-heading">
+        <h1>Katalógus elemek</h1>
+    </div>
+    <!-- end page-heading -->		
+	
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+        <tbody><tr>
+                <th rowspan="3" class="sized"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/shared/side_shadowleft.jpg" width="20" height="300" alt=""></th>
+                <th class="topleft"></th>
+                <td id="tbl-border-top">&nbsp;</td>
+                <th class="topright"></th>
+                <th rowspan="3" class="sized"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/shared/side_shadowright.jpg" width="20" height="300" alt=""></th>
+            </tr>
+            <tr>
+                <td id="tbl-border-left"></td>
+                <td>
+                    <!--  start content-table-inner ...................................................................... START -->
+                    <div id="content-table-inner">
+                    
+                    <!--  start actions-box ............................................... -->
+                        <div id="actions-box">
+                        	<a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gears/add/subsubcategoryid/<?php print $this->subsubcategoryid; ?>" class="action-edit">Új katalógus elem</a>                            
+                        <div class="clear"></div>
+						<br/>
+                    </div>
+
+                        <!--  start table-content  -->
+                        <div id="table-content">						
+                            <!--				  start message-green-->
+
+                            <?php if ($_GET["deactive"] == "1") { ?>
+                                <div id="message-green">
+                                    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                                <td class="green-left">Sikeresen inaktiválta a bejegyzést!</td>
+                                                <td class="green-right"><a class="close-green"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/table/icon_close_green.gif" alt=""></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($_GET["active"] == "1") { ?>
+                                <div id="message-green">
+                                    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                                <td class="green-left">Sikeresen aktiválta a bejegyzést!</td>
+                                                <td class="green-right"><a class="close-green"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/table/icon_close_green.gif" alt=""></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php } ?>
+                            
+                            <?php if ($_GET["create"] == "1") { ?>
+                                <div id="message-green">
+                                    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                                <td class="green-left">Sikeresen létrehozta a bejegyzést!</td>
+                                                <td class="green-right"><a class="close-green"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/table/icon_close_green.gif" alt=""></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($_GET["delete"] == "1") { ?>
+                                <div id="message-red">
+                                    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                                <td class="red-left">Sikeresen törölte a bejegyzést!</td>
+                                                <td class="red-right"><a class="close-red"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/table/icon_close_red.gif" alt=""></a></td>
+                                            </tr>
+                                        </tbody></table>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($_GET["edit"] == "1") { ?>
+                                <div id="message-green">
+                                    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                                <td class="green-left">Sikeresen módosította a bejegyzést!</td>
+                                                <td class="green-right"><a class="close-green"><img src="<?php print $this->baseUrl(); ?>/public/admin/images/table/icon_close_green.gif" alt=""></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php } ?>
+                            <!--				  end message-green-->
+
+
+                            <!--  start product-table ..................................................................................... -->
+                            <form id="mainform" action="">
+                                <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+                                    <tbody>
+                                        <tr>
+                                            <th class="table-header-check"><a href="">&nbsp</a></th>
+                                            <th class="table-header-repeat line-left minwidth-1"><a href="">Cím</a></th>
+                                            <th class="table-header-repeat line-left minwidth-1"><a href="">Leírás</a></th>                                            
+                                            <th class="table-header-options line-left"><a href="">Opciók</a></th>
+                                        </tr>
+                                        <?php if ($this->items != null) { ?>
+
+                                            <?php echo $this->partialLoop('partials/_items-row.phtml', $this->items); ?>
+
+                                        <?php } else { ?>
+                                            <tr><td colspan="5">Nincs elem.</td></tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <!--  end product-table................................... -->
+                            </form>
+                        </div>
+                        <!--  end content-table  -->
+
+                        
+                    <!--  end content-table-inner ............................................END  -->
+                </td>
+                <td id="tbl-border-right"></td>
+            </tr>
+            <tr>
+                <th class="sized bottomleft"></th>
+                <td id="tbl-border-bottom">&nbsp;</td>
+                <th class="sized bottomright"></th>
+            </tr>
+        </tbody></table>
+    <div class="clear">&nbsp;</div>
+
+</div>

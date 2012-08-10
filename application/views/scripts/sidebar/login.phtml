@@ -1,0 +1,46 @@
+<?php
+
+$returnUrl = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+
+$auth = Zend_Auth::getInstance();
+$identity = $auth->getIdentity();
+if($auth->hasIdentity()) {
+	?>
+<ul class="menu-user">
+	<li><a
+		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/index/id/<?php print $identity->user_id; ?>"
+		title="edit"><?php print $this->translate('profile'); ?> </a></li>
+	<li><a href="#" title="edit"><?php print $this->translate('gears'); ?></a>
+		<ul>
+			<li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/gears/add"><?php print $this->translate('add gear'); ?> </a></li>
+			<li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/gears/user"><?php print $this->translate('my gears'); ?> </a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#"><?php print $this->translate('bands'); ?> </a>
+		<ul>
+			<li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/bands/add"><?php print $this->translate('add band'); ?> </a></li>
+			<li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/bands/user"><?php print $this->translate('my band'); ?> </a></li>
+		</ul>
+	</li>
+	<li id="item-609"><a
+		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/logout?returnUrl=<?php print $returnUrl; ?>">
+		<?php print $this->translate('logout'); ?> </a>
+	</li>
+</ul>
+		<?php } else { ?>
+<ul class="menu-user">
+	<li id="item-562"><a
+		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/login"
+		title="login"><?php print $this->translate('login'); ?> </a></li>
+	<li id="item-608"><span class="separator"><?php print $this->translate('or'); ?>
+	</span>
+	</li>
+	<li id="item-609"><a
+		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/register"><?php print $this->translate('signup'); ?>
+	</a></li>
+	<li id="item-608"><span class="separator"><?php print $this->translate('or'); ?>
+	</span>
+	</li>	
+</ul>
+		<?php } ?>

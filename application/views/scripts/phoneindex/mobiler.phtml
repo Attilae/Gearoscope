@@ -1,0 +1,29 @@
+
+<div data-role="header" data-theme="d">
+    <h1><?php echo $this->mobiler["username"]; ?></h1>
+    <a href="../../" data-icon="arrow-l">Vissza</a>
+</div>
+<div data-role="content" id="one">
+    <div class="mobilers">
+        <a href="#">
+            <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/users/' . $this->mobiler['photo_url']; ?>&w=165&h=165&zc=1" alt="<?php print $this->mobiler['username']; ?>"/>
+        </a>
+        <h2>Név: <?php print $this->mobiler["username"]; ?></h2>
+        <div style="position: relative; left: -50px; top: -30px; background: url('/public/skins/mobilers/images/block-icons.png') 0px -335px no-repeat;width: 30px; height: 20px;text-indent: 25px; float: right;"><a class="mailto" style="color: #5E6A71; position: relative; top: 3px;" href="mailto:<?php print $this->mobiler['email']; ?>">Üzenet</a></div>
+        <p class="data">Kor: <?php print date("Y", time()) - $this->mobiler["birth_year"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foglalkozás: <?php print $this->mobiler["job"]; ?></p>
+        <p><?php print $this->mobiler["bio"]; ?></p>
+    </div>
+    <ul data-role="listview" data-theme="c" data-dividertheme="d" data-counttheme="e">
+
+        <?php foreach ($this->posts as $post): ?>
+            <li>
+                <a href="/phoneindex/view/id/<?php print $post["post_id"]; ?>">
+                    <img src="/public/uploads/posts/<?php print $post["photo"]; ?>" /><h3><?php print $post["title"]; ?></h3>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<div data-role="footer" data-theme="d">
+    <h5>Copyright © 2011 SAMSUNG. Minden jog fenntartva.</h5>
+</div><!-- /footer -->

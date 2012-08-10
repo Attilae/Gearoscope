@@ -1,0 +1,5 @@
+
+RewriteEngine On
+RewriteRule !\.(js|gif|jpg|png|css|txt)$ /_gearoscope/public/index.php [L]
+RewriteCond %{REQUEST_URI} !^/_gearoscope/public/
+RewriteRule ^(.*)$ /_gearoscope/public/$1 [L]

@@ -1,0 +1,54 @@
+<div id="content">
+
+<div class="wrapper">
+
+<div class="item-page">
+<h2><?php print $this->user["user_username"]; ?></h2>
+
+<dl class="article-info">
+	<dt class="article-info-term">Details</dt>
+	<!-- <dd class="category-name">Style: <?php print $this->band[0]["style"]; ?></dd> -->
+	<dd class="create">Created on <?php print date("Y.m.d.", $this->user["user_register_date"]); ?></dd>
+</dl>
+
+<?php if(!empty($this->user['user_photo'])) { ?>
+    <img class="img-indent border" src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/users/<?php print $this->user['user_photo']; ?>&h=300&w=200" alt="" />
+<?php } else { ?>
+    <img class="img-indent border" src="<?php print $this->baseUrl(); ?>/public/uploads/users/user.jpg" width="300" alt="" />
+<?php }  ?>
+
+<div class="clear"></div>
+    
+<h3>Gears</h3>
+	<ul id="artists">
+		<?php
+		foreach($this->gears as $gear): ?>
+			<li data-genre="<?php print $gear['category']; ?>">
+				<a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gears/view/id/<?php print $gear['gear_id']; ?>">
+					<strong><?php print $gear['gear_name']; ?></strong>		
+					<img src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $gear['gear_photo_url']; ?>&w=160&w=160&zc=1">
+					<i><?php print $gear['category']; ?></i>
+				</a>
+			</li>
+		<?php endforeach; ?>	
+	</ul>
+<h3>Bands</h3>
+
+	<ul id="artists">
+		<?php
+		foreach($this->bands as $band): ?>
+			<li data-genre="<?php print $band['style']; ?>">
+				<a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/bands/view/id/<?php print $band['band_id']; ?>">
+					<strong><?php print $band['band_name']; ?></strong>		
+					<img src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/bands/<?php print $band['band_photo_url']; ?>&w=160&w=160&zc=1">
+					<i><?php print $band['style']; ?></i>
+				</a>
+			</li>
+		<?php endforeach; ?>	
+	</ul>
+
+</div>
+
+</div>
+
+</div>
