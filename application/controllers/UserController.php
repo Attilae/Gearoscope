@@ -114,8 +114,7 @@ class UserController extends Zend_Controller_Action {
         $userModel = new Model_DbTable_User ();
         if ($this->_request->isPost()) {
             if ($passwordForm->isValid($_POST)) {
-                try {
-                    
+                try {                    
                     $pass = $this->generatePassword(8);
                     $email = $passwordForm->getValue('email');
 

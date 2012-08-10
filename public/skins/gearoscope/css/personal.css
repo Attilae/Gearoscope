@@ -804,7 +804,7 @@ ul.newsflash-horiz li h4
 .moduletable .box-indent {padding:22px 25px 0px 20px; background:#1e1e1e; overflow:hidden;}
 .user-links {overflow:hidden; border-top:1px solid #151515; background:#1c1c1c; padding:12px 25px 12px 20px}
 .user-links li {float:left; padding:0 6px;}
-.user-links li:first-child {padding-left:0; border-right:1px solid #535252;}
+.user-links li:first-child {padding-left:0; }
 .user-links li a {color:#535252;}
 .search > .inputbox {
 	border:solid 1px #ccc;

@@ -168,6 +168,8 @@ class GearsController extends Zend_Controller_Action {
         
         $gear_id = $this->_request->getParam("id");
 
+        $this->view->gear_id = $gear_id;
+        
         $gearsModel = new Model_DbTable_Gears();
         $gear = $gearsModel->getGear($gear_id);
         
@@ -227,6 +229,11 @@ class GearsController extends Zend_Controller_Action {
                                                     $("dd#uploaded").html("<img src=\"' . $baseUrl . '/public/' . $_SESSION["uploader"]["thumbnail"] . '\">"); 		
                                                 }    
 				 	}
+				});
+                                $("#addgallery").colorbox({
+					iframe:true,
+					width:"800px",
+				 	height:"600px"				 	
 				});
 			});'
         );

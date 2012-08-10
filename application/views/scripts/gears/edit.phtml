@@ -1,10 +1,18 @@
 <div id="content">
 	<div class="wrapper">
+		<div id="sidebar-2" class="right">
+          	<div class="moduletable">
+				<h3>Galéria</h3>
+				
+				<ul class="user-links">
+					<li>
+						<a id="addgallery" href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/uploadify/index/gear/<?php print $this->gear_id; ?>">Galéria hozzáadása</a>
+					</li>					
+				</ul>
+			</div>      
+		</div>
+        <div class="blog">
 			<?php print $this->form; ?>
-			<div style='display:none'>
-				<div id='inline_content' style='padding:10px; background:#fff;'>
-		
-				</div>
-			</div>
+		</div>
 	</div>
 </div>

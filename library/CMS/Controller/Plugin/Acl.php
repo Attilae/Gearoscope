@@ -12,7 +12,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->addRole(new Zend_Acl_Role('administrator'), 'user');
 
         // add the resources
-        
+
         $acl->add(new Zend_Acl_Resource('gearoscope'));
         $acl->add(new Zend_Acl_Resource('public'));
         $acl->add(new Zend_Acl_Resource('skins'));
@@ -58,6 +58,8 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->add(new Zend_Acl_Resource('jogitudnivalok'));
         $acl->add(new Zend_Acl_Resource('contact'));
 
+        $acl->add(new Zend_Acl_Resource('uploadify'));
+
         // set up the access rules
         $acl->allow(null, array('index', 'error'));
 
@@ -67,7 +69,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('guest', 'public');
         $acl->allow('guest', 'facebook');
         $acl->allow('guest', 'admin', array('index', 'login'));
-        
+
         $acl->allow('guest', 'contact', array('index'));
         $acl->allow('guest', 'sidebar');
         $acl->allow('guest', 'index', array('index'));
@@ -76,14 +78,14 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('guest', 'bands', array('index', 'view', 'collect', 'activate', 'successfull'));
         $acl->allow('guest', 'gears', array('index', 'view'));
         $acl->allow('guest', 'menu', array('render'));
-        $acl->allow('guest', 'user', array('index', 'login', 'logout', 'password', 'successfull', 'passwordsent', 'register'));        
+        $acl->allow('guest', 'user', array('index', 'login', 'logout', 'password', 'successfull', 'passwordsent', 'register'));
         $acl->allow('guest', 'archive', array('index'));
         $acl->allow('guest', 'search', array('index', 'search'));
         $acl->allow('guest', 'image', array('resize'));
         $acl->allow('guest', 'tag', array('index'));
         $acl->allow('guest', 'profile');
         $acl->allow('guest', 'activate');
-        $acl->allow('guest', 'feed', array('rss'));        
+        $acl->allow('guest', 'feed', array('rss'));
 
         $acl->allow('user', 'user', array('edit', 'editbio', 'newpassword', 'newemail'));
         $acl->allow('user', 'comments', array('listown', 'delete'));
@@ -91,7 +93,8 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('user', 'gears', array('add', 'edit', 'user', 'picture', 'imgdelete', 'thumbnaildelete'));
         $acl->allow('user', 'gearscategory', array('categorychange'));
         $acl->allow('user', 'gearssubcategory', array('categorychange'));
-		$acl->allow('user', 'gearssubsubcategory', array('useradd'));         
+        $acl->allow('user', 'gearssubsubcategory', array('useradd'));
+        $acl->allow('user', 'uploadify', array('index', 'uploadify'));
 
         // administrators can do anything
         $acl->allow('administrator', null);
@@ -120,5 +123,4 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
     }
 
 }
-
 
