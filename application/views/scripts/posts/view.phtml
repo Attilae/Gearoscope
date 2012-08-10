@@ -1,0 +1,195 @@
+
+<!-- POST LAYOUT -->
+<?php foreach ($this->post as $post): ?>
+
+    <h1 class="post-title"><?php echo $post['title']; ?></h1>
+    <div class="post-info"><a href="/mobilers/profile/index/user/<?php print $post['user_id']; ?>"><?php print $post['username']; ?></a> | <?php print substr($post['date'], 0, 10); ?> | <?php print $post['comments']; ?> hozzászólás </div>
+    <div class="socialbar">
+        <div class="tetszik">
+        <?php
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getIdentity();
+
+        if ($auth->hasIdentity()) {
+            $rates = new Model_DbTable_Rates();
+            $userRated = $rates->userRated($identity->user_id, $post["post_id"]);
+            if (!$userRated) {
+        ?>
+                <div class="tetszikcount"><?php print $post["rates"]; ?></div><a href="/rate/index/id/<?php print $post["post_id"]; ?>"><span>Tetszik</span></a>
+        <?php
+            } else {
+        ?>
+                <div class="tetszikcount"><?php print $post["rates"]; ?></div><span>Tetszik</span>
+        <?php
+            }
+        } else {
+        ?>
+            <div class="tetszikcount"><?php print $post["rates"]; ?></div><span>Tetszik</span>
+        <?php } ?>
+    </div>
+    <div class="sendinmail">
+        <span><a href="mailto:&subject=Samsung Mobilers&body=http://mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>">Küldés e-mailben</a></span>
+    </div>
+
+    <!-- FACEBOOK LIKE -->
+
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fb-like" data-href="mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>" data-send="false" data-layout="button_count" data-width="85" data-show-faces="false" data-font="arial">
+    </div>
+
+    <!-- TWITTER SHARE -->
+    <div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </div>
+
+    <!-- GOOGLE +1 -->
+    <div><g:plusone size="medium"></g:plusone>
+    </div>
+</div>
+
+<!-- POST COLUMN -->
+<div id="post-column">
+    <!-- start slipsum code -->
+    <p class="intro"><?php echo $post['lead']; ?></p>
+
+    <div class="post-cover">
+        <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=300" alt="<?php print $post['title']; ?>"
+             title="<?php print $post['title']; ?>"/>
+        <span></span>
+    </div>
+
+    <div class="post-body">
+
+        <?php echo $post['content']; ?>
+        <?php
+        if ($post["video"] != "") {
+            $video = Model_Youtube::generateEmbed($post['video']);
+            print $video;
+        }
+        ?>
+    </div>
+    <div class="clear"></div>
+    <div class="socialbar">
+        <div class="tetszik">
+            <?php
+            $auth = Zend_Auth::getInstance();
+            $identity = $auth->getIdentity();
+
+            if ($auth->hasIdentity()) {
+                $rates = new Model_DbTable_Rates();
+                $userRated = $rates->userRated($identity->user_id, $post["post_id"]);
+                if (!$userRated) {
+            ?>
+                    <div class="tetszikcount"><?php print $post["rates"]; ?></div><a href="/rate/index/id/<?php print $post["post_id"]; ?>"><span>Tetszik</span></a>
+            <?php
+                } else {
+            ?>
+                    <div class="tetszikcount"><?php print $post["rates"]; ?></div><span>Tetszik</span>
+            <?php
+                }
+            } else {
+            ?>
+                <div class="tetszikcount"><?php print $post["rates"]; ?></div><span>Tetszik</span>
+            <?php } ?>
+        </div>
+        <div class="sendinmail">
+            <span><a href="mailto:&subject=Samsung Mobilers&body=http://mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>">Küldés e-mailben</a></span>
+        </div>
+
+        <!-- FACEBOOK LIKE -->
+
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="fb-like" data-href="mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>" data-send="false" data-layout="button_count" data-width="85" data-show-faces="false" data-font="arial">
+        </div>
+
+        <!-- TWITTER SHARE -->
+        <div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="mobilers.samsung.hu/posts/view/id/<?php print $post["post_id"]; ?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+        </div>
+
+        <!-- GOOGLE +1 -->
+        <div><g:plusone size="medium"></g:plusone>
+        </div>
+    </div>
+
+    <a name="comments"></a>
+    <?php $paginationControl = $this->paginationControl($this->paginator, 'All', 'partials/_pagination-control.phtml') ?>    
+        <h3 class="blockhead">Kommentek</h3>
+        <div id="post-comments">
+<?php if (count($this->paginator)) : ?>
+        <?php
+                foreach ($this->paginator as $comment) :
+        ?>
+                    <div class="comment-node">
+                        <p class="comment-body"><?php echo $this->escape($comment['description']); ?></p>
+                    </div>
+                    <div class="comment-info">
+                        <?php
+
+                        $modelUser = new Model_DbTable_User();
+                        $user = $modelUser->getUser($comment["user_id"]);
+                        if($user["role"]=="mobiler") {
+                        ?>
+                        <span class="author"><a href="/mobilers/profile/index/user/<?php print $comment["user_id"]; ?>"><?php echo $this->escape($comment['name']); ?></a></span>
+                        <?php } else { ?>
+                        <span class="author"><a href="/user/index/user/<?php print $comment["user_id"]; ?>"><?php echo $this->escape($comment['name']); ?></a></span>
+                        <?php } ?>
+                        <span class="time"><?php print (int) ((time() - $comment["date"]) / 86400) ?> napja</span>
+                                        <?php
+                $auth = Zend_Auth::getInstance();
+                $identity = $auth->getIdentity();
+                if($identity->role=="mobiler" AND $identity->user_id==$post["user_id"]) {
+                ?>
+                <span class="time"><a onclick="return confirm('Biztos vagy benne?')" href="/comments/postdelete/id/<?php print $comment["comment_id"]; ?>">Törlés</a></span>
+                <?php } ?>
+                    </div>
+<?php endforeach ?>
+        <?php else : ?>
+                        <p class="notice">Még nincs hozzászólás</p>
+<?php endif ?>
+                    </div>
+<?php if ($this->paginator) : ?>
+                        <div class="pagination-control" style="left: 0; #left: 0; position: relative;top: 15px;  height: 30px; clear: both;">
+<?php echo $paginationControl  ?>
+                            </div>
+<?php endif; ?>
+
+                        <h3 id="commentbox" class="blockhead">Szólj hozzá!</h3>
+                        <div class="clear"></div>
+<?php
+                            $auth = Zend_Auth::getInstance();
+                            if ($auth->hasIdentity()) {
+?>
+                                <div id="post-commentbox">
+                                    <form id="Comments" enctype="application/x-www-form-urlencoded" action="" method="post">
+
+                                        <textarea name="comment" id="comment" rows="7" cols="30"></textarea>
+
+                                        <input type="submit" name="submit" id="submitbutton" value="megmond">
+
+                                    </form>
+                                </div>
+<?php } else {
+?>
+                                <p>A hozzászóláshoz jelentkezz be!</p>
+<?php } ?>
+                            <div class="clear"></div>
+                        </div><!-- END OF POST COLUMN -->
+
+                        <!-- END OF POST LAYOUT -->
+<?php endforeach; ?>
+

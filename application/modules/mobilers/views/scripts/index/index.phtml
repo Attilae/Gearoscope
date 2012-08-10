@@ -1,0 +1,19 @@
+<?php
+foreach ($this->mobilers as $mobiler):
+?>
+    <div class="all-mobilers">
+        <div style="height: 200px; width: 200px;">
+        <a href="/mobilers/profile/index/user/<?php print $mobiler["user_id"] ?>">
+            <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/users/' . $mobiler['photo_url']; ?>&w=200&h=200&zc=1" alt="<?php print $mobiler['username']; ?>"/>
+        </a>
+        </div>
+        <div class="clear"></div>
+        <h3><a class="name" href="/mobilers/profile/index/user/<?php print $mobiler["user_id"] ?>"><?php print $mobiler["username"]; ?></a></h3>
+        <p class="data"><?php print date("Y", time()) - $mobiler["birth_year"]; ?> éves, <?php print $mobiler["job"]; ?></p>
+        <p class="bio"><?php print $mobiler["bio"]; ?></p>
+        <a class="morebutton"href="/mobilers/profile/index/user/<?php print $mobiler["user_id"] ?>">TOVÁBB >></a>
+    </div>
+<?php
+    endforeach;
+?>
+ 

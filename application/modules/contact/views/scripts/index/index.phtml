@@ -1,0 +1,170 @@
+<?php if($this->messageProcessed && $this->sendError) { ?>
+<p>Sorry there was an error sending your message. Please contact
+	support@somedomain.com for more help.</p>
+<?php } elseif ($this->messageProcessed &! $this->sendError) {?>
+<p>Thank you for contacting us. We will be in touch soon.</p>
+<?php } else { ?>
+<?php //echo $this->form; ?>
+<div id="content">
+	<div class="wrapper">
+		<div id="sidebar-2" class="right">
+			<div class="moduletable">
+				<h3>Login Form</h3>
+				<form action="/joomla_34465/index.php/contacts-2" method="post"
+					id="login-form">
+
+					<div class="box-indent">
+
+						<fieldset class="userdata">
+
+							<p id="form-login-username">
+
+								<input id="modlgn-username" type="text" name="username"
+									class="inputbox" size="18" />
+
+							</p>
+
+							<p id="form-login-password">
+
+								<input id="modlgn-passwd" type="password" name="password"
+									class="inputbox" size="18" />
+
+							</p>
+
+							<div class="wrapper">
+								<p id="form-login-remember">
+
+									<input id="modlgn-remember" type="checkbox" name="remember"
+										class="checkbox" value="yes" /> <label for="modlgn-remember">Remember
+										Me</label>
+
+								</p>
+
+								<a class="button-login" href="#"
+									onclick="document.getElementById('login-form').submit()">Login</a>
+							</div>
+
+							<input type="hidden" name="option" value="com_users" /> <input
+								type="hidden" name="task" value="user.login" /> <input
+								type="hidden" name="return" value="aW5kZXgucGhwP0l0ZW1pZD02MDc=" />
+
+							<input type="hidden" name="eb1469b66f0ae9f93d494df373191d17"
+								value="1" />
+						</fieldset>
+
+					</div>
+					<ul class="user-links">
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/users-component/password-reset"> Forgot your password?</a>
+						</li>
+
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/users-component/registration-form">
+								Create an account</a>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div class="moduletable-online">
+				<h3>Who's Online</h3>
+				<p>We have 11&#160;guests and no members online</p>
+			</div>
+		</div>
+		<div class="contact">
+			<h3>Contact</h3>
+			<div class="info">
+				<div class="contact-address">
+					<span class="jicons-icons"> <img
+						src="/joomla_34465/templates/theme741/images/contacts/con_address.png"
+						alt="Address: " /> </span>
+					<address>
+						<span class="contact-street"> Address: 13 Queen Street </span> <span
+							class="contact-suburb"> City: Par-la-Ville </span> <span
+							class="contact-state"> State: Maryland </span> <span
+							class="contact-postcode"> Zip Code: 50122 </span> <span
+							class="contact-country"> Country: USA </span>
+
+					</address>
+				</div>
+				<div class="contact-contactinfo">
+					<p>
+						<span class="jicons-icons"> <img
+							src="/joomla_34465/templates/theme741/images/contacts/con_tel.png"
+							alt="Phone: " /> </span> <span class="contact-telephone">
+							Telephone: +354 5635600 </span>
+					</p>
+					<p>
+						<span class="jicons-icons"> <img
+							src="/joomla_34465/media/contacts/images/con_fax.png" alt="Fax: " />
+						</span> <span class="contact-fax"> Fax: +354 5635610 </span>
+					</p>
+					<p>
+						<span class="jicons-icons"> <img
+							src="/joomla_34465/templates/theme741/images/contacts/con_mobile.png"
+							alt="Mobile: " /> </span> <span class="contact-mobile"> Mobile:
+							+354 5635610 </span>
+					</p>
+				</div>
+			</div>
+			<div class="contact-form">
+				<form id="contact-form" action="/joomla_34465/index.php/contacts-2"
+					method="post" class="form-validate">
+					<fieldset>
+						<legend>To send us a message please complete the form below and click Send
+	Message. All fields with an * are required.</legend>
+						<dl>
+							<dt>
+								<label id="jform_contact_name-lbl" for="jform_contact_name"
+									class="hasTip required" title="Name::Your name">Name<span
+									class="star">&#160;*</span> </label>
+							</dt>
+							<dd>
+								<input type="text" name="jform[contact_name]"
+									id="jform_contact_name" value="" class="required" size="30" />
+							</dd>
+							<dt>
+								<label id="jform_contact_email-lbl" for="jform_contact_email"
+									class="hasTip required" title="Email::Email for contact">Email<span
+									class="star">&#160;*</span> </label>
+							</dt>
+							<dd>
+								<input type="text" name="jform[contact_email]"
+									id="jform_contact_email" value="" class="required" size="30" />
+							</dd>
+							<dt>
+								<label id="jform_contact_emailmsg-lbl"
+									for="jform_contact_emailmsg" class="hasTip required"
+									title="Subject::Enter the subject of your message here .">Subject<span
+									class="star">&#160;*</span> </label>
+							</dt>
+							<dd>
+								<input type="text" name="jform[contact_subject]"
+									id="jform_contact_emailmsg" value="" class="required" size="60" />
+							</dd>
+							<dt>
+								<label id="jform_contact_message-lbl"
+									for="jform_contact_message" class="hasTip required"
+									title="Message::Enter your message here.">Message<span
+									class="star">&#160;*</span> </label>
+							</dt>
+							<dd>
+								<textarea name="jform[contact_message]"
+									id="jform_contact_message" cols="50" rows="10" class="required"></textarea>
+							</dd>
+							<dt></dt>
+							<dd>
+								<button class="button validate" type="submit">Send Email</button>
+								<input type="hidden" name="option" value="com_contact" /> <input
+									type="hidden" name="task" value="contact.submit" /> <input
+									type="hidden" name="return" value="" /> <input type="hidden"
+									name="eb1469b66f0ae9f93d494df373191d17" value="1" />
+							</dd>
+						</dl>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<?php 
+}

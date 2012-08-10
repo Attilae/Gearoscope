@@ -1,0 +1,83 @@
+<div id="content-landing" class="content">    
+        <table align="" class="score" width="" cellspacing="5" cellpadding="">
+            <tr>
+                <td class="headpos"> </td>
+                <td class="headname">Név</td>
+                <td class="headscore">Időeredmény</td>
+            </tr>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
+
+            <?php
+            if (count($this->scores110)):
+                $i = 1;            
+            ?>
+            <?php foreach ($this->scores110 as $score) : ?>
+            <?php if($i%2==0) {
+            print "<tr class='odd'>";
+            } else {
+                print "<tr class='even'>";
+            }
+            ?>
+                        <td class="gamerpos"><?php print $i; ?>.</td>
+                        <td class="gamername"><?php print $score["name"]; ?></td>
+                <?php
+                    $score = $score["score"] / 1000;
+                    $scoreArray = explode(".", $score);
+                    $scoreMin = $scoreArray[0] / 60;
+                    $scoreMinArray = explode(".", $scoreMin);
+                    $scoreSec = $scoreArray[0] % 60;
+                    $finalScore = (int) $scoreMin . ":" . $scoreSec . "." . $scoreArray[1];
+                    $i++;
+                ?>
+                    <td class="gamerscore"><?php echo $finalScore; ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <?php else: ?>
+                        <tr>
+                            <td colspan="2">Még nincs játékos</td>
+                        </tr>
+            <?php endif; ?>
+        </table>
+<!--            <table style="float:left;" class="score" width="50%" cellspacing="5" cellpadding="">
+            <tr>
+                <td class="headpos"> </td>
+                <td class="headname">Név</td>
+                <td class="headscore">Időeredmény</td>
+            </tr>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
+
+            <?php
+            //if (count($this->scores1020)):
+            ?>
+            <?php //foreach ($this->scores1020 as $score) : ?>
+                    <?php if($i%2==0) {
+            //print "<tr class='odd'>";
+            } else {
+                //print "<tr class='even'>";
+            }
+            ?>
+                        <td class="gamerpos"><?php print $i; ?>.</td>
+                        <td class="gamername"><?php print $score["name"]; ?></td>
+                <?php
+                    $score = $score["score"] / 1000;
+                    $scoreArray = explode(".", $score);
+                    $scoreMin = $scoreArray[0] / 60;
+                    $scoreMinArray = explode(".", $scoreMin);
+                    $scoreSec = $scoreArray[0] % 60;
+                    $finalScore = (int) $scoreMin . ":" . $scoreSec . "." . $scoreArray[1];
+                    $i++;
+                ?>
+                    <td class="gamerscore"><?php echo $finalScore; ?></td>
+                </tr>
+            <?php //endforeach; ?>
+            <?php //else: ?>
+                        <tr>
+                            <td colspan="2">Még nincs játékos</td>
+                        </tr>
+            <?php //endif; ?>
+        </table>-->
+</div>

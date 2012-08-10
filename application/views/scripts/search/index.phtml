@@ -1,0 +1,23 @@
+<h2>Keresési eredmény</h2>
+<?php if (is_array($this->results) && count($this->results) > 0) {
+ ?>
+    <p><?php echo count($this->results); ?> találat</p>
+<?php
+foreach ($this->results as $post) { ?>
+        <div class="topic">
+            <div class="post-cover">        
+                <a href="/posts/view/id/<?php print $post->post_id ?>"><img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post->photo; ?>&w=210&h=160&zc=1" alt="<?php print $post->title; ?>" title="<?php print $post->title; ?>"/></a>
+            </div>        
+            <div class="post-column">        
+                <div class="post-info"><?php print $post->user; ?> | <?php print substr($post->date, 0, 10); ?> | <?php print $post->comments; ?> komment </div>
+                <h2 class="post-title"><a href="/posts/view/id/<?php print $post->post_id ?>"><?php print $post->title; ?></a></h2>
+        
+                <p class="post-body"><?php echo nl2br(strip_tags($post->lead)); ?></p>
+                <a class="morebutton" href="/posts/view/id/<?php print $post->post_id ?>">TOVÁBB >></a>
+            </div>        
+        </div>                
+<?php }
+} else {
+ ?>
+    <p>A keresés nem hozott eredmény</p>
+<?php } ?>

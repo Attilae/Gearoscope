@@ -1,0 +1,14 @@
+<div id="mobilers-facepile" class="sideblock">
+    <h2 class="blockhead">Mob!lerek</h2>
+
+    <?php foreach ($this->mobilers as $mobiler): ?>
+        <div class="mobface">
+            <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/users/' . $mobiler['photo_url']; ?>&w=90&h=90&zc=1" alt="<?php print $mobiler['username']; ?>"
+                 title="<?php print $mobiler['username']; ?>" />
+            <a href="/mobilers/profile/index/user/<?php print $mobiler["user_id"] ?>" class="mobname"><?php print $mobiler['username']; ?></a>
+        </div>
+    <?php
+        endforeach;
+    ?>
+    <a href="/mobilers/index">Összes mobiler</a>
+</div>

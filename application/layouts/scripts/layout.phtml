@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb"
+	dir="ltr">
+<head>
+<base href="localhost/_gearoscope/">
+<meta charset="utf-8">
+<title>Home</title>
+<?php
+echo $this->headLink(); ?>
+<link href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/typo.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/moo_maximenuH_CK.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/maximenuH_CK.css" media="screen" rel="stylesheet" type="text/css" />
+<?php 
+    $this->JQuery()->enable();
+    echo $this->JQuery()->setVersion('1.7.1')
+			//->setUiVersion('1.8.2'); ?>
+<script type="text/javascript" src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/jquery-ui.min.js"></script>
+<?php echo $this->headScript(); ?>
+<link rel="stylesheet"
+	href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/style.css"
+	type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption'
+	rel='stylesheet' type='text/css'>
+
+
+<script type="text/javascript"
+	src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/html5.js"></script>
+<!-- <script type="text/javascript"
+	src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/cufon-yui.js"></script>
+<script type="text/javascript"
+	src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/cufon-replace.js"></script>
+<script type="text/javascript"
+	src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/Capture_it_400.font.js"></script>
+ -->
+ <script type="text/javascript"
+	src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+
+//var $j = jQuery.noConflict();
+	$(window).load(function(){
+		$login=$(".menu-login li a[title='login']");
+		$login.parent('li').removeClass('active');
+		$login.toggle(function(){
+			$login.parent('li').addClass('active');				   
+			$(".moduletable-log").slideDown("normal");
+		}, 
+		function(){
+			$(".moduletable-log").slideUp("normal");
+			$login.parent('li').removeClass('active');
+		});
+		
+		$(".projects li a").hover(function(){
+		$(this).find("img").stop().animate({opacity:0.5}, "normal")
+	}, function(){
+		$(this).find("img").stop().animate({opacity:1}, "normal")
+	});
+		$('.nivo-controlNav li a').append("<div class='active-border'></div>");
+	});
+</script>
+
+<!--[if lt IE 9]>
+		<link href="/joomla_34465/templates/theme741/css/ieonly.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lt IE 9]>
+<style>
+.contact .inputbox, .contact input.required, .registration input, .profile-edit input, .login-fields input, .remind input, .reset input, .contact #jform_contact_message,
+input.button,  button.button, .box-bg,  .navigation, ul.gkTabs li, .maximenuCK2, .border, .acymailing_module .inputbox, p.readmore a, .nivoSlider .nivo-controlNav, 
+ul.maximenuCK li a.maximenuCK, #content .search ,.registration, .reset, .remind, .inputbox, .contact, .categories-list, .moduletable,  .button, div.floatCK, 
+ul.maximenuCK li.level0 li a, #maximenuCK,  button.validate, .item-page,  #content, .button, button, .readmore, .registration a, .service li {
+ behavior:url(/joomla_34465/templates/theme741/PIE.php);
+}
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" &nbsp;alt="" /></a>
+    </div>
+<![endif]-->
+
+</head>
+
+<body class="first ">
+
+	<div id="all">
+
+		<div class="main">
+
+			<div id="header">
+
+
+				<ul class="menu-links">
+					<li id="item-602"><a
+						href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/login"><?php print $this->translate('login'); ?>
+					</a>
+					</li>
+					<li id="item-603"><a href="#"><?php print $this->translate('help'); ?>
+					</a></li>
+					<li id="item-604"><a href="#">Submenu1</a></li>
+					<li id="item-605"><a href="#">Submenu2</a></li>
+					<li id="item-607"><a
+						href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/contact/index"><?php print $this->translate('contact'); ?>
+					</a>
+					</li>
+				</ul>
+
+
+				<?php
+				$this->layout()->login = $this->action('login', 'sidebar');
+				print $this->layout()->login;
+				?>
+				<div class="bannergroup">
+
+					<div class="banneritem">
+						<a href="#" target="_blank" title="Banner1"> <!-- <img src="/banner.jpg" alt="Banner1" /> -->
+						</a>
+						<div class="clr"></div>
+					</div>
+
+				</div>
+
+
+
+				<div class="logoheader">
+
+					<h1 id="logo">
+
+						<a href="/joomla_34465" title=""> <!--<img src="/joomla_34465/images/stories/logo.png" alt="" />  -->
+						</a>
+					</h1>
+				</div>
+
+				<!-- end logoheader -->
+
+				<div class="menu_bg">
+
+					<div class="navigation">
+
+						<div class="maximenuCKH" id="maximenuCK">
+
+							<div class="maxiRoundedleft"></div>
+
+							<div class="maxiRoundedcenter">
+
+								<ul class="menu maximenuCK">									
+									<li class="maximenuCK item580 level0" style="z-index: 11999;"><a
+										class="maximenuCK "
+										href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/"
+										title=""><span class="titreCK">News</span> </a>
+									</li>
+									<li class="maximenuCK item467 level0" style="z-index: 11991;"><a
+										class="maximenuCK " href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/gears" title=""><span class="titreCK">Gears</span>
+									</a></li>
+									<li class="maximenuCK item465 level0" style="z-index: 11999;"><a
+										class="maximenuCK " href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/bands" title=""><span class="titreCK">Bands</span>
+									</a>
+									</li>									
+								</ul>
+
+							</div>
+
+							<div class="maxiRoundedright"></div>
+
+							<div style="clear: both;"></div>
+
+						</div>
+
+						<div style="clear: both;"></div>
+
+						<!-- fin maximenuCK -->
+
+
+
+					</div>
+
+					<form action="/joomla_34465/index.php" method="post">
+
+						<div class="search">
+
+							<label for="mod-search-searchword">Search...</label><input
+								name="searchword" id="mod-search-searchword" maxlength="20"
+								class="inputbox" type="text" size="50" value="Search "
+								onblur="if (this.value=='') this.value='Search ';"
+								onfocus="if (this.value=='Search ') this.value='';" /><a
+								class="button-search" onclick="this.form.searchword.focus();" />GO!</a>
+							<input type="hidden" name="task" value="search" /> <input
+								type="hidden" name="option" value="com_search" /> <input
+								type="hidden" name="Itemid" value="464" />
+
+						</div>
+
+					</form>
+
+
+
+				</div>
+
+			</div>
+
+			<!-- end header -->
+
+			<?php print $this->layout()->content; ?>
+
+			<div class="wrapper m-bot">
+				<div class="moduletable-popular">
+					<h3>popular</h3>
+					<ul class="mostread-popular">
+						<li><a href="/joomla_34465/index.php/80-news-lyrics/87-1"> Band 1</a>
+						</li>
+						<li><a href="/joomla_34465/index.php/80-news-lyrics/89-3">
+								Band 2</a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/79-home-articles/86-article-3">
+								Band 3</a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/79-home-articles/85-article-2">
+								Band 4</a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/80-news-lyrics/114-britney-spears">
+								Band 5</a>
+						</li>
+						<li><a href="/joomla_34465/index.php/80-news-lyrics/88-2">
+								Band 6</a>
+						</li>
+					</ul>
+				</div>
+				<div class="moduletable-links">
+					<h3>Links</h3>
+					<ul class="weblinks-links">
+						<li><a href="#" rel="no follow">Link1</a>
+						</li>
+						<li><a href="#" rel="no follow">Link2</a>
+						</li>
+						<li><a href="#" rel="no follow">Link3</a>
+						</li>
+						<li><a href="#" rel="no follow">Link4</a>
+						</li>
+						<li><a href="#" rel="no follow">Link5</a>
+						</li>
+						<li><a href="#" rel="no follow">Link6</a>
+						</li>
+					</ul>
+				</div>
+				<div class="moduletable-archive">
+					<h3>Archive</h3>
+					<ul class="archive-module-archive">
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2011?view=archive&amp;month=2">
+								February, 2011 </a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2011?view=archive&amp;month=1">
+								January, 2011 </a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2010?view=archive&amp;month=12">
+								December, 2010 </a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2010?view=archive&amp;month=11">
+								November, 2010 </a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2010?view=archive&amp;month=10">
+								October, 2010 </a>
+						</li>
+						<li><a
+							href="/joomla_34465/index.php/using-joomla/extensions/components/content-component/archived-articles/2010?view=archive&amp;month=9">
+								September, 2010 </a>
+						</li>
+					</ul>
+				</div>
+				<div class="moduletable-icons">
+					<h3>Share</h3>
+					<div class="smile" style="text-align: left">
+						<ul>
+							<li><a style="margin: 0;" rel="nofollow"
+								href="http://youtube.com" target="_blank"><img
+									src="youtube.png "
+									alt="Youtube" ;  /><span>Youtube</span> </a></li>
+							<li><a style="margin: 0;" rel="nofollow"
+								href="http://facebook.com" target="_blank"><img
+									src="facebook.png "
+									alt="Facebook" ;  /><span>Facebook</span> </a></li>
+							<li><a style="margin: 0;" rel="nofollow"
+								href="http://twitter.com" target="_blank"><img
+									src="twitter.png "
+									alt="Twitter" ;  /><span>Twitter</span> </a></li>
+							<li><a style="margin: 0;" rel="nofollow" href="#" target="_blank"><img
+									src="feed.png "
+									alt="Feed" ;  /><span>Feed</span> </a></li>
+						</ul>
+
+					</div>
+
+				</div>
+			</div>
+
+			<footer>
+
+				<div id="footer">
+
+					<span class="priv"><a class="logo-2" href="/joomla_34465/index.php">
+							<!--  <img src="/joomla_34465/images/stories/logo-small.png" alt="Mzone"> -->
+					</a>&copy; 2011 All Rights Reserved | <a href="#">Privacy Policy</a>
+					</span>
+
+					<!--{%FOOTER_LINK} -->
+
+				</div>
+
+				<!-- end footer -->
+
+			</footer>
+
+		</div>
+<?php 
+
+$auth = Zend_Auth::getInstance();
+$identity = $auth->getIdentity();
+if($auth->hasIdentity() AND $identity->role=="Administrator") {
+
+    $this->addScriptPath(APPLICATION_PATH . '/views/scripts');
+    echo $this->render('util/profiler.phtml');
+}
+?>
+	</div>
+
+	<script type="text/javascript"
+		src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/script.js"></script>
+	<script type="text/javascript"> 
+
+</script>
+</body>
+</html>

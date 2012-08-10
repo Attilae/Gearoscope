@@ -1,0 +1,68 @@
+<?php
+if ($this->pageCount) {
+    // you need to add each of the request parameters to url
+    $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+    // remove the system parameters
+    unset($params['module']);
+    unset($params['controller']);
+    unset($params['action']);
+    ?>
+<div class="paginationControl"><!-- Previous page link -->
+<?php
+    if (isset($this->previous)) {
+        ?>
+  <a class="prev"
+	href="<?php
+        echo $this->url(array_merge($params, array('page' => $this->previous)));
+        ?>"> &nbsp; </a>
+<?php
+    } else {
+        ?>
+        <div class="prevInactive">&nbsp;</div>
+<?php
+    }
+    ?>
+        <div class="numberedLinks">
+<!-- Numbered page links -->
+<?php
+    foreach ($this->pagesInRange as $page) {
+        ?>
+  <?php
+        if ($page != $this->current) {
+            ?>
+    <a
+	href="<?php
+            echo $this->url(array_merge($params, array('page' => $page)));
+            ?>">
+        &nbsp;
+    </a>
+  <?php
+        } else {
+            ?>
+<span>
+    &nbsp;
+</span>
+  <?php
+        }
+    }
+    ?>
+        </div>
+<!-- Next page link -->
+<?php
+    if (isset($this->next)) {
+        ?>
+  <a class="next"
+	href="<?php
+        echo $this->url(array_merge($params, array('page' => $this->next)));
+        ?>"> &nbsp;</a>
+<?php
+    } else {
+        ?>
+  <div class="nextInactive">&nbsp;</div>
+<?php
+    }
+    ?>
+</div>
+<?php
+}
+?>

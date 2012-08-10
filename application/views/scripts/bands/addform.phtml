@@ -1,0 +1,60 @@
+<h3>Banda hozzáadása</h3>
+<form enctype="multipart/form-data" action="" method="post">
+	<fieldset>		
+		<dl>
+			<dt>
+				<span class="spacer"><span class="before"></span><span class="text"><label
+						id="jform_spacer-lbl" class=""><strong class="red">*</strong>
+							Required field</label> </span><span class="after"></span> </span>
+			</dt>
+			<dd></dd>
+			<dt>
+				<label id="jform_name-lbl" for="jform_name" class="hasTip required"
+					title="Zenekar neve::Enter your full name">Zenekar neve:<span class="star">&#160;*</span>
+				</label>
+			</dt>
+			<dd>
+					<?php print $this->element->band_name; ?> 
+			</dd>
+			<dt>
+				<label id="jform_username-lbl" for="jform_username"
+					class="hasTip required"
+					title="Username::Enter your desired user name">Alakulás éve:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->formation_year; ?> 
+			</dd>
+			<dt>
+				<label id="jform_password1-lbl" for="jform_password1"
+					class="hasTip required"
+					title="Password::Enter your desired password - Enter a minimum of 4 characters">Stílus:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->style; ?> 
+			</dd>
+			<dt>
+				<label id="jform_password2-lbl" for="jform_password2"
+					class="hasTip required"
+					title="Confirm Password::Confirm your password">Honlap:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>				
+					<?php print $this->element->website; ?>
+			</dd>
+			<dt>
+				<label id="jform_email1-lbl" for="jform_email1"
+					class="hasTip required"
+					title="Email Address::Enter your email address">Fotó:<span
+					class="star">&#160;*</span> </label>
+			</dt>
+			<dd>
+					<?php print $this->element->photo ?>
+			</dd>			
+		</dl>
+	</fieldset>
+	<div>
+		<button type="submit" class="validate">Mentés</button>		
+	</div>
+</form>

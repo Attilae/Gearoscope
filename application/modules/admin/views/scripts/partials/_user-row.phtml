@@ -1,0 +1,13 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><span class="ui-checkbox"></span></td>
+    <td><?php print $this->username ?></td>
+    <td><?php print $this->first_name ?></td>
+    <td><?php print $this->last_name ?></td>
+    <td><?php print $this->role ?></td>
+    <td class="options-width">
+        <a href='/user/update/id/<?php echo $this->id; ?>' class="icon-1 info-tooltip"></a>
+        <!--                                            <a href="" class="icon-3 info-tooltip"></a>
+                                                        <a href="" class="icon-4 info-tooltip"></a>-->
+        <a onclick="return confirm('Biztos benne?');" href="/user/delete/id/<?php echo $this->id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>                                            

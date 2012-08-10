@@ -1,0 +1,15 @@
+<?php
+
+//print_r($this->archives);
+
+$months = array("Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December");
+
+foreach ((array) $this->archives as $arcresult) {
+    $month = $arcresult["month"]-1;
+    $text = $months[$month] . " - " . $arcresult["year"];
+    $after = '&nbsp;(' . $arcresult["posts"] . ')';
+    //$output .= get_archives_link($url, $text, $format, $before, $after);
+    $month++;
+    print "<a href='/archive/index/month/".$month."'>" . $text . $after . "</a><br/>";
+}
+?>

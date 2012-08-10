@@ -1,0 +1,146 @@
+<div class="top_block">
+
+	<div class="wrapper">
+		<div id="sidebar-2" class="right-2">
+
+			<div class="wrapper">
+				<div class="moduletable-artists">
+					<h3>most popular gears</h3>
+					<div class="custom-artists">
+						<ul class="artists">
+
+							<li><a href="#">Gibson Les Paul</a>
+							</li>
+
+							<li><a href="#">Fender Stratocaster</a>
+							</li>
+
+							<li><a href="#">Gibson SG</a>
+							</li>
+
+							<li><a href="#">Fender Telecaster</a>
+							</li>
+
+							<li><a href="#">Ibanez S Prestige</a>
+							</li>
+
+							<li><a href="#">Fender Jazz Bass</a>
+							</li>
+
+							<li><a href="#">Tama Starclassic Bubinga</a>
+							</li>
+
+							<li><a href="#">Pearl Masters Custom</a>
+							</li>
+
+							<li><a href="#">Marshall JCM 900</a>
+							</li>
+
+							<li><a href="#">Peavey 5150</a>
+							</li>
+
+							<li><a href="#">Gibson Flying V</a>
+							</li>
+
+							<li><a href="#">Zildjian K Custom</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<div class="moduletable-music">
+					<h3>top music news</h3>
+					<div class="custom-music">
+						<ul class="top-music">
+
+							<li><span>Rihanna, Kanye West Bring 'All Of The Lights' To
+									All-Star Game</span><br /> <a href="#">Posted 8 hrs ago</a></li>
+
+							<li><span>Lady Gaga Has Her 'Way' With Atlantic City</span><br />
+								<a href="#">Posted 15 hrs ago</a>
+							</li>
+
+							<li><span>'Chronicles Of Narnia' Producer Perry Moore Found Dead</span><br />
+								<a href="#">Posted 2/19/11</a>
+							</li>
+
+							<li><span>No Doubt Guitarist Tom Dumont Is A Dad</span><br /> <a
+								href="#">Posted 2/19/11</a>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class='NivoSzakiSlider'>
+			<div class='nivoSlider'>
+				<a href="#
+"><img
+					src='<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/slide-1.jpg&w=472&h=420&zc=1'
+					alt='image1'
+					title='Soulja Boy-Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.' />
+				</a> <a href="#
+"><img
+					src='<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/slide-2.jpg&w=472&h=420&zc=1'
+					alt='image2'
+					title='varius mi-Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.' />
+				</a> <a href="#
+"><img
+					src='<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/slide-1.jpg&w=472&h=420&zc=1'
+					alt='image3'
+					title='Fusce suscipit-Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.' />
+				</a> <a href="#
+"><img
+					src='<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/slide-4.jpg&w=472&h=420&zc=1'
+					alt='image4'
+					title='Ipsum lorem-Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.' />
+				</a> <a href="#"><img
+					src='<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/slide-2.jpg&w=472&h=420&zc=1'
+					alt='image5'
+					title='Sit damet-Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.' />
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div id="content">
+
+	<div class="wrapper">
+	
+		<?php $this->layout()->sidebar = $this->action('news', 'sidebar'); ?>
+		<?php print $this->layout()->sidebar; ?>		
+		
+		<div class="blog">
+			<?php foreach($this->paginator as $entry): ?>				
+				<div class="items-row cols-1 row-0">			
+					<div class="item column-1">
+						<h2><?php print $entry["title"]; ?></h2>
+						<dl class="article-info">
+							<dt class="article-info-term">Details</dt>
+							<dd class="create">Created on <?php print $entry["dateModified"]; ?></dd>
+							<dd class="createdby">Written by Super User</dd>
+						</dl>
+						<!-- <img class="img-indent border"
+							src="/joomla_34465/images/stories/video-img1.jpg" alt="" /> -->
+						<p><?php print $entry["description"]; ?></p>
+						<p class="readmore">
+							<a href="<?php print $entry["link"]; ?>" target="_blank"> MORE</a>
+						</p>
+						<div class="item-separator"></div>
+					</div>
+					<span class="row-separator"></span>
+				</div>				
+			<?php endforeach; ?>
+			<?php echo $this->paginationControl($this->paginator, 'Sliding', '/partials/_pagination-control.phtml'); ?>			
+		</div>
+
+	</div>
+
+</div>

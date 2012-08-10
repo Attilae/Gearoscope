@@ -1,0 +1,287 @@
+<form method="post" action="/">
+
+	<div class="box">
+		<div class="header"><strong>Cégadatok</strong></div>
+		<div class="content">
+
+			<table cellspacing="0" cellpadding="0" border="0" class="cms" summary="Cégadatok">
+				<tr>
+					<td width="340">Cégnév</td>
+					<td width="280"><{getfield field=company class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=name title="Név"}></td>
+					<td><{getfield field=name class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=position title="Beosztás"}></td>
+					<td><{getfield field=position class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=email title="E-mail"}></td>
+					<td><{getfield field=email class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=phone title="Telefon"}></td>
+					<td><{getfield field=phone class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=zip title="Irányítószám"}></td>
+					<td><{getfield field=zip class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=address title="Város, utca, házszám"}></td>
+					<td><{getfield field=address class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=income title="Éves árbevétel"}></td>
+					<td><{getfield field=income class="text330"}></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=headcount title="Létszám"}></td>
+					<td><{getfield field=headcount class="text330"}></td>
+				</tr>
+			</table>
+
+		</div>
+		<div class="footer"></div>
+	</div>
+
+	<div class="box">
+		<div class="header"></div>
+		<div class="content">
+
+			<table cellspacing="0" cellpadding="0" border="0" class="cms" summary="Banner adatok">
+				<tr>
+					<td width="360"><{getlabel field=users title="Összes felhasználó"}></td>
+					<td width="100" nowrap="nowrap"><{getfield field=users  maxlength="2" class="text60"}></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="2" align="left"><strong>Pénzügyi, számviteli terület</strong></th>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod1 title="Könyvelés"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod1')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod1 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod2 title="Pénzügy"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod2')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod2 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod3 title="Számlázás"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod3')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod3 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod4 title="Házipénztár-kezelés"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod4')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod4 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod5 title="Tárgyi eszközök nyilvántartása"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod5')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod5 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod6 title="Banki kapcsolatok"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod6')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod6 }></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="2" align="left"><strong>Beszerzési, logisztikai terület</strong></th>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod7 title="Készlet"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod7')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod7 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod8 title="Rendelés"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod8')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod8 }></td>
+				</tr>
+<{*
+				<tr>
+					<td><{getlabel field=mod9 title="Gyártás-előkészítés"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod9')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod9 }></td>
+				</tr>
+*}>
+				<tr>
+					<td><{getlabel field=mod10 title="Vonalkód-kezelés"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod10')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod10 }></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="2" align="left"><strong>Kontrolling és döntéstámogatás</strong></th>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod11 title="Kontrolling"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod11')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod11 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod12 title="Vezetői információ"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod12')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod12 }></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+
+				<{*
+				<tr>
+					<td><{getlabel field=mod13 title="Üzenet"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod13')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod13 }></td>
+				</tr>
+				<tr>
+					<td><{getlabel field=mod14 title="Naptár"}> <a href="javascript:void(0);" onclick="Across.showInfo('mod14')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></td>
+					<td><{getfield field=mod14 }></td>
+				</tr>
+				*}>
+				<tr>
+					<th align="left"><strong>Értékesítés és CRM</strong><a href="javascript:void(0);" onclick="Across.showInfo('mod15')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></th>
+					<th align="left"><{getfield field=mod15 }></th>
+				</tr>
+				<tr>
+					<th align="left"><strong>Bérszámfejtés, munkaügy</strong> <a href="javascript:void(0);" onclick="Across.showInfo('mod16')"> <img src="/layout/gfx/info-icon.gif" alt="" title="Bővebb információért kattintson ide!" /></a></th>
+					<th align="left"><{getfield field=mod16 onchange="Across.ShowHide(this, 'baber');" onclick="Across.ShowHide(this, 'baber');" onfocus="Across.ShowHide(this, 'baber');" onblur="Across.ShowHide(this, 'baber');" }></th>
+				</tr>
+				<tr style="display: none;" id="baber">
+					<td style="width: 340px;" valign="top">Alkalmazottak száma</td>
+					<td valign="top">
+						<table cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td><{getfield field=mod171 }></td>
+								<td width="140" nowrap><{getlabel field=mod171 title="1-10 fő"}></td>
+							</tr>
+							<tr>
+								<td><{getfield field=mod172 }></td>
+								<td><{getlabel field=mod172 title="11-25 fő"}></td>
+							</tr>
+							<tr>
+								<td><{getfield field=mod173 }></td>
+								<td><{getlabel field=mod173 title="26-50 fő"}></td>
+							</tr>
+							<tr>
+								<td><{getfield field=mod174 }></td>
+								<td><{getlabel field=mod174 title="51-100 fő"}></td>
+							</tr>
+							<tr>
+								<td><{getfield field=mod175 }></td>
+								<td><{getlabel field=mod175 title="101-200 fő"}></td>
+							</tr>
+							<tr>
+								<td><{getfield field=mod176 }></td>
+								<td nowrap><{getlabel field=mod176 title="201-500 fő"}></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr>
+					<td><a name="calc"><strong>LIBRA3S licensz díj összesen</strong></a></td>
+					<td align="right"><{if $prices.licens_sum}><{$prices.licens_sum|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<{if $prices.licens_discount_discount && $prices.licens_discount}>
+					<tr>
+						<td><strong>Mennyiségi kedvezmény licensz díjból (<{$prices.licens_discount_percent}> %)</strong></td>
+						<td align="right"><{if $prices.licens_discount_discount}>- <{$prices.licens_discount_discount|number_format:0:" ":" "}> Ft<{/if}></td>
+					</tr>
+					<tr>
+						<td><strong>Kedvezményes licensz díj<strong></td>
+						<td align="right"><{if $prices.licens_discount}><{$prices.licens_discount|number_format:0:" ":" "}> Ft<{/if}></td>
+					</tr>
+				<{/if}>
+				<tr>
+					<td><strong>LIBRA3S oktatási díj összesen</strong></td>
+					<td align="right"><{if $prices.education_sum}><{$prices.education_sum|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<tr>
+					<td><strong>LIBRA3S telepítés, paraméterezés összesen*</strong></td>
+					<td align="right"><{if $prices.install_sum}><{$prices.install_sum|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<tr>
+					<td colspan="2">(A bevezetéshez kapcsolódó folyamat-szervezési és tanácsadói feladatokban adott esetben a megrendelő által preferált szállító is részt vehet.)</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr>
+					<td><strong>LIBRA3S rendszer teljes költsége*</strong></td>
+					<td align="right"><strong>&nbsp;<{if $prices.sum}><{$prices.sum|number_format:0:" ":" "}> Ft<{/if}></strong></td>
+				</tr>
+				<tr>
+					<td><strong>Támogatás összege**</strong></td>
+					<td align="right"><strong>&nbsp;<{if $prices.promotion}><{$prices.promotion|number_format:0:" ":" "}> Ft<{/if}></strong></td>
+				</tr>
+				<tr>
+					<td><strong>Saját beruházás teljes összege*</strong></td>
+					<td align="right"><strong>&nbsp;<{if $prices.education_sum}><{$prices.investment|number_format:0:" ":" "}> Ft<{/if}></strong></td>
+				</tr>
+				<{*
+				<tr>
+					<td>Pályázatíró sikerdíja</td>
+					<td align="right"><{if $prices.palyazatiro}><{$prices.palyazatiro|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<tr>
+					<td>LIBRA vállalása a pályázatírás díjából</td>
+					<td align="right"><{if $prices.libra}><{$prices.libra|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				*}>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<{*
+				<tr>
+					<td colspan="2" align="left" style="color: #d82121;"><p>LIBRA kedvezmény: a díjmentes pályázatírás mellett a pályázat megnyerése esetén a pályázati sikerdíj kifizetését is átvállaljuk!</p></td>
+				</tr>
+				*}>
+				<tr>
+					<td>Kezdeti beruházás költsége (licensz díj 60%-a)</td>
+					<td align="right"><{if $prices.begin_own_investment}><{$prices.begin_own_investment|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<tr>
+					<td>Maximálisan igényelhető előleg a támogatásból (40%)</td>
+					<td align="right"><{if $prices.eloleg}><{$prices.eloleg|number_format:0:" ":" "}> Ft<{/if}></td>
+				</tr>
+				<tr>
+					<td><strong>Kezdeti saját beruházási összeg</strong></td>
+					<td align="right"><strong>&nbsp;<{if $prices.begin_investment}><{$prices.begin_investment|number_format:0:" ":" "}> Ft<{/if}></strong></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="color: #737373;">
+						<p>*A LIBRA3S integrált vállalatirányítási rendszert minden esetben az adott cég elvárásai szerint alakítjuk ki. A testreszabás mértéke az adott cég folyamataitól és igényeitől függ, így ennek teljes költsége csak személyes konzultáció után kalkulálható ki pontosan. Az itt feltüntett díjak egy átlagos igényre vetített becslések, és nem tekinthetők ajánlatnak. A támogatás keretében hardver eszközök is beszerezhetők, amelyre a konkrét igények alapján tudunk ajánlatot adni.</p>
+						<p>**A pályázat automatikus elbírálásának lehetősége nem jelenti a pályázat automatikus befogadását és a támogatási összeg automatikus elnyerését. Pályázati tanácsadó partnereinkkel közösen, díjmentesen nyújtunk támogatást a támogatás elnyeréséhez.</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;<{getfield field=user_id }> <{getfield field=user_type }></td>
+				</tr>
+			</table>
+
+
+			<{if $prices.licens_sum}>
+				<div class="buttons">
+				<table width="455" cellpadding="0" cellspacing="0">
+					<tr>
+						<td align="left">
+						<input type="submit" name="submit" class="submit-again" value="" />
+						</td>
+						<td align="right">
+						<a href="/hu/mentes" class="link160"><img src="/layout/gfx/calc-save.jpg" alt="" /></a>
+						</td>
+					</tr>
+				</table>
+				</div>
+			<{/if}>
+
+		</div>
+		<div class="footer">
+				<{if !$prices.licens_sum}>
+				<input type="submit" name="submit" class="submit count" value="" />
+				<{/if}>
+		</div>
+	</div>
+</form>

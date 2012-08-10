@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Gunplay';
+    src: url('../font/gunplay_rg.otf');
+    src: url('../font/gunplay_rg.eot?iefix') format('eot'),
+         url('../font/gunplay_rg.woff') format('woff'),
+         url('../font/gunplay_rg.otf') format('opentype'),
+         url('../font/gunplay_rg.svg#webfontIUfVSyTH') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

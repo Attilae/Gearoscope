@@ -1,0 +1,23 @@
+<?php
+    if($this->page_id > 0) {
+        $page = new CMS_Content_Item_Page($this->page_id);
+        $pageName = $page->name;
+    }else{
+        $pageName = null;
+    }
+?>
+
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><span class="ui-checkbox"></span></td>
+    <td><?php print $this->label ?></td>
+    <td><?php print $pageName ?></td>
+    <td><?php print $this->link ?></td>
+    <td><a href='/menuitem/move/direction/up/id/<?php echo $this->id;?>'>Move up</a></td>
+    <td><a href='/menuitem/move/direction/down/id/<?php echo $this->id;?>'>Move down</a></td>
+    <td class="options-width">
+        <a href='/menuitem/update/id/<?php echo $this->id; ?>' class="icon-1 info-tooltip"></a>
+        <!--                                            <a href="" class="icon-3 info-tooltip"></a>
+                                                        <a href="" class="icon-4 info-tooltip"></a>-->
+        <a onclick="return confirm('Biztos benne?');" href="/menuitem/delete/id/<?php echo $this->id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>                                            

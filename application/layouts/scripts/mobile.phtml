@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Samsung Mob!lers blog</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+        <link rel="stylesheet" href="/public/skins/mobilers/css/mobile.css" />
+        <link href="/public/skins/mobilers/css/typo.css" media="screen" rel="stylesheet" type="text/css" />
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+    </head>
+
+
+    <body>
+
+        <div data-role="page" id="mobilers">
+
+            <div data-role="header" id="header">
+                <img id="logo" src="/public/skins/mobilers/images/logo.png" />
+            </div><!-- /header -->
+
+            <div id="menu">
+                <ul id="menu_list">
+                    <li><a href="/phoneindex/">Főoldal</a></li>
+                    <li><a href="/phoneindex/topic/title/blog">Blog</a></li>
+                    <li><a href="/phoneindex/topic/title/samsung">Samsung</a></li>
+                    <li><a href="/phoneindex/topic/title/smartphones">Okostelefonok</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+
+            <?php print $this->layout()->content; ?>
+            <!-- /content -->
+
+            <div data-role="footer" id="footer">
+                <div>
+                    <a href="/phoneindex/altalanosfeltetelek">Általános feltételek</a> | <a href="/phoneindex/jogitudnivalok">Jogi tudnivalók</a>
+                </div>
+                <p align="center">Copyright © 2011 SAMSUNG. Minden jog fenntartva.</p>
+                <p align="center"><img src="/public/skins/mobilers/images/samsung-logo.png" /></p>
+            </div><!-- /footer -->
+        </div>
+
+    </body>
+</html>

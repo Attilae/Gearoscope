@@ -1,0 +1,27 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><?php print $this->post_id ?></td>
+    <td><?php print $this->title ?></td>
+    <td><?php print $this->topic ?></td>
+    <td><?php print $this->rates ?></td>
+    <td><?php print $this->comments ?></td>
+    <?php if($this->edited=="1") { ?>
+    <td>Igen</td>
+    <?php } else { ?>
+    <td>Nem</td>
+    <?php } ?>
+    <td class="options-width">
+        <a href='/posts/adminedit/id/<?php echo $this->post_id; ?>' class="icon-1 info-tooltip"></a>
+        <?php if($this->prior=="1") { ?>
+        <a href="/posts/setsimple/id/<?php echo $this->post_id; ?>" class="icon-3-active info-tooltip"></a>
+        <?php } else { ?>
+        <a href="/posts/setprior/id/<?php echo $this->post_id; ?>" class="icon-3 info-tooltip"></a>
+        <?php } ?>
+        <?php if($this->active=="1") { ?>
+        <a href="/posts/deactive/id/<?php echo $this->post_id; ?>" class="icon-5-active info-tooltip"></a>
+        <?php } else { ?>
+        <a href="/posts/active/id/<?php echo $this->post_id; ?>" class="icon-5 info-tooltip"></a>
+        <?php } ?>
+        <!--                                                <a href="" class="icon-4 info-tooltip"></a>-->
+        <a onclick="return confirm('Biztos benne?');" href="/posts/delete/id/<?php echo $this->post_id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>                                            

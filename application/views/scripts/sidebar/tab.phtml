@@ -1,0 +1,70 @@
+<div id="new-posts">
+    <h2 class="blockhead">Legfrissebb bejegyzések</h2>
+    <?php foreach ($this->firstthree as $post): ?>
+        <a href="<?php echo $this->baseUrl() . "/posts/view/id/" . $post['post_id']; ?>"><?php echo $this->escape($post['title']); ?></a>    <br/>
+    <?php echo $this->escape($post['username']); ?> |
+    <?php echo substr($post['date'], 0, 10); ?> |
+    <?php print $post['comments']; ?> komment
+        <div class="clearbar"></div>
+    <?php endforeach; ?>
+    </div>
+    <div id="new-comments">
+        <h2 class="blockhead">Legfrissebb hozzászólások</h2>
+    <?php
+        foreach ($this->firstthreecomment as $f3):
+            $browser = $_SERVER['HTTP_USER_AGENT'];
+
+            if (strlen(strstr($browser,"MSIE 7.0"))>0) {
+                if (strlen($f3["description"])>200) {
+                ?>
+
+        <p class="comment"><a href="/posts/view/id/<?php print $f3["post_id"] ?>"><?php print mb_substr($f3["description"],0,200,"UTF-8"); ?>...</a></p>
+        <?php
+            } else {
+    ?>
+        <p class="comment"><a href="/posts/view/id/<?php print $f3["post_id"] ?>"><?php print $f3["description"]; ?></a></p>
+        <?php } ?>
+<?php
+            } else {
+    if (strlen($f3["description"])>200) {
+                ?>
+
+        <p class="comment"><a href="/posts/view/id/<?php print $f3["post_id"] ?>#comments"><?php print mb_substr($f3["description"],0,200,"UTF-8"); ?>...</a></p>
+        <?php
+            } else {
+    ?>
+        <p class="comment"><a href="/posts/view/id/<?php print $f3["post_id"] ?>#comments"><?php print $f3["description"]; ?></a></p>
+        <?php } ?>
+            <?php } ?>
+            <span class="comment-time"><?php print (int) ((time() - $f3["date"]) / 86400) ?> napja</span>
+<?php if ($f3["role"] == "mobiler") { ?>
+                <a href="/mobilers/profile/index/user/<?php print $f3['user_id']; ?>"><span class="comment-author"><?php print $f3["name"]; ?></span></a>
+<?php } elseif ($f3["role"] == "user") { ?>
+                <a href="/user/index/user/<?php print $f3['user_id']; ?>"><span class="comment-author"><?php print $f3["name"]; ?></span></a>
+<?php } ?>
+    <?php endforeach; ?>
+        </div>
+        <div id="tags">
+            <h2 class="blockhead">Címkék</h2>
+
+<?php
+            foreach ((array) $this->cloud as $cloud) {
+                print "<a href='/tag/index/tag/" . $cloud["tag"] . "'>" . $cloud["tag"] . " (" . $cloud["tagCount"] . ")</a>";
+            }
+?>
+        </div>
+        <div id="archives">
+            <h2 class="blockhead">Archívum</h2>
+<?php
+            $months = array("Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December");
+
+            foreach ((array) $this->archives as $arcresult) {
+                $month = $arcresult["month"] - 1;
+                $text = $months[$month] . " - " . $arcresult["year"];
+                $after = '&nbsp;(' . $arcresult["posts"] . ')';
+                //$output .= get_archives_link($url, $text, $format, $before, $after);
+                $month++;
+                print "<a class='archive-element' href='/archive/index/month/" . $month . "'>" . $text . $after . "</a><br/>";
+            }
+?>
+</div>

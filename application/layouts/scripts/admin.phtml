@@ -1,0 +1,337 @@
+<?php
+//$this->layout()->adminMenu = $this->action(
+//                'render', 'menu', null, array('menu' => $this->adminMenuId)
+//);
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Admin felület</title>
+<link rel="stylesheet" href="<?php print $this->baseUrl(); ?>/public/admin/css/screen.css"
+	type="text/css" media="screen" title="default" />
+<!--[if IE]>
+        <link rel="stylesheet" media="all" type="text/css" href=/public/admin/"css/pro_dropline_ie.css" />
+        <![endif]-->
+
+<!--  jquery core -->
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/jquery-1.4.1.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript" src="<?php print $this->baseUrl(); ?>/public/js/jquery-ui.js"></script>
+
+<!--  checkbox styling script -->
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/ui.core.js" type="text/javascript"></script>
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/ui.checkbox.js"
+	type="text/javascript"></script>
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/jquery.bind.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(function(){
+                //$('input').checkBox();
+                $('#toggle-all').click(function(){
+                    $('#toggle-all').toggleClass('toggle-checked');
+                    $('input[type=checkbox]').checkBox('toggle');
+        
+                    return false;
+                });
+            });
+        </script>
+
+
+<![if !IE 7]>
+
+<!--  styled select box script version 1 -->
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/jquery.selectbox-0.5.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(document).ready(function() {
+                //$('.styledselect').selectbox({ inputClass: "selectbox_styled" });
+            });
+        </script>
+
+
+<![endif]>
+
+
+<!--  styled select box script version 2 -->
+<script src="<?php print $this->baseUrl(); ?>/public/admin/js/jquery/jquery.selectbox-0.5_style_2.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(document).ready(function() {
+                //$('.styledselect_form_1').selectbox({ inputClass: "styledselect_form_1" });
+                //$('.styledselect_form_2').selectbox({ inputClass: "styledselect_form_2" });
+            });
+        </script>
+
+<!--  styled select box script version 3 -->
+<script src="/public/admin/js/jquery/jquery.selectbox-0.5_style_2.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(document).ready(function() {
+                //$('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
+            });
+        </script>
+
+<!--  styled file upload script -->
+<script src="/public/admin/js/jquery/jquery.filestyle.js"
+	type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+            $(function() {
+                $("input.file_1").filestyle({
+                    image: "/public/admin/images/forms/upload_file.gif",
+                    imageheight : 29,
+                    imagewidth : 78,
+                    width : 300
+                });
+            });
+        </script>
+
+<!-- Custom jquery scripts -->
+<script src="/public/admin/js/jquery/custom_jquery.js"
+	type="text/javascript"></script>
+
+<!-- Tooltips -->
+<script src="/public/admin/js/jquery/jquery.tooltip.js"
+	type="text/javascript"></script>
+<script src="/public/admin/js/jquery/jquery.dimensions.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(function() {
+                $('a.info-tooltip ').tooltip({
+                    track: true,
+                    delay: 0,
+                    fixPNG: true,
+                    showURL: false,
+                    showBody: " - ",
+                    top: -35,
+                    left: 5
+                });
+            });
+        </script>
+
+<!--  date picker script -->
+<link rel="stylesheet" href="/public/admin/css/datePicker.css"
+	type="text/css" />
+<script src="/public/admin/js/jquery/date.js" type="text/javascript"></script>
+<script src="/public/admin/js/jquery/jquery.datePicker.js"
+	type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+            $(function()
+            {
+
+                // initialise the "Select date" link
+                $('#date-pick')
+                .datePicker(
+                // associate the link with a date picker
+                {
+                    createButton:false,
+                    startDate:'01/01/2005',
+                    endDate:'31/12/2020'
+                }
+            ).bind(
+                // when the link is clicked display the date picker
+                'click',
+                function()
+                {
+                    updateSelects($(this).dpGetSelected()[0]);
+                    $(this).dpDisplay();
+                    return false;
+                }
+            ).bind(
+                // when a date is selected update the SELECTs
+                'dateSelected',
+                function(e, selectedDate, $td, state)
+                {
+                    updateSelects(selectedDate);
+                }
+            ).bind(
+                'dpClosed',
+                function(e, selected)
+                {
+                    updateSelects(selected[0]);
+                }
+            );
+
+                var updateSelects = function (selectedDate)
+                {
+                    var selectedDate = new Date(selectedDate);
+                    $('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+                    $('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+                    $('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+                }
+                // listen for when the selects are changed and update the picker
+                $('#d, #m, #y')
+                .bind(
+                'change',
+                function()
+                {
+                    var d = new Date(
+                    $('#y').val(),
+                    $('#m').val()-1,
+                    $('#d').val()
+                );
+                    $('#date-pick').dpSetSelected(d.asString());
+                }
+            );
+
+                // default the position of the selects to today
+                var today = new Date();
+                updateSelects(today.getTime());
+
+                // and update the datePicker to reflect it...
+                $('#d').trigger('change');
+            });
+        </script>
+
+<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+<script src="/public/admin/js/jquery/jquery.pngFix.pack.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+            $(document).ready(function(){
+                $(document).pngFix( );
+            });
+        </script>
+
+<script type="text/javascript" src="/public/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+            tinyMCE.init({
+                // General options
+                mode : "textareas",
+                theme : "advanced",
+                editor_selector : "mceEditor",
+                editor_deselector : "mceNoEditor",
+                plugins : "style,layer,preview,media,paste,fullscreen,advimage,advlink,media",
+                //valid_elements : "a[align|href|target=_blank],strong/b,br,h2,h3,h4,h5[class],p[align],em,u,i,img[align|alt|border|class|height|hspace|idlang|name|src|style|title|vspace|width],",
+                // Theme options
+                theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,|,cut,copy,paste,pastetext,pasteword,|,undo,redo,|,link,unlink,code,image",
+                theme_advanced_buttons2 : "",
+                theme_advanced_buttons3 : "",
+                theme_advanced_buttons4 : "",
+                theme_advanced_toolbar_location : "top",
+                theme_advanced_toolbar_align : "left",
+                theme_advanced_statusbar_location : "bottom",
+                theme_advanced_resizing : false,
+                width : "640",
+
+                // Skin options
+                skin : "o2k7",
+                skin_variant : "silver",
+
+                // Drop lists for link/image/media/template dialogs
+                template_external_list_url : "js/template_list.js",
+                external_link_list_url : "js/link_list.js",
+                external_image_list_url : "js/image_list.js",
+                media_external_list_url : "js/media_list.js",
+
+                // Replace values for the template plugin
+                template_replace_values : {
+                    username : "Some User",
+                    staffid : "991234"
+                }
+            });
+        </script>
+
+</head>
+<body>
+	<!--  start nav-outer-repeat................................................................................................. START -->
+	<div class="nav-outer-repeat">
+		<!--  start nav-outer -->
+		<div class="nav-outer">
+
+			<!-- start nav-right -->
+			<div id="nav-right">
+
+				<a
+					href="<?php print $this->url(array('module' => 'admin', 'controller' => 'index', 'action' => 'logout')); ?>"
+					id="logout"><img
+					src="/public/admin/images/shared/nav/nav_logout.gif" width="64"
+					height="14" alt="" /> </a>
+				<div class="clear">&nbsp;</div>
+			</div>
+			<!-- end nav-right -->
+
+
+			<!--  start nav -->
+			<div class="nav">
+				<div class="table">
+
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "user")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/user/list"><b>Felhasználók</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>
+
+					<div class="nav-divider">&nbsp;</div>
+
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "news")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/news/collect"><b>Hírek frissítése</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>														
+
+					<div class="nav-divider">&nbsp;</div>
+
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "page")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/page/list"><b>Oldalak</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>					
+					
+					<div class="nav-divider">&nbsp;</div>
+
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "bands")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/bands/list"><b>Bandák</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>
+					
+					<div class="nav-divider">&nbsp;</div>
+					
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "gearscategory")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/gearscategory/list"><b>Gears</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>		
+					
+					<div class="nav-divider">&nbsp;</div>
+					
+					<ul <?php if (strstr($_SERVER["REQUEST_URI"], "catalogue")) { ?>class="current" <?php } else { ?> class="select" <?php } ?>>
+						<li><a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/catalogue/build"><b>Keresőindex</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->					
+					</ul>								
+
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!--  start nav -->
+
+		</div>
+		<div class="clear"></div>
+		<!--  start nav-outer -->
+	</div>
+	<!--  start nav-outer-repeat................................................... END -->
+
+	<div class="clear"></div>
+
+	<!-- start content-outer -->
+	<div id="content-outer">
+		<!-- start content -->
+
+	<?php echo $this->layout()->content; ?>
+
+		<!--  end content -->
+		<div class="clear">&nbsp;</div>
+	</div>
+	<!--  end content-outer -->
+
+
+
+	<div class="clear">&nbsp;</div>
+
+	<!-- start footer -->
+	<div id="footer">
+		<!--  start footer-left -->
+		<div id="footer-left">
+		<?php
+		$auth = Zend_Auth::getInstance();
+		//print_r($auth->getIdentity());
+		?>
+		</div>
+		<!--  end footer-left -->
+		<div class="clear">&nbsp;</div>
+	</div>
+	<!-- end footer -->
+
+</body>
+</html>

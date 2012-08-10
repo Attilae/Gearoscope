@@ -1,0 +1,30 @@
+<?php
+$paginationControl = $this->paginationControl($this->paginator, 'All', 'partials/paginator.phtml') ?>
+<?php //if (count($this->paginator) >= 4) : ?>
+    <div class="pagination-control">
+    <?php //echo $paginationControl ?>
+</div>
+<?php //endif; ?>
+<h3 class="blockhead">Kommentek</h3>
+            <div id="post-comments">
+                    <?php if (count($this->paginator)) : ?>
+        <?php
+            foreach ($this->paginator as $comment) :
+        ?>                
+                <div class="comment-node">
+                    <p class="comment-body"><?php echo $this->escape($comment['description']); ?></p>
+                </div>
+                <div class="comment-info">
+                    <span class="author"><a href="/user/index/user/<?php print $comment["user_id"]; ?>"><?php echo $this->escape($comment['name']); ?></a></span>
+                    <span class="time"><?php print (int)((time()-$comment["date"])/86400) ?> napja</span>
+                </div>
+<?php endforeach ?>
+        <?php else : ?>
+                    <p class="notice">Még nincs hozzászólás</p>
+        <?php endif ?>
+            </div>
+<?php if ($this->paginator) : ?>
+                        <div class="pagination-control">
+    <?php //echo $paginationControl ?>
+                    </div>
+<?php endif; ?>

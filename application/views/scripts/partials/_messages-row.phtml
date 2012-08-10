@@ -1,0 +1,11 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><?php print $this->user_id ?></td>
+    <td><?php print $this->username ?></td>
+    <td><?php print $this->subject ?></td>
+    <td><?php print mb_substr($this->message, 0, 100, "UTF-8"); ?></td>
+    <td class="options-width">
+        <?php if($this->tab=="get") { ?>
+        <a href="/messages/answer/thread/<?php echo $this->thread_id; ?>" class="icon-5 info-tooltip"></a>
+        <?php } ?>
+    </td>
+</tr>                                            

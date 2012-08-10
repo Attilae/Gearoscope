@@ -1,0 +1,12 @@
+<?php
+foreach($this->firstthree as $f3): ?>
+<div>
+    <img  width="25" src="/public/uploads/users/<?php print $f3["photo_url"]; ?>" />
+    <?php
+    print $f3["username"] . "<br/>";
+    print $f3["title"] . "<br/>";
+    print date("d-m-Y", $f3["date"]) . "<br/>";
+    print $f3["comments"] . "<br/>";
+    ?>
+</div>
+    <?php endforeach; ?>

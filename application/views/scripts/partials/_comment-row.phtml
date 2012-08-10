@@ -1,0 +1,10 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><?php print $this->comment_id ?></td>
+    <td><?php print mb_substr($this->description, 0, 100, "UTF-8") . "..." ?></td>
+    <td><?php print $this->title ?></td>
+    <td><?php print $this->username ?></td>
+    <td><?php print date("Y-m-d",$this->date) ?></td>
+    <td class="options-width">
+        <a onclick="return confirm('Biztos benne?');" href="/comments/admindelete/id/<?php echo $this->comment_id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>

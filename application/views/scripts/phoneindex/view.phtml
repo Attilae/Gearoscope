@@ -1,0 +1,45 @@
+<?php foreach ($this->post as $post): ?>    
+    <div data-role="content" id="one">
+        <a href="/phoneindex/mobiler/id/<?php print $post['user_id']; ?>"><?php print $post['username']; ?></a> | <?php print substr($post['date'], 0, 10); ?> | <?php print $post['comments']; ?> hozzászólás
+
+        <!-- POST COLUMN -->
+        <div id="post-column">
+            <!-- start slipsum code -->
+            <p class="intro"><?php echo $post['lead']; ?></p>
+
+            <div class="post-cover">
+                <img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=300" alt="<?php print $post['title']; ?>"
+                     title="<?php print $post['title']; ?>"/>
+                <span></span>
+            </div>
+
+            <div class="post-body" style="text-align: justify;">
+
+            <?php echo $post['content']; ?>
+            <?php
+            if ($post["video"] != "") {
+                $video = Model_Youtube::generateMobileEmbed($post['video']);
+                print $video;
+            }
+            ?>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <?php endforeach; ?>
+            <ul data-role="listview" data-theme="c" data-dividertheme="d" data-counttheme="e">
+                <li data-role="list-divider">Kommentek</li>
+            </ul>
+            <br/>
+    <?php if (count($this->comments)) : ?>
+    <?php foreach ($this->comments as $comment): ?>
+                    <div data-role="collapsible">
+                        <h3><?php echo $this->escape($comment['name']); ?>&nbsp;&nbsp;&nbsp;<span class="time"><?php print (int) ((time() - $comment["date"]) / 86400) ?> napja</span></h3>
+                        <p><?php echo $this->escape($comment['description']); ?></p>
+                    </div>
+    <?php endforeach ?>
+    <?php else : ?>
+                        <p>Még nincs hozzászólás</p>
+    <?php endif ?>
+</div>

@@ -1,0 +1,71 @@
+<script type="text/javascript">
+    function onPaginate(res){
+        $("#content_cont").html(res);
+        $(".paginate_link").each(function(i){
+            var href = $(this).attr('href');
+            $(this).attr('href', '#');
+            $(this).click(function(){
+                $.post(href, {}, function(res){
+                    onPaginate(res);
+                });
+            });
+        });
+    }
+
+    $(document).ready(function(){
+        $.post("admin/product/searchForm", {}, function(res){
+            $("#search_form").html(res);
+            $("#search_button").click(function(){
+                post_obj = {};
+                $("#search_form").find("input,select,textarea").each(function(i){
+                    post_obj[this.id] = $(this).val();
+                });
+                $.post("admin/product/paginate/start/1", post_obj, function(res){
+                    onPaginate(res);
+                });
+            });
+        });
+    });
+</script>
+<div class="pagination-control">
+    <div class="paginator">
+        <div class="paginator-nav">
+            <a title="Previous" rel="prev" class="paginator-prev" href="/posts/view/id/1/page/1">Previous</a>
+        </div>
+        <ol>
+            <li>
+                <a title="Page 1" rel="prev" href="/posts/view/id/1/page/2">1</a>
+            </li>
+            <li>
+                <a title="Page 2" rel="prev" href="/posts/view/id/1/page/3">2</a>
+            </li>
+            <li>
+                <a title="Page 3" rel="prev" href="/posts/view/id/1/page/4">3</a>
+            </li>
+            <li>
+                <span>4</span>
+            </li>
+            <li>
+                <a title="Page 5" rel="next" href="/awesome-pagination/index/index/page/5">5</a>
+            </li>
+            <li>
+                <a title="Page 6" rel="next" href="/awesome-pagination/index/index/page/6">6</a>
+            </li>
+            <li>
+                <a title="Page 7" rel="next" href="/awesome-pagination/index/index/page/7">7</a>
+            </li>
+            <li>
+                <a title="Page 8" rel="next" href="/awesome-pagination/index/index/page/8">8</a>
+            </li>
+            <li>
+                <a title="Page 9" rel="next" href="/awesome-pagination/index/index/page/9">9</a>
+            </li>
+            <li>
+                <a title="Page 10" rel="next" href="/awesome-pagination/index/index/page/10">10</a>
+            </li>
+        </ol>
+        <div class="paginator-nav">
+            <a title="Next" rel="next" class="paginator-next" href="/awesome-pagination/index/index/page/5">Next</a>
+        </div>
+    </div>
+</div>

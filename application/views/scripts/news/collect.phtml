@@ -1,0 +1,22 @@
+<?php foreach($this->entries as $entries): ?>
+				<?php foreach($entries as $entry): ?>
+				<div class="items-row cols-1 row-0">			
+					<div class="item column-1">
+						<h2><?php print $entry["title"]; ?></h2>
+						<dl class="article-info">
+							<dt class="article-info-term">Details</dt>
+							<dd class="create">Created on <?php print $entry["dateModified"]; ?></dd>
+							<dd class="createdby">Written by Super User</dd>
+						</dl>
+						<!-- <img class="img-indent border"
+							src="/joomla_34465/images/stories/video-img1.jpg" alt="" /> -->
+						<p><?php print $entry["content"]; ?></p>
+						<p class="readmore">
+							<a href="<?php print $entry["link"]; ?>" target="_blank"> MORE</a>
+						</p>
+						<div class="item-separator"></div>
+					</div>
+					<span class="row-separator"></span>
+				</div>
+				<?php endforeach; ?>
+			<?php endforeach; ?>

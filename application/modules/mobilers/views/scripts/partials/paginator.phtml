@@ -1,0 +1,36 @@
+<?php
+if ($this->pageCount > 0) : ?>
+<div class="paginator">
+    <div class="paginator-nav">
+        <?php if (isset($this->previous)) : ?>
+        <a title="Previous" rel="prev" class="paginator-prev" href="<?php echo $this->url(array(
+            'page' => $this->previous
+        )) ?>">Previous</a>
+        <?php else : ?>
+        <span class="paginator-prev">Previous</span>
+        <?php endif ?>
+    </div>
+    <ol>
+        <?php foreach ($this->pagesInRange as $page) : ?>
+        <li>
+            <?php if ($page == $this->current) : ?>
+            <span><?php echo $page ?></span>
+            <?php else : $rel = $page > $this->current ? 'next' : 'prev'; ?>
+            <a title="Page <?php echo $page ?>" rel="<?php echo $rel ?>" href="<?php echo $this->url(array(
+                'page' => $page
+            )) ?>"><?php echo $page ?></a>
+            <?php endif ?>
+        </li>
+        <?php endforeach ?>
+    </ol>
+    <div class="paginator-nav">
+        <?php if (isset($this->next)) : ?>
+        <a title="Next" rel="next" class="paginator-next" href="<?php echo $this->url(array(
+            'page' => $this->next
+        )) ?>">Next</a>
+        <?php else : ?>
+        <span class="paginator-next">Next</span>
+        <?php endif ?>
+    </div>
+</div>
+<?php endif ?>

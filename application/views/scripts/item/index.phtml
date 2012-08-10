@@ -1,0 +1,114 @@
+﻿<div class="wrapper border-2 p3">                        
+
+                    <div class="wrapper border-2 bot-pad margin-bot">
+
+                        <div class="alpha grid_11 suffix_1">
+
+                            <h3 class="indent-bot2">Hírek</h3>
+
+                            <div class="wrapper">
+							<?php foreach ($this->news as $news): ?>
+                                <div class="alpha grid_5 suffix_1">
+                                	<span class="link-1"><?php print $news["title"]; ?></span>
+                                    <figure class="p3"><img src="/public/timthumb.php?src=/public/uploads/news/<?php print $news["photo"]; ?>&w=279&h=142&zc=1" alt="" /></figure>
+                                    <p class="indent-bot"><?php print $news["lead"]; ?></p>                                    
+                                </div>
+							<?php endforeach; ?>
+                            </div>							
+							<div class="pagination">
+							    <?php echo $this->paginationControl($this->news, 'Sliding', '/partials/_pagination-control.phtml'); ?>
+							</div>
+                        </div>
+
+                        <div id="scrollingDiv" class="grid_4 omega">
+
+                            <h3 class="p2">Fontos információk</h3>
+
+                            <ul class="list-1">
+
+                                <li><a href="#">Információ 1</a></li>
+
+                                <li><a href="#">Információ 2</a></li>
+
+                                <li><a href="#">Információ 3</a></li>
+
+                                <li><a href="#">Információ 4</a></li>
+
+                                <li><a href="#">Információ 5</a></li>
+
+                                <li><a href="#">Információ 6</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="information" class="wrapper">
+                        <div class="alpha grid_6">
+                            <div class="indent-top2">
+                                <div class="wrapper">
+                                    <figure class="fleft"><img src="/public/skins/prym/images/ico1.png" alt="" /></figure>
+                                    <div class="extra-wrap">
+                                        <div class="indent-r">
+                                            <div class="border-3">
+                                                <div class="indent">
+                                                    <h6>Letöltések</h6>
+                                                    <a class="link-2" href="#">Tovább</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wrapper">
+                                    <figure class="fleft"><img src="/public/skins/prym/images/ico2.png" alt="" /></figure>
+                                    <div class="extra-wrap">
+                                        <div class="indent-r">
+                                            <div class="border-3">
+                                                <div class="indent">
+                                                    <h6>Elérhetőségek</h6>
+                                                    <a class="link-2" href="#">Tovább</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wrapper">
+                                    <figure class="fleft"><img src="/public/skins/prym/images/ico3.png" alt="" /></figure>
+                                    <div class="extra-wrap">
+                                        <div class="indent-r">
+                                            <div class="indent">
+                                                <h6>Forgalmazóknak</h6>
+                                                <a class="link-2" href="#">Tovább</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid_3 suffix_1">
+                            <h3 class="p3">Linkek</h3>
+                            <ul class="list-2">
+                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#">Link 2</a></li>
+                                <li><a href="#">Link 3</a></li>
+                                <li><a href="#">Link 4</a></li>
+                                <li><a href="#">Link 5</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="grid_6 omega">
+                            <h3 class="margin-bot">Üzenet</h3>
+                            <form name="quick" id="quick-form">
+                                <label class="label-1">
+                                    <input class="quicktext" name="keyword" type="text" value="E-Mail cím"  onBlur="if(this.value=='') this.value='E-Mail cím'" onFocus="if(this.value =='E-Mail cím' ) this.value=''" />
+                                </label>
+                                <label class="label-2">
+                                    <textarea class="quickmessage" onBlur="if(this.value=='') this.value='Üzenet'" onFocus="if(this.value =='Üzenet' ) this.value=''">Üzenet</textarea>
+                                </label>
+                                <div class="alignright indent-r">
+                                    <span class="button2"><a href="#" onClick="document.getElementById('quick-form').submit()">Send</a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>

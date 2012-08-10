@@ -1,0 +1,15 @@
+<tr>
+    <td><input type="checkbox" class="ui-helper-hidden-accessible"><?php print $this->item_id ?></td>
+    <td><?php print $this->title ?></td>
+    <td><?php print $this->lead ?></td>    
+    <td class="options-width">
+        <a href='/item/edit/id/<?php echo $this->item_id; ?>/subcat/<?php print $this->sub_subcat_id; ?>' class="icon-1 info-tooltip"></a>                        
+        <?php if($this->active=="1") { ?>
+        <a href="/item/deactive/id/<?php echo $this->item_id; ?>" class="icon-5-active info-tooltip"></a>
+        <?php } else { ?>
+        <a href="/item/active/id/<?php echo $this->item_id; ?>" class="icon-5 info-tooltip"></a>
+        <?php } ?>
+        <!--                                                <a href="" class="icon-4 info-tooltip"></a>-->
+        <a onclick="return confirm('Biztos benne?');" href="/item/delete/id/<?php echo $this->item_id; ?>" class="icon-2 info-tooltip"></a>
+    </td>
+</tr>                                            

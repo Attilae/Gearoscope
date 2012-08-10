@@ -1,0 +1,24 @@
+<?php
+//print_r($this->archives);
+//$months = array("Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December");
+
+foreach ($this->tagPosts as $post) {
+?>
+    <div class="topic">
+        <div class="post-cover">
+            <a href="/posts/view/id/<?php print $post["post_id"] ?>"><img src="<?php print '/public/timthumb.php?src=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&w=210&h=155&zc=1" alt="<?php print $post['title']; ?>" title="<?php print $post['title']; ?>"/></a><span></span>
+        </div>
+        <div class="post-column">
+            <div class="post-info"><a href="/mobilers/profile/index/user/<?php print $post['user_id']; ?>"><?php print $post['username']; ?> </a>| <?php print substr($post['date'], 0, 10); ?> |<a href="/posts/view/id/<?php print $post["post_id"] ?>#comments" style="color:#5e6471;"> <?php print $post['comments']; ?> komment </a></div>
+            <h2 class="post-title"><a href="/posts/view/id/<?php print $post["post_id"] ?>"><?php print $post['title']; ?></a></h2>
+
+            <p class="post-body"><?php echo mb_substr(nl2br(strip_tags($post['lead'])), 0, 300, "UTF-8"); ?>...</p>
+            <a class="morebutton" href="/posts/view/id/<?php print $post["post_id"] ?>">TOVÁBB >></a>
+        </div>
+    </div>    
+<?php
+}
+?>
+<div class="pagination" style="top: 0;">
+    <?php echo $this->paginationControl($this->tagPosts, 'Sliding', '/partials/_pagination-control.phtml'); ?>
+</div>

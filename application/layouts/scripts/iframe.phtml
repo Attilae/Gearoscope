@@ -1,0 +1,32 @@
+<?php
+//$this->layout()->adminMenu = $this->action(
+//                'render', 'menu', null, array('menu' => $this->adminMenuId)
+//);
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Admin felület</title>
+<?php
+echo $this->headLink(); ?>
+<link href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/typo.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/css/iframe.css"
+	type="text/css" />
+<script type="text/javascript" src="<?php print $this->baseUrl(); ?>/public/skins/gearoscope/js/jquery-1.7.1.min.js"></script>     
+<?php echo $this->headLink(); ?>
+<?php echo $this->headScript(); ?>
+</head>
+<body>
+	<div id="content-outer">
+		<!-- start content -->
+
+                <?php echo $this->layout()->content; ?>
+
+		<!--  end content -->		
+	</div>
+
+</body>
+</html>

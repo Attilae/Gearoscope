@@ -1,0 +1,79 @@
+<?php foreach ($this->post as $post): ?>
+<img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/mobilers/' . $post['photo_url']; ?>&width=20&height=25" alt="<?php print $post['username']; ?>"
+     title="<?php print $post['username']; ?>" style="float:left; margin-right:10px;" />
+     <?php print $post["username"] ?>
+<br/>
+<br/>
+<?php print $post['date']; ?>
+     <br/>
+     Comments ( <?php print $post['comments']; ?> )
+
+     <img src="<?php print '/image/resize?filename=' . $this->baseUrl . '/public/uploads/posts/' . $post['photo']; ?>&width=60&height=60" alt="<?php print $post['title']; ?>"
+          title="<?php print $post['title']; ?>" style="float:left; margin-right:10px;" />
+     <div class="title"><?php echo $post['title']; ?></div>
+     <div class="description"><?php echo $post['lead']; ?></div>
+     <div class="description"><?php echo $post['content']; ?></div>
+     <div class="description"><?php echo $post['video']; ?></div>
+     <div>
+         <ul>
+        <?php foreach ($this->tags as $tags): ?>
+        <li><?php print $tags["tag"]; ?></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+<?php
+// First you need to set some defaults
+        $gTitle = "KennedyMeadows"; // title of your gallary, if empty it will show: "your nickname' Photo Gallary"
+        $uName = $post['gallery_user']; // your picasaweb user name
+        /*
+          The following values are valid for the thumbsize and imgmax query parameters and are embeddable on a webpage. These images are available as both cropped(c) and uncropped(u) sizes by appending c or u to the size. As an example, to retrieve a 72 pixel image that is cropped, you would specify 72c, while to retrieve the uncropped image, you would specify 72u for the thumbsize or imgmax query parameter values.
+         */
+        $tSize = "72c"; // thumbnail size can be 32, 48, 64, 72, 144, 160. cropt (c) and uncropt (u)
+        $maxSize = "720u"; // max image size can be 200, 288, 320, 400, 512, 576, 640, 720, 800. These images are available as only uncropped(u) sizes by appending u to the size or just passing the size value without appending anything.
+// fro more information visit: http://code.google.com/apis/picasaweb/reference.html#Parameters
+
+        $aID = $post['gallery_album'];
+        $file = file_get_contents('http://picasaweb.google.com/data/feed/api/user/' . $uName . '/albumid/' . $aID . '?kind=photo&access=public&thumbsize=72c&imgmax=' . $maxSize); // get the contents of the album
+        try{
+        $xml = new SimpleXMLElement($file); // convert feed into simplexml object
+        $xml->registerXPathNamespace('media', 'http://search.yahoo.com/mrss/'); // define namespace media
+        } catch (Exception $e) {
+            print "A szolgáltatás átmenetileg nem elérhető";
+        }
+?>
+
+        <div style="width: 560px; height: 200px;">
+            <!-- "previous page" action -->
+            <a class="prev browse left"></a>
+
+            <!-- root element for scrollable -->
+            <div class="scrollable">
+
+                <!-- root element for the items -->
+                <div class="items">
+            <?php
+            foreach ($xml->entry as $feed) { // go over the pictures
+            $group = $feed->xpath('./media:group/media:thumbnail'); // let's find thumbnail tag
+            $description = $feed->xpath('./media:group/media:description');
+            if (str_word_count($description[0]) > 0) { // if picture has description, we'll use it as title
+            $description = $feed->title . ": " . $description[0]; // file name appended by image captioning
+            } else {
+            $description = $feed->title; // if not will use file name as title
+            }
+            $a = $group[0]->attributes(); // now we need to get attributes of thumbnail tag, so we can extract the thumb link
+            $b = $feed->content->attributes(); // now we convert "content" attributes into array
+            echo '<img src="' . $a['url'] . '" alt="' . $feed->title . '" width="' . $a['width'] . '" height="' . $a['height'] . '"/>';
+            }
+            ?>
+        </div>
+
+    </div>
+    <a style="float: left;" class="next browse right"></a>
+</div>
+
+
+
+
+
+<?php endforeach; ?>

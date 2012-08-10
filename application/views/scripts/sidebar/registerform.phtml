@@ -1,0 +1,46 @@
+<form class="register" id="register_form"> 
+                    <h3>Register</h3> 
+                    <div class="column"> 
+                        <div> 
+                            <label>First Name:</label> 
+                            <?php print $this->element->first_name; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                        <div> 
+                            <label>Last Name:</label> 
+                            <?php print $this->element->last_name; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                        <div> 
+                            <label>Password:</label> 
+                            <?php print $this->element->password_reg; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                    </div> 
+                    <div class="column"> 
+                        <div> 
+                            <label>Username:</label> 
+                            <?php print $this->element->username; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                        <div> 
+                            <label>Email:</label> 
+                            <?php print $this->element->email; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                        <div> 
+                            <label>Password Confirm:</label> 
+                            <?php print $this->element->password_reg_confirm; ?> 
+                            <span class="error">This is an error</span> 
+                        </div> 
+                    </div> 
+                    <div class="bottom"> 
+                        <div class="remember"> 
+                            <?php print $this->element->captcha; ?>
+                        </div> 
+                        <input type="submit" value="Register" /> 
+                        <a href="index.html" rel="login" class="linkform">You have an account already? Log in here</a> 
+                        <div class="clear"></div> 
+                    </div> 
+                    <span id="msgbox" style="display:none"></span>
+                </form>
