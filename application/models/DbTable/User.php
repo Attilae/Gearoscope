@@ -135,9 +135,9 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 
     public function forgotPassword($email, $password) {
         $data = array(
-            'password' => md5($password)
+            'user_password' => md5($password)
         );
-        $where = 'email = "' . $email . '"';
+        $where = 'user_email = "' . $email . '"';
         $this->update($data, $where);
     }
 

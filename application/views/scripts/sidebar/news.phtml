@@ -1,7 +1,7 @@
 <div id="sidebar-2" class="right">
 	<div class="moduletable">
 		<h3>Login Form</h3>
-		<form action="<?php print $this->baseUrl(); ?>/user/login" method="post" id="login-form">
+		<form action="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/login" method="post" id="login-form">
 			<div class="box-indent">
 				<fieldset class="userdata">
 					<p id="form-login-username">
@@ -31,12 +31,12 @@
 			<ul class="user-links">
 
 				<li><a
-					href="/joomla_34465/index.php/using-joomla/extensions/components/users-component/password-reset">
+					href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/password">
 
 						Forgot your password?</a></li>
 
 				<li><a
-					href="/joomla_34465/index.php/using-joomla/extensions/components/users-component/registration-form">
+					href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/register">
 
 						Create an account</a></li>
 
