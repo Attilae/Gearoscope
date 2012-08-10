@@ -123,4 +123,3 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
     }
 
 }
-
