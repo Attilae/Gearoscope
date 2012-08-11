@@ -6,6 +6,10 @@ class GearsController extends Zend_Controller_Action {
         $this->view->addHelperPath(
                 'ZendX/JQuery/View/Helper'
                 , 'ZendX_JQuery_View_Helper');
+        
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('images', 'html')
+                ->initContext();
     }
 
     public function indexAction() {
@@ -173,10 +177,24 @@ class GearsController extends Zend_Controller_Action {
         $gearsModel = new Model_DbTable_Gears();
         $gear = $gearsModel->getGear($gear_id);
         
-        $gearPicture = '<img id=\"picture_delete\" src=\"'.$baseUrl.'/public/uploads/gears/'.$gear["gear_thumbnail_url"].'\" />';
+        $gearPicture = '<img id=\"picture_delete\" src=\"'.$baseUrl.'/public/uploads/gears/'.$gear["gear_thumbnail_url"].'\" />';                
 
         $this->view->headScript()->prependScript('
 			$(document).ready(function(){
+                        
+                                $("#gallery-images").html("Loading...");
+
+                                $("#gallery-images").load(
+                                                    "'.$baseUrl.'/hu/gears/images/format/html",
+                                                    {"id": '.$gear_id.' }, 
+                                                    function(response, status, xhr) {
+                                                        if (status == "error") {
+                                                          var msg = "Sorry but there was an error: ";
+                                                          $("#gallery-images").html(msg + xhr.status + " " + xhr.statusText);
+                                                        }
+                                                     }
+                                );
+
                                 $("#div-subcategory").fadeIn();
                                 $("#div-subsubcategory").fadeIn();
 				$("a.inline").colorbox({inline:true, width:"50%"});                                
@@ -233,9 +251,22 @@ class GearsController extends Zend_Controller_Action {
                                 $("#addgallery").colorbox({
 					iframe:true,
 					width:"800px",
-				 	height:"600px"				 	
-				});
-			});'
+				 	height:"600px",
+                                        onClosed : function() {
+                                                $("#gallery-images").html("Loading...");
+                                                $("#gallery-images").load(
+                                                    "'.$baseUrl.'/hu/gears/images/format/html",
+                                                    {"id": '.$gear_id.' }, 
+                                                    function(response, status, xhr) {
+                                                        if (status == "error") {
+                                                          var msg = "Sorry but there was an error: ";
+                                                          $("#gallery-images").html(msg + xhr.status + " " + xhr.statusText);
+                                                        }
+                                                     }
+                                                ); 
+                                               }
+                                });
+                               });'
         );
 
         $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/jquery.colorbox-min.js");
@@ -339,7 +370,18 @@ class GearsController extends Zend_Controller_Action {
 
         $this->view->form = $form;
     }
-
+    
+    public function imagesAction() {
+        
+        $gear_id = $this->_request->getParam("id");
+        
+        $imagesModel = new Model_DbTable_Images();
+        $images = $imagesModel->findByGear($gear_id);
+        
+        $this->view->images = $images;
+    }
+    
+    
     public function pictureAction() {
 
         $this->_helper->layout()->disableLayout();

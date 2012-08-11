@@ -90,7 +90,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('user', 'user', array('edit', 'editbio', 'newpassword', 'newemail'));
         $acl->allow('user', 'comments', array('listown', 'delete'));
         $acl->allow('user', 'bands', array('add', 'edit', 'user', 'styles', 'addeditor'));
-        $acl->allow('user', 'gears', array('add', 'edit', 'user', 'picture', 'imgdelete', 'thumbnaildelete'));
+        $acl->allow('user', 'gears', array('add', 'edit', 'user', 'picture', 'imgdelete', 'thumbnaildelete', 'images'));
         $acl->allow('user', 'gearscategory', array('categorychange'));
         $acl->allow('user', 'gearssubcategory', array('categorychange'));
         $acl->allow('user', 'gearssubsubcategory', array('useradd'));

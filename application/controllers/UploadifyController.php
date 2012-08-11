@@ -19,11 +19,13 @@ class UploadifyController extends Zend_Controller_Action {
 
         $gear = $this->_request->getParam('gear');
 
-
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getIdentity();
+        
         $this->view->headScript()->prependScript('
 			$(function() {
                             $("#file_upload_1").uploadify({
-                                "formData"      : {"gear" : ' . $gear . '},
+                                "formData"      : {"gear" : ' . $gear . ', "user" : ' . $identity->user_id .'},
                                 "height"        : 30,
                                 "swf"           : "' . $this->view->baseUrl() . '/public/uploadify/uploadify.swf",
                                 "uploader"      : "'.$baseUrl.'/'.$locale.'/uploadify/uploadify",
@@ -46,16 +48,18 @@ class UploadifyController extends Zend_Controller_Action {
         $targetFolder = '/_gearoscope/public/uploads/gears/'; // Relative to the root
 
         if (!empty($_FILES)) {
-            $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-            $targetFile = rtrim($targetPath, '/') . '/' . $_FILES['Filedata']['name'];
-
-            // Validate the file type
-            $fileTypes = array('jpg', 'jpeg', 'gif', 'png'); // File extensions
-            $fileParts = pathinfo($_FILES['Filedata']['name']);
             
             $modelImages = new Model_DbTable_Images();
-            $image = $modelImages->addImage($_FILES['Filedata']['name'], $_POST["gear"]);
+            $image = $modelImages->addImage('gallery_' . $_POST["gear"] . "_" . $_POST["user"] . "_" . $_FILES['Filedata']['name'], $_POST["gear"]);
+            
+            $tempFile = $_FILES['Filedata']['tmp_name'];
+            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
+            
+            // Validate the file type
+            $fileTypes = array('jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF', 'png', 'PNG'); // File extensions
+            $fileParts = pathinfo($_FILES['Filedata']['name']);
+            
+            $targetFile = rtrim($targetPath, '/') . '/gallery_' . $_POST["gear"] . "_" . $_POST["user"] . "_" . $_FILES['Filedata']['name'];                                    
 
             if (in_array($fileParts['extension'], $fileTypes)) {
                 move_uploaded_file($tempFile, $targetFile);

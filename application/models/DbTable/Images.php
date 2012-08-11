@@ -31,10 +31,9 @@ class Model_DbTable_Images extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
-	public function getByCategory($subcat_id) {
+	public function findByGear($gear_id) {
 		$select = $this->select()
-			->where("subcat_id = ?", $subcat_id)
-			->where('active = 1');
+			->where("gear_id = ?", $gear_id);
 		$result = $this->fetchAll($select);
 		return $result->toArray();
 	}
