@@ -25,6 +25,11 @@ if (!isset($_SESSION['random_key']) || strlen($_SESSION['random_key'])==0){
     $_SESSION['random_key'] = strtotime(date('Y-m-d H:i:s')); //assign the timestamp to the session variable
 	$_SESSION['user_file_ext']= "";
 }
+ header("Pragma-directive: no-cache");
+    header("Cache-directive: no-cache");
+    header("Cache-control: no-cache");
+    header("Pragma: no-cache");
+    header("Expires: 0");
 #########################################################################################################
 # CONSTANTS																								#
 # You can alter the options below																		#
@@ -38,8 +43,8 @@ $large_image_name = $large_image_prefix.$_SESSION['random_key'];     // New name
 $thumb_image_name = $thumb_image_prefix.$_SESSION['random_key'];     // New name of the thumbnail image (append the timestamp to the filename)
 $max_file = "1"; 							// Maximum file size in MB
 $max_width = "500";							// Max width allowed for the large image
-$thumb_width = "100";						// Width of thumbnail image
-$thumb_height = "100";						// Height of thumbnail image
+$thumb_width = "160";						// Width of thumbnail image
+$thumb_height = "160";						// Height of thumbnail image
 // Only one of these image types should be allowed for upload
 $allowed_image_types = array('image/pjpeg'=>"jpg",'image/jpeg'=>"jpg",'image/jpg'=>"jpg",'image/png'=>"png",'image/x-png'=>"png",'image/gif'=>"gif");
 $allowed_image_ext = array_unique($allowed_image_types); // Do not change this

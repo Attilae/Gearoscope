@@ -2,6 +2,12 @@
 
 session_start();
 
+ header("Pragma-directive: no-cache");
+    header("Cache-directive: no-cache");
+    header("Cache-control: no-cache");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
 $user_id = $_SESSION["Zend_Auth"]["storage"]->user_id;
 
 if(!$user_id) {
@@ -127,11 +133,11 @@ if ($_POST["save_thumb"]=="Save Thumbnail") {
         $userfile_extension = $_SESSION['user_file_ext'];
 	$scale = $thumb_width/$w;
 	$cropped = resizeThumbnailImage($thumb_image_location, $large_image_location,$w,$h,$x1,$y1,$scale);
-	echo "success|".$large_image_location."|".$thumb_image_location;
+	echo "success|".$large_image_name.$_SESSION['user_file_ext']."|".$thumb_image_name.$_SESSION['user_file_ext'];
 	$_SESSION['random_key']= "";
 	$_SESSION['user_file_ext']= "";
         $_SESSION["uploader"]["photo"] = $large_image_name.$userfile_extension;
-	$_SESSION["uploader"]["thumbnail"] = $thumb_image_name.$userfile_extension;
+	$_SESSION["uploader"]["thumbnail"] = $thumb_image_name.$userfile_extension;        
 }
 
 #####################################################

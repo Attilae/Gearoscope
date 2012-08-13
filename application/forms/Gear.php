@@ -60,7 +60,7 @@ class Form_Gear extends Zend_Form {
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
-        $submit->setLabel("Elküld");
+        $submit->setLabel("Mentés");
         $submit->setAttrib('style', 'clear: both;');
 
         $this->addElements(array($id, $gear_name, $serial_number, $category, $subcategory, $subsubcategory, $description, $photo, $thumbnail, $submit));

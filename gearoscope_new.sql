@@ -2,10 +2,10 @@
 -- version 3.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 11, 2012 at 01:21 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Hoszt: localhost
+-- Létrehozás ideje: 2012. aug. 13. 18:04
+-- Szerver verzió: 5.5.25a
+-- PHP verzió: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gearoscope_new`
+-- Adatbázis: `gearoscope_new`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_bands`
+-- Tábla szerkezet: `gearoscope_bands`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
@@ -39,22 +39,22 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
   `active_member` int(1) NOT NULL,
   PRIMARY KEY (`band_id`),
   FULLTEXT KEY `band_name_2` (`band_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `gearoscope_bands`
+-- A tábla adatainak kiíratása `gearoscope_bands`
 --
 
 INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_name`, `formation_year`, `style`, `website`, `band_photo_url`, `active_member`) VALUES
+(1, 5, 1, 1334917392, 'Superbutt', 2002, 2, 'www.superbutt.net', '1334917392.jpg', 0),
 (2, 5, 1, 1334917560, 'Autumn Twilight', 2000, 1, 'www.autumntwilight.hu', '1334917560.jpg', 0),
 (3, 5, 1, 1339335007, 'Agregator', 2000, 3, 'www.agregator.hu', '1339335007.jpg', 0),
-(5, 23, 1, 1344524475, 'Neck Sprain', 1992, 1, 'necksprain.hu', '1344525435.jpg', 0),
-(6, 23, 1, 1344635123, 'Superbutt', 2000, 1, 'superbutt.net', '1344635123.jpg', 0);
+(5, 23, 1, 1344524475, 'Neck Sprain', 1992, 1, 'necksprain.hu', '1344525435.jpg', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_band_editors`
+-- Tábla szerkezet: `gearoscope_band_editors`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_band_editors` (
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `gearoscope_band_editors` (
   `active` int(1) NOT NULL COMMENT '0 - pending, 1 - acitve',
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`band_editor_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `gearoscope_band_editors`
+-- A tábla adatainak kiíratása `gearoscope_band_editors`
 --
 
 INSERT INTO `gearoscope_band_editors` (`band_editor_id`, `user_id`, `band_id`, `active`, `code`) VALUES
@@ -77,13 +77,12 @@ INSERT INTO `gearoscope_band_editors` (`band_editor_id`, `user_id`, `band_id`, `
 (23, 22, 1, 0, '6d97506abef2c7f0498a931c864dc4f5'),
 (25, 23, 5, 1, '24750b340162135231d71c48906d78ec'),
 (26, 22, 5, 1, '809287dafb0e8b69513d8bd3c04646be'),
-(27, 21, 5, 1, '389a50f2f3813005be54572a05728b62'),
-(28, 23, 6, 1, 'd106a5521848775c94ee43511cc57ee8');
+(27, 21, 5, 1, '389a50f2f3813005be54572a05728b62');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_content_nodes`
+-- Tábla szerkezet: `gearoscope_content_nodes`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_content_nodes` (
@@ -97,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_content_nodes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears`
+-- Tábla szerkezet: `gearoscope_gears`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
@@ -116,20 +115,22 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
   `create_date` int(11) NOT NULL,
   `last_edit_date` int(11) NOT NULL,
   PRIMARY KEY (`gear_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_gears`
+-- A tábla adatainak kiíratása `gearoscope_gears`
 --
 
 INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcategory_id`, `gears_subsubcategory_id`, `user_id`, `gear_name`, `serial_number`, `description`, `gear_photo_url`, `gear_thumbnail_url`, `active`, `featured`, `create_date`, `last_edit_date`) VALUES
-(1, 1, 1, 8, 23, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'resize_1344634779.jpg', 'thumbnail_1344634779.jpg', 1, 0, 1344608618, 1344634858),
-(2, 1, 1, 8, 23, 'Ibanez S570', 'S570', 'The Ibanez S series first appeared in 1987. Ever since, it has changed in appearance and function to represent the cutting edge of Ibanez design. Famous for its lightweight carved mahogany body, the S can take a beating while still providing the resonance of guitars twice its size. The S series comes equipped with the ZR tremolo system, featuring a smooth ball bearing pivot for ultra-smooth arm control - same as ZR-2 tremolo system.', 'resize_1344608797.png', 'thumbnail_1344608797.png', 1, 0, 1344608721, 1344608857);
+(1, 1, 1, 8, 23, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'dummy.jpg', 'thumbnail_1344608434.png', 1, 0, 1344608618, 1344608618),
+(2, 1, 1, 8, 23, 'Ibanez S570', 'S570', 'The Ibanez S series first appeared in 1987. Ever since, it has changed in appearance and function to represent the cutting edge of Ibanez design. Famous for its lightweight carved mahogany body, the S can take a beating while still providing the resonance of guitars twice its size. The S series comes equipped with the ZR tremolo system, featuring a smooth ball bearing pivot for ultra-smooth arm control - same as ZR-2 tremolo system.', 'resize_1344608797.png', 'thumbnail_1344608797.png', 1, 0, 1344608721, 1344608857),
+(3, 2, 6, 9, 23, 'Meinl MB 10 18" Crash', 'MB10-18MC-B', 'Bright, warm and well-balanced sound in a wide dynamic range. Full, even and soft responsive feel with an extensive spread. Versatile, all-purpose classic rock crash.', 'resize_1344847112.jpg', 'thumbnail_1344847112.jpg', 1, 0, 1344847169, 1344847169),
+(4, 2, 6, 11, 1, 'Turkish Sehzade Hi-hat 13"', 'SH-H', 'Great chick performance. Warm, dark, earthy. Round & full sound. These soft and sensible hi-hats have excellent stick definition with a woody feel.', 'resize_1344872403.png', 'thumbnail_1344872403.png', 1, 0, 1344864223, 1344872422);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_categories`
+-- Tábla szerkezet: `gearoscope_gears_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_categories` (
@@ -139,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_categories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_gears_categories`
+-- A tábla adatainak kiíratása `gearoscope_gears_categories`
 --
 
 INSERT INTO `gearoscope_gears_categories` (`gears_category_id`, `category`) VALUES
@@ -151,7 +152,7 @@ INSERT INTO `gearoscope_gears_categories` (`gears_category_id`, `category`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_subcategories`
+-- Tábla szerkezet: `gearoscope_gears_subcategories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_subcategories` (
@@ -159,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_subcategories` (
   `subcategory` varchar(255) NOT NULL,
   `gears_category_id` int(11) NOT NULL,
   PRIMARY KEY (`gears_subcategory_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `gearoscope_gears_subcategories`
+-- A tábla adatainak kiíratása `gearoscope_gears_subcategories`
 --
 
 INSERT INTO `gearoscope_gears_subcategories` (`gears_subcategory_id`, `subcategory`, `gears_category_id`) VALUES
@@ -170,12 +171,13 @@ INSERT INTO `gearoscope_gears_subcategories` (`gears_subcategory_id`, `subcatego
 (2, 'Basszusgitár', 1),
 (3, 'Citera', 1),
 (4, 'Dobfelszerelés', 2),
-(5, 'Erősítők', 4);
+(5, 'Erősítők', 4),
+(6, 'Cintányérok', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_subsubcategories`
+-- Tábla szerkezet: `gearoscope_gears_subsubcategories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_subsubcategories` (
@@ -184,10 +186,10 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_subsubcategories` (
   `gears_subcategory_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`gears_subsubcategory_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `gearoscope_gears_subsubcategories`
+-- A tábla adatainak kiíratása `gearoscope_gears_subsubcategories`
 --
 
 INSERT INTO `gearoscope_gears_subsubcategories` (`gears_subsubcategory_id`, `subsubcategory`, `gears_subcategory_id`, `user_id`) VALUES
@@ -198,12 +200,15 @@ INSERT INTO `gearoscope_gears_subsubcategories` (`gears_subsubcategory_id`, `sub
 (5, 'Invasion', 1, 1),
 (6, 'Invasion', 2, 1),
 (7, 'ESP', 1, 23),
-(8, 'Ibanez', 1, 23);
+(8, 'Ibanez', 1, 23),
+(9, 'Meinl', 6, 23),
+(10, 'Sabian', 6, 23),
+(11, 'Turkish', 6, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_images`
+-- Tábla szerkezet: `gearoscope_images`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_images` (
@@ -212,19 +217,12 @@ CREATE TABLE IF NOT EXISTS `gearoscope_images` (
   `url` varchar(255) NOT NULL,
   `created_date` int(11) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `gearoscope_images`
---
-
-INSERT INTO `gearoscope_images` (`image_id`, `gear_id`, `url`, `created_date`) VALUES
-(1, 2, 'left_1.jpg', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_instruments`
+-- Tábla szerkezet: `gearoscope_instruments`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_instruments` (
@@ -236,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_instruments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_members`
+-- Tábla szerkezet: `gearoscope_members`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_members` (
@@ -249,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_messages`
+-- Tábla szerkezet: `gearoscope_messages`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_messages` (
@@ -263,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_message_types`
+-- Tábla szerkezet: `gearoscope_message_types`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_message_types` (
@@ -275,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_message_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_news`
+-- Tábla szerkezet: `gearoscope_news`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_news` (
@@ -292,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_news` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
--- Dumping data for table `gearoscope_news`
+-- A tábla adatainak kiíratása `gearoscope_news`
 --
 
 INSERT INTO `gearoscope_news` (`news_id`, `active`, `guid`, `title`, `description`, `dateModified`, `authors`, `link`, `content`) VALUES
@@ -360,7 +358,7 @@ INSERT INTO `gearoscope_news` (`news_id`, `active`, `guid`, `title`, `descriptio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_pages`
+-- Tábla szerkezet: `gearoscope_pages`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_pages` (
@@ -375,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_pages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_styles`
+-- Tábla szerkezet: `gearoscope_styles`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_styles` (
@@ -385,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_styles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_styles`
+-- A tábla adatainak kiíratása `gearoscope_styles`
 --
 
 INSERT INTO `gearoscope_styles` (`style_id`, `style`) VALUES
@@ -397,7 +395,7 @@ INSERT INTO `gearoscope_styles` (`style_id`, `style`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_users`
+-- Tábla szerkezet: `gearoscope_users`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_users` (
@@ -418,17 +416,17 @@ CREATE TABLE IF NOT EXISTS `gearoscope_users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `gearoscope_users`
+-- A tábla adatainak kiíratása `gearoscope_users`
 --
 
 INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_username`, `user_password`, `user_email`, `user_photo`, `user_role`, `user_register_date`, `user_login_date`, `user_oauth_provider`, `user_oauth_id`, `code`) VALUES
-(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', '', 'Administrator', 0, 1344603589, 'facebook', 0, ''),
+(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', '', 'Administrator', 0, 1344862970, 'facebook', 0, ''),
 (4, 1, 'Erdei Attila', 'Kisatti00', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, ''),
 (5, 1, 'Erdei Attila', 'Attilae', '0730c6c19e8b4b77bd061e3cbec48f6a', 'skinnerscag@gmail.com', 'user.jpg', 'user', 0, 1344553468, 'facebook', 0, ''),
 (16, 1, 'LFCaptain', 'LFCaptain', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail', 'user.jpg', 'user', 0, 1339361721, 'facebook', 0, ''),
 (21, 1, 'Johnny Gold', 'Johnny Gold', '0730c6c19e8b4b77bd061e3cbec48f6a', 'atti00@freemail.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, 'dcd4e92266f7e5bd426354e16cb1cba8'),
 (22, 1, 'Richard GoldMájer', 'Richard GoldMájer', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@kreati.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, '85b885848ea43b0e053637d76b29a208'),
-(23, 1, 'DevDrummer', 'DevDrummer', '4c58b11e54ca5f001453fc37acd476ad', 'attila.erdei87@gmail.com', 'user.jpg', 'user', 1344520274, 1344634648, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
+(23, 1, 'DevDrummer', 'DevDrummer', '68d0d3c3e3fdc9fb0969e3acd9c00b73', 'attila.erdei87@gmail.com', 'user.jpg', 'user', 1344520274, 1344846729, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

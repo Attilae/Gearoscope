@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+ header("Pragma-directive: no-cache");
+    header("Cache-directive: no-cache");
+    header("Cache-control: no-cache");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
 error_reporting (E_ALL ^ E_NOTICE);
 /*
 * Copyright (c) 2008 http://www.webmotionuk.com / http://www.webmotionuk.co.uk
@@ -196,8 +204,10 @@ $(document).ready(function () {
 					if(responseType=="success"){
 						$('#upload_status').show().html('<h1>Success</h1><p>The thumbnail has been saved!</p>');
 						//load the new images
-						$('#uploaded_image').html('<img src="'+responseLargeImage+'" alt="Large Image"/>&nbsp;<img src="'+responseThumbImage+'" alt="Thumbnail Image"/><br /><a href="javascript:deleteimage(\''+responseLargeImage+'\', \''+responseThumbImage+'\');">Delete Images</a>');
+						$('#uploaded_image').html('<img src="/_gearoscope/public/uploads/gears/'+responseLargeImage+'" alt="Large Image"/>&nbsp;<img src="/_gearoscope/public/uploads/gears/'+responseThumbImage+'" alt="Thumbnail Image"/><br /><a href="javascript:deleteimage(\''+responseLargeImage+'\', \''+responseThumbImage+'\');">Delete Images</a>');
 						//hide the thumbnail form
+                                                parent.$("#photo").val(""+responseLargeImage+"");
+                                                parent.$("#thumbnail").val(""+responseThumbImage+"");
 						$('#thumbnail_form').hide();
                                                 $('#upload_link').hide();
                                                 $('#close').show();
@@ -214,11 +224,11 @@ $(document).ready(function () {
 		}
 	});
         $('#close').click(function() {
-		parent.$("dd#uploader").hide();
-		parent.$("dd#uploaded").append("<img src='gearoscope/public/uploads/gears/<?php print $_SESSION["uploader"]["thumbnail"]?>'");
+		/*parent.$("dd#uploader").hide();
+		parent.$("dd#uploaded").append("<img src='_gearoscope/public/uploads/gears/<?php print $_SESSION["uploader"]["thumbnail"]?>'");
 		parent.$("dd#uploaded").show();
 		parent.$("#photo").val("<?php print $_SESSION["uploader"]["photo"]?>");
-		parent.$("#thumbnail").val("<?php print $_SESSION["uploader"]["thumbnail"]?>"); 
+		parent.$("#thumbnail").val("<?php print $_SESSION["uploader"]["thumbnail"]?>"); */
 		parent.$.fn.colorbox.close();
 	});
 }); 

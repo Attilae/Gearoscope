@@ -82,6 +82,15 @@ class GearsController extends Zend_Controller_Action {
 					width:"800px",
 				 	height:"600px"				 	
 				});
+                                $(".info-tooltip").tooltip({
+                                    track: true,
+                                    delay: 0,
+                                    fixPNG: true,
+                                    showURL: false,
+                                    showBody: " - ",
+                                    top: -35,
+                                    left: 5
+                                });
 			});'
         );
 
@@ -100,6 +109,10 @@ class GearsController extends Zend_Controller_Action {
         $this->view->headLink()->appendStylesheet($baseUrl . "/public/skins/gearoscope/css/colorbox.css");
 
         $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/ajax.js");
+        
+        $this->view->headScript()->prependFile($baseUrl . "/public/admin/js/jquery/jquery.dimensions.js");
+        
+        $this->view->headScript()->prependFile($baseUrl . "/public/admin/js/jquery/jquery.tooltip.js");               
 
         $form = new Form_Gear();
         $form->setDecorators(array(array('ViewScript', array('viewScript' => 'gears/form.phtml'))));
@@ -180,7 +193,7 @@ class GearsController extends Zend_Controller_Action {
         $gearPicture = '<img id=\"picture_delete\" src=\"'.$baseUrl.'/public/uploads/gears/'.$gear["gear_thumbnail_url"].'\" />';                
 
         $this->view->headScript()->prependScript('
-			$(document).ready(function(){
+			$(document).ready(function(){                                                        
                         
                                 $("#gallery-images").html("Loading...");
 
@@ -201,9 +214,9 @@ class GearsController extends Zend_Controller_Action {
                                 var image = "'.$gear["gear_thumbnail_url"].'";
                                 console.log(image);
                                 if(image!="dummy_thumbnail.jpg") {
-                                    $("#picture_upload").fadeOut();                                                                
+                                    //$("#picture_upload").fadeOut();                                                                
                                     $("dd#uploader").append("'.$gearPicture.'");                                
-                                    $("#picture_delete").click(
+                                    /*$("#picture_delete").click(
                                         function() {                                            
                                                 $("dd#uploader").html(\'Loading...\');
                                                 $.ajax({
@@ -233,21 +246,24 @@ class GearsController extends Zend_Controller_Action {
                                                     }
                                                 });
                                         }
-                                    );
+                                    );*/
                                 }
+                                
 				$("#picture_upload").colorbox({
 					iframe:true,
 					width:"800px",
 				 	height:"600px",
 				 	onClosed : function() {
-                                                uploadedThumbnail = "'.$_SESSION["uploader"]["thumbnail"].'";
+                                                uploadedThumbnail = $("#thumbnail").val();;
                                                 if(uploadedThumbnail!="") {
+                                                    randomnumber=Math.floor(Math.random()*1100);
                                                     $("dd#uploader").hide();
                                                     $("dd#uploaded").fadeIn();
-                                                    $("dd#uploaded").html("<img src=\"' . $baseUrl . '/public/' . $_SESSION["uploader"]["thumbnail"] . '\">"); 		
+                                                    $("dd#uploaded").html("<img src=\"'.$baseUrl.'/public/uploads/gears/"+uploadedThumbnail+"?key="+randomnumber+"\">"); 		
                                                 }    
 				 	}
 				});
+                                
                                 $("#addgallery").colorbox({
 					iframe:true,
 					width:"800px",
@@ -266,14 +282,14 @@ class GearsController extends Zend_Controller_Action {
                                                 ); 
                                                }
                                 });
-                               });'
+                           });'
         );
 
         $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/jquery.colorbox-min.js");
 
         $this->view->headLink()->appendStylesheet($baseUrl . "/public/skins/gearoscope/css/colorbox.css");
 
-        $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/ajax.js");        
+        $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/ajax.js");    
         
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();

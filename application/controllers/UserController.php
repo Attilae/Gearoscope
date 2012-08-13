@@ -129,7 +129,7 @@ class UserController extends Zend_Controller_Action {
                     $bodyText .= "<p>Kedves Felhasználó!</p>";
                     $bodyText .= "<p>Az új jelszavad:</p>";
                     $bodyText .= "<p>" . $pass . "</p>";
-                    $bodyText .= "<p>Üdv,<br/>Samsung Mob!lers csapat</p>";
+                    $bodyText .= "<p>Üdv,<br/>Gearoscope</p>";
                     $bodyText .= "</body>";
 
                     $transport = Zend_Registry::get('Zend_SMTP_Transport');
@@ -141,7 +141,7 @@ class UserController extends Zend_Controller_Action {
                     $mail->setFrom('noreply@gearoscope.com', 'gearoscope.com');
                     $mail->addTo($email);
                     $mail->addBcc("attila.erdei87@gmail.com");
-                    $mail->setSubject('Gearoscope regisztráció');
+                    $mail->setSubject('Gearoscope elfelejtett jelszó');
                     $mail->send($transport);
 
                     $locale = Zend_Registry::get('Zend_Locale');
