@@ -6419,9 +6419,14 @@ ul.errors  {
 	color: red;
 }
 
+.user-view-img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
 .gear-view-img {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .textarea {

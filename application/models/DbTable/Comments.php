@@ -2,7 +2,7 @@
 
 class Model_DbTable_Comments extends Zend_Db_Table_Abstract {
 
-    protected $_name = 'comments';
+    protected $_name = 'gearoscope_comments';
 
     public function getComment($id) {
         $id = (int) $id;
@@ -25,9 +25,9 @@ class Model_DbTable_Comments extends Zend_Db_Table_Abstract {
         return $result->toArray();
     }
 
-    public function getComments($post_id) {
+    public function getComments($gear_id) {
         $select = $this->select()
-                        ->where("post_id = ?", $post_id)
+                        ->where("gear_id = ?", $gear_id)
                         ->order('comment_id DESC');
         $result = $this->fetchAll($select);
         return $result->toArray();
@@ -80,14 +80,12 @@ class Model_DbTable_Comments extends Zend_Db_Table_Abstract {
         return $result->toArray();
     }
 
-    public function saveComment($name, $email, $description, $post_id, $user_id) {
+    public function saveComment($gear_id, $user_id, $description) {
         $data = array(
-            'post_id' => $post_id,
+            'gear_id' => $gear_id,
             'user_id' => $user_id,
-            'description' => $description,
-            'name' => $name,
-            'email' => $email,
-            'date' => time()
+            'description' => $description,            
+            'created_date' => time()
         );
         $this->insert($data);
     }
