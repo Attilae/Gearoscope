@@ -38,6 +38,7 @@ class GearsController extends Zend_Controller_Action {
         $baseUrl = $this->view->baseUrl();
         
         $gear_id = $this->_request->getParam("id");
+        $this->view->gear_id = $gear_id;
         
         $this->view->headScript()->prependScript('
 			$(document).ready(function(){                                                        
@@ -55,9 +56,9 @@ class GearsController extends Zend_Controller_Action {
                                                      }
                                 );
                                 
-                                $("#paged-data-container").html("Loading...");
+                                $("#comments").html("Loading...");
 
-                                $("#paged-data-container").load(
+                                $("#comments").load(
                                                     "'.$baseUrl.'/hu/comments/gear/format/html",
                                                     {"id": '.$gear_id.' }, 
                                                     function(response, status, xhr) {
@@ -71,10 +72,9 @@ class GearsController extends Zend_Controller_Action {
                                 
                             });'
                 );
-                    
-        $this->view->inlineScript()->appendFile($baseUrl . '/public/skins/gearoscope/js/paginator.js');
         
-        $this->view->inlineScript()->appendFile($baseUrl . '/public/skins/gearoscope/js/modernizr-1.7.min.js');
+        $this->view->headScript()->prependFile($baseUrl . '/public/skins/gearoscope/js/_gearoscope.js');
+        
 
         $gearsModel = new Model_DbTable_Gears();
         $gear = $gearsModel->getGear($gear_id);

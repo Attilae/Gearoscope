@@ -3,8 +3,7 @@ jQuery(function($){
     
     var overlay = $('<div>').addClass('loading overlay');
     
-    $('.pagination-control').find('a').live('click', function(){
-        alert('van');
+    $('.pagination-control').find('a').live('click', function(){        
         var href = this.href;
         var pos = this.rel == 'next' ? '-120%' : '120%';
         if (Modernizr.history) {

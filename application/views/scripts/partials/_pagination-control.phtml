@@ -1,33 +1,57 @@
 <?php
+if ($this->pageCount) {
     // you need to add each of the request parameters to url
     $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
     // remove the system parameters
     unset($params['module']);
     unset($params['controller']);
     unset($params['action']);
+
+    $uri = $_SERVER["REQUEST_URI"];
     ?>
-<div class="pagination">	
-				<ul>
-					<?php if (isset($this->previous)) { ?>
-						<span class="pagenav"><a class="prev" href="<?php echo $this->url(array_merge($params, array('page' => $this->previous))); ?>">Prev</a></span>
-					<?php } else { ?>
-						<span class="pagenav">Prev</span>
-					<?php } ?>			
-												
-					<?php foreach ($this->pagesInRange as $page) { ?>
-					  	<?php if ($page != $this->current) { ?>
-					  	<span class="pagenav">
-					    <a href="<?php echo $this->url(array_merge($params, array('page' => $page))); ?>"><?php print $page ?></a>
-					    </span>
-						<?php } else { ?>						
-						<span class="pagenav"><?php print $page ?></span>
-						<?php } ?> 
-					<?php } ?>
-																				
-					<?php if (isset($this->next)) { ?>
-						<span class="pagenav"><a class="prev" href="<?php echo $this->url(array_merge($params, array('page' => $this->next))); ?>">Next</a></span>
-					<?php } else { ?>
-						<span class="pagenav">Next</span>
-					<?php } ?>	
-				</ul>
-</div>
+    <div class="paginationControl"><!-- Previous page link -->
+        <?php
+        if (isset($this->previous)) {
+            ?>
+            <a class="prev" onclick="pager(<?php print $this->previous; ?>, <?php print $this->gear_id ?>)">&nbsp;</a>
+               <?php
+           }
+           ?>
+
+        <!-- Numbered page links -->
+        <?php
+        foreach ($this->pagesInRange as $page) {
+            ?>
+            <?php
+            if ($page != $this->current) {
+                ?>
+                <a class="page" onclick="pager(<?php print $page; ?>, <?php print $this->gear_id ?>)">
+                       <?php
+                       echo $page;
+                       ?>
+                </a>
+                <?php
+            } else {
+                ?>
+                <a class="page active"
+                   href="#">
+                       <?php
+                       echo $page;
+                       ?></a>
+                <?php
+            }
+        }
+        ?>
+
+        <!-- Next page link -->
+        <?php
+        if (isset($this->next)) {
+            ?>
+            <a class="next" onclick="pager(<?php print $this->next; ?>, <?php print $this->gear_id ?>)">&nbsp;</a>
+               <?php
+           }
+           ?>
+    </div>
+    <?php
+}
+?>

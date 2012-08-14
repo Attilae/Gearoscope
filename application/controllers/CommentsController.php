@@ -15,6 +15,7 @@ class CommentsController extends Zend_Controller_Action {
     public function gearAction() {        
         
         $gear_id = $this->_request->getParam("id");
+        $this->view->gear_id = $gear_id;
         
         $commentsModel = new Model_DbTable_Comments();
         

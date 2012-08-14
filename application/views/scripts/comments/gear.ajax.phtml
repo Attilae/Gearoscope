@@ -1,36 +1,17 @@
-<?php foreach ($this->comments as $comment): ?>
-    <li>
-        <?php print $comment["description"]; ?>
-    </li>					
-<?php endforeach; ?>
-
-<?php $paginationControl = $this->paginationControl($this->paginator, 'All', 'partials/paginator.phtml') ?>
+<?php $paginationControl = $this->paginationControl($this->paginator, 'All', 'partials/_pagination-control.phtml', array('gear_id' => $this->gear_id)) ?>
 
 <div class="pagination-control">
     <?php echo $paginationControl ?>
 </div>
 
 <div class="paged-data">
-    <?php if (count($this->paginator)) : ?>
-    <table class="data">
-        <thead>
-            <tr>
-                <th>Foo</th>
-                <th>Bar</th>
-                <th>Baz</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            /* @var $foo Application_Model_Foo */
+    <?php if (count($this->paginator)) : 
             foreach ($this->paginator as $comment) :
-            ?>
-            <tr>
-                <td><?php echo $this->escape($comment["description"]); ?></td>                
-            </tr>
-            <?php endforeach ?>
-        </tbody>
-    </table>
+    ?>
+    <li>
+                <?php echo $this->escape($comment["description"]); ?>
+    </li>
+            <?php endforeach ?>        
     <?php else : ?>
     <p class="notice">No items found</p>
     <?php endif ?>

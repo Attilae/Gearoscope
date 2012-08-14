@@ -5,8 +5,8 @@
         <div id="sidebar-2" class="right">
             <div class="moduletable-video">
                 <h3><?php print $this->user["user_username"]; ?></h3>
-                 <img class="img-indent border user-view-img"
-                 src="<?php print $this->baseUrl(); ?>/public/uploads/users/<?php print $this->user['user_photo']; ?>" alt="" />
+                <img class="img-indent border user-view-img"
+                     src="<?php print $this->baseUrl(); ?>/public/uploads/users/<?php print $this->user['user_photo']; ?>" alt="" />
             </div>		
             <div class="clear"></div>
             <div class="moduletable-news">
@@ -43,7 +43,7 @@
 
         </div>
 
-    
+
         <div class="blog">
 
 
@@ -61,53 +61,51 @@
 
 
                     <dl class="article-info">
-                <dt class="article-info-term">Details</dt>
-                <dd class="category-name">Category: <?php print $this->gear["category"]; ?> - <?php print $this->gear["subcategory"]; ?> - <?php print $this->gear["subsubcategory"]; ?></dd>
-                <dd class="create">Created on <?php print date("Y.m.d.", $this->gear["create_date"]); ?></dd>
-                <dd class="serial-number">Serial number: <?php print $this->gear["serial_number"]; ?></dd>
-                <dd class="hits">
-                    Hits: 984	</dd>
-            </dl>
+                        <dt class="article-info-term">Details</dt>
+                        <dd class="category-name">Category: <?php print $this->gear["category"]; ?> - <?php print $this->gear["subcategory"]; ?> - <?php print $this->gear["subsubcategory"]; ?></dd>
+                        <dd class="create">Created on <?php print date("Y.m.d.", $this->gear["create_date"]); ?></dd>
+                        <dd class="serial-number">Serial number: <?php print $this->gear["serial_number"]; ?></dd>
+                        <dd class="hits">
+                            Hits: 984	</dd>
+                    </dl>
 
                     <img class="img-indent border gear-view-img"
-                 src="<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $this->gear['gear_photo_url']; ?>" alt="" />
-            <p><?php print $this->gear["description"]; ?></p>
-            <ul id="gallery-images" class="user-links">
+                         src="<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $this->gear['gear_photo_url']; ?>" alt="" />
+                    <p><?php print $this->gear["description"]; ?></p>
+                    <ul id="gallery-images" class="user-links">
 
-            </ul>
+                    </ul>
 
 
                     <div class="item-separator"></div>
                 </div>
                 <span class="row-separator"></span>
             </div>
-<?php
-                            $auth = Zend_Auth::getInstance();
-                            if ($auth->hasIdentity()) {
-?>
-            <div class="items-row cols-1 row-0">
-                <div class="item column-1">
-                  
-                    <?php print $this->commentsForm; ?>
-                    
-                </div>
-            </div>
-<?php
-                            }                            
-?>
-            <div id="paged-data-container">
-                    
-            </div>
-            <div class="items-row cols-1 row-0">
-                <div class="item column-1">
-                  
-                    <ul id="comments" class="user-links">
+            <?php
+            $auth = Zend_Auth::getInstance();
+            if ($auth->hasIdentity()) {
+                ?>
+                <div class="items-row cols-1 row-0">
+                    <div class="item column-1">
 
+                        <?php print $this->commentsForm; ?>
+
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+
+            <div class="items-row cols-1 row-0">
+                <div class="item column-1">
+
+                    <ul id="comments" class="user-links">
+                        
                     </ul>
-                    
+
                 </div>
             </div>
-            
+
         </div>
 
     </div>
