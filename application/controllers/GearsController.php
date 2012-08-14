@@ -54,9 +54,27 @@ class GearsController extends Zend_Controller_Action {
                                                         }
                                                      }
                                 );
+                                
+                                $("#paged-data-container").html("Loading...");
+
+                                $("#paged-data-container").load(
+                                                    "'.$baseUrl.'/hu/comments/gear/format/html",
+                                                    {"id": '.$gear_id.' }, 
+                                                    function(response, status, xhr) {
+                                                        if (status == "error") {
+                                                          var msg = "Sorry but there was an error: ";
+                                                          $("#gallery-images").html(msg + xhr.status + " " + xhr.statusText);
+                                                        }
+                                                     }
+                                );
+                                
+                                
                             });'
                 );
-                                            
+                    
+        $this->view->inlineScript()->appendFile($baseUrl . '/public/skins/gearoscope/js/paginator.js');
+        
+        $this->view->inlineScript()->appendFile($baseUrl . '/public/skins/gearoscope/js/modernizr-1.7.min.js');
 
         $gearsModel = new Model_DbTable_Gears();
         $gear = $gearsModel->getGear($gear_id);
@@ -67,10 +85,11 @@ class GearsController extends Zend_Controller_Action {
         
         if($gear["user_id"]==$user_id) {
             $this->view->editable = "1";
-        }
+        }                
         
         $userModel = new Model_DbTable_User();
-        $user = $userModel->getUser($user_id);
+        $currentUser = $userModel->find($gear["user_id"])->current();
+        $user = $currentUser->toArray();
         
         $this->view->user = $user;
         
@@ -89,7 +108,7 @@ class GearsController extends Zend_Controller_Action {
 
                 $description = $commentsForm->getValue('comment');
 
-                $commentsModel->saveComment($post_id, $user_id, $description);
+                $commentsModel->saveComment($gear_id, $user_id, $description);
 
                 /*$comments = $result[0]["comments"];
                 $comments = $comments + 1;
@@ -99,20 +118,15 @@ class GearsController extends Zend_Controller_Action {
 
                 $commentsForm->reset();
 
-                $this->_redirect("/gears/view/id/" . $gear_id);
+                $locale = Zend_Registry::get('Zend_Locale');
+                
+                $this->_redirect($locale . "/gears/view/id/" . $gear_id);
             };
         }
-        $data = array('id' => $post_id);
+        $data = array('id' => $gear_id);
         $commentsForm->populate($data);
-        $this->view->commentsForm = $commentsForm;
-
-        $comments = $commentsModel->getComments($gear_id);
-        $this->view->comments = $comments;
-        $page = $this->_getParam('page', 1);
-        $paginator = Zend_Paginator::factory($comments);
-        $paginator->setItemCountPerPage(4);
-        $paginator->setCurrentPageNumber($page);
-        $this->view->paginator = $paginator;
+        $this->view->commentsForm = $commentsForm;                   
+                 
     }
 
     public function listAction() {

@@ -76,7 +76,8 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('guest', 'page', array('index', 'open'));
         $acl->allow('guest', 'news', array('index', 'view'));
         $acl->allow('guest', 'bands', array('index', 'view', 'collect', 'activate', 'successfull'));
-        $acl->allow('guest', 'gears', array('index', 'view'));
+        $acl->allow('guest', 'gears', array('index', 'view', 'images'));
+        $acl->allow('guest', 'comments', array('gear'));
         $acl->allow('guest', 'menu', array('render'));
         $acl->allow('guest', 'user', array('index', 'login', 'logout', 'password', 'successfull', 'passwordsent', 'register'));
         $acl->allow('guest', 'archive', array('index'));
@@ -90,7 +91,7 @@ class CMS_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('user', 'user', array('edit', 'editbio', 'newpassword', 'newemail'));
         $acl->allow('user', 'comments', array('listown', 'delete'));
         $acl->allow('user', 'bands', array('add', 'edit', 'user', 'styles', 'addeditor'));
-        $acl->allow('user', 'gears', array('add', 'edit', 'user', 'picture', 'imgdelete', 'thumbnaildelete', 'images'));
+        $acl->allow('user', 'gears', array('add', 'edit', 'user', 'picture', 'imgdelete', 'thumbnaildelete'));
         $acl->allow('user', 'gearscategory', array('categorychange'));
         $acl->allow('user', 'gearssubcategory', array('categorychange'));
         $acl->allow('user', 'gearssubsubcategory', array('useradd'));

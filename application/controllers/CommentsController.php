@@ -2,6 +2,37 @@
 
 class CommentsController extends Zend_Controller_Action {
 
+    public function init() {
+        $this->view->addHelperPath(
+                'ZendX/JQuery/View/Helper'
+                , 'ZendX_JQuery_View_Helper');
+        
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('gear', 'html')
+                ->initContext();
+    }
+    
+    public function gearAction() {        
+        
+        $gear_id = $this->_request->getParam("id");
+        
+        $commentsModel = new Model_DbTable_Comments();
+        
+        $comments = $commentsModel->getComments($gear_id);
+        /*$this->view->comments = $comments;
+        $page = $this->_getParam('page', 1);
+        $paginator = Zend_Paginator::factory($comments);
+        $paginator->setItemCountPerPage(4);
+        $paginator->setCurrentPageNumber($page);
+        $this->view->paginator = $paginator;*/
+        
+        
+        $paginator = Zend_Paginator::factory($comments);
+        $paginator->setItemCountPerPage(4);
+        $paginator->setCurrentPageNumber($this->getRequest()->getParam('page', 1));
+        $this->view->paginator = $paginator;
+    }
+    
     public function listAction() {
 
         parent::init();

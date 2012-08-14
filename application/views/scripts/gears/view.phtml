@@ -81,11 +81,29 @@
                 </div>
                 <span class="row-separator"></span>
             </div>
-
+<?php
+                            $auth = Zend_Auth::getInstance();
+                            if ($auth->hasIdentity()) {
+?>
             <div class="items-row cols-1 row-0">
                 <div class="item column-1">
                   
                     <?php print $this->commentsForm; ?>
+                    
+                </div>
+            </div>
+<?php
+                            }                            
+?>
+            <div id="paged-data-container">
+                    
+            </div>
+            <div class="items-row cols-1 row-0">
+                <div class="item column-1">
+                  
+                    <ul id="comments" class="user-links">
+
+                    </ul>
                     
                 </div>
             </div>

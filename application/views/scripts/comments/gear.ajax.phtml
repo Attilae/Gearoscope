@@ -1,0 +1,41 @@
+<?php foreach ($this->comments as $comment): ?>
+    <li>
+        <?php print $comment["description"]; ?>
+    </li>					
+<?php endforeach; ?>
+
+<?php $paginationControl = $this->paginationControl($this->paginator, 'All', 'partials/paginator.phtml') ?>
+
+<div class="pagination-control">
+    <?php echo $paginationControl ?>
+</div>
+
+<div class="paged-data">
+    <?php if (count($this->paginator)) : ?>
+    <table class="data">
+        <thead>
+            <tr>
+                <th>Foo</th>
+                <th>Bar</th>
+                <th>Baz</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            /* @var $foo Application_Model_Foo */
+            foreach ($this->paginator as $comment) :
+            ?>
+            <tr>
+                <td><?php echo $this->escape($comment["description"]); ?></td>                
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php else : ?>
+    <p class="notice">No items found</p>
+    <?php endif ?>
+</div>
+
+<div class="pagination-control">
+    <?php echo $paginationControl ?>
+</div>

@@ -2,10 +2,10 @@
 -- version 3.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 14, 2012 at 12:02 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Hoszt: localhost
+-- Létrehozás ideje: 2012. aug. 14. 18:15
+-- Szerver verzió: 5.5.25a
+-- PHP verzió: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gearoscope_new`
+-- Adatbázis: `gearoscope_new`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_bands`
+-- Tábla szerkezet: `gearoscope_bands`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `gearoscope_bands`
+-- A tábla adatainak kiíratása `gearoscope_bands`
 --
 
 INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_name`, `formation_year`, `style`, `website`, `band_photo_url`, `active_member`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_na
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_band_editors`
+-- Tábla szerkezet: `gearoscope_band_editors`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_band_editors` (
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_band_editors` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `gearoscope_band_editors`
+-- A tábla adatainak kiíratása `gearoscope_band_editors`
 --
 
 INSERT INTO `gearoscope_band_editors` (`band_editor_id`, `user_id`, `band_id`, `active`, `code`) VALUES
@@ -82,7 +82,7 @@ INSERT INTO `gearoscope_band_editors` (`band_editor_id`, `user_id`, `band_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_comments`
+-- Tábla szerkezet: `gearoscope_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_comments` (
@@ -90,13 +90,25 @@ CREATE TABLE IF NOT EXISTS `gearoscope_comments` (
   `gear_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `description` text NOT NULL,
+  `created_date` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- A tábla adatainak kiíratása `gearoscope_comments`
+--
+
+INSERT INTO `gearoscope_comments` (`comment_id`, `gear_id`, `user_id`, `description`, `created_date`) VALUES
+(1, 4, 23, 'Szép ez a cintányér!', 1344954517),
+(2, 4, 23, 'Szerintem is szép!', 1344954930),
+(3, 4, 23, 'Nagyon jó vagyok!', 1344955125),
+(4, 4, 23, 'Félelmetesen jó vagyok!', 1344955146),
+(5, 4, 23, 'Köcsög vagyok!', 1344955160);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_content_nodes`
+-- Tábla szerkezet: `gearoscope_content_nodes`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_content_nodes` (
@@ -110,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_content_nodes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears`
+-- Tábla szerkezet: `gearoscope_gears`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
@@ -132,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_gears`
+-- A tábla adatainak kiíratása `gearoscope_gears`
 --
 
 INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcategory_id`, `gears_subsubcategory_id`, `user_id`, `gear_name`, `serial_number`, `description`, `gear_photo_url`, `gear_thumbnail_url`, `active`, `featured`, `create_date`, `last_edit_date`) VALUES
@@ -144,7 +156,7 @@ INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcatego
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_categories`
+-- Tábla szerkezet: `gearoscope_gears_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_categories` (
@@ -154,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_categories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_gears_categories`
+-- A tábla adatainak kiíratása `gearoscope_gears_categories`
 --
 
 INSERT INTO `gearoscope_gears_categories` (`gears_category_id`, `category`) VALUES
@@ -166,7 +178,7 @@ INSERT INTO `gearoscope_gears_categories` (`gears_category_id`, `category`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_subcategories`
+-- Tábla szerkezet: `gearoscope_gears_subcategories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_subcategories` (
@@ -177,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_subcategories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `gearoscope_gears_subcategories`
+-- A tábla adatainak kiíratása `gearoscope_gears_subcategories`
 --
 
 INSERT INTO `gearoscope_gears_subcategories` (`gears_subcategory_id`, `subcategory`, `gears_category_id`) VALUES
@@ -191,7 +203,7 @@ INSERT INTO `gearoscope_gears_subcategories` (`gears_subcategory_id`, `subcatego
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_gears_subsubcategories`
+-- Tábla szerkezet: `gearoscope_gears_subsubcategories`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_gears_subsubcategories` (
@@ -203,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_subsubcategories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `gearoscope_gears_subsubcategories`
+-- A tábla adatainak kiíratása `gearoscope_gears_subsubcategories`
 --
 
 INSERT INTO `gearoscope_gears_subsubcategories` (`gears_subsubcategory_id`, `subsubcategory`, `gears_subcategory_id`, `user_id`) VALUES
@@ -222,7 +234,7 @@ INSERT INTO `gearoscope_gears_subsubcategories` (`gears_subsubcategory_id`, `sub
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_images`
+-- Tábla szerkezet: `gearoscope_images`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_images` (
@@ -234,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_images` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `gearoscope_images`
+-- A tábla adatainak kiíratása `gearoscope_images`
 --
 
 INSERT INTO `gearoscope_images` (`image_id`, `gear_id`, `url`, `created_date`) VALUES
@@ -244,7 +256,7 @@ INSERT INTO `gearoscope_images` (`image_id`, `gear_id`, `url`, `created_date`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_instruments`
+-- Tábla szerkezet: `gearoscope_instruments`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_instruments` (
@@ -256,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_instruments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_members`
+-- Tábla szerkezet: `gearoscope_members`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_members` (
@@ -269,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_messages`
+-- Tábla szerkezet: `gearoscope_messages`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_messages` (
@@ -283,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_message_types`
+-- Tábla szerkezet: `gearoscope_message_types`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_message_types` (
@@ -295,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_message_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_news`
+-- Tábla szerkezet: `gearoscope_news`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_news` (
@@ -312,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_news` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
--- Dumping data for table `gearoscope_news`
+-- A tábla adatainak kiíratása `gearoscope_news`
 --
 
 INSERT INTO `gearoscope_news` (`news_id`, `active`, `guid`, `title`, `description`, `dateModified`, `authors`, `link`, `content`) VALUES
@@ -380,7 +392,7 @@ INSERT INTO `gearoscope_news` (`news_id`, `active`, `guid`, `title`, `descriptio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_pages`
+-- Tábla szerkezet: `gearoscope_pages`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_pages` (
@@ -395,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_pages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_styles`
+-- Tábla szerkezet: `gearoscope_styles`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_styles` (
@@ -405,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_styles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gearoscope_styles`
+-- A tábla adatainak kiíratása `gearoscope_styles`
 --
 
 INSERT INTO `gearoscope_styles` (`style_id`, `style`) VALUES
@@ -417,7 +429,7 @@ INSERT INTO `gearoscope_styles` (`style_id`, `style`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gearoscope_users`
+-- Tábla szerkezet: `gearoscope_users`
 --
 
 CREATE TABLE IF NOT EXISTS `gearoscope_users` (
@@ -438,7 +450,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `gearoscope_users`
+-- A tábla adatainak kiíratása `gearoscope_users`
 --
 
 INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_username`, `user_password`, `user_email`, `user_photo`, `user_role`, `user_register_date`, `user_login_date`, `user_oauth_provider`, `user_oauth_id`, `code`) VALUES
@@ -448,7 +460,7 @@ INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_use
 (16, 1, 'LFCaptain', 'LFCaptain', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail', 'user.jpg', 'user', 0, 1339361721, 'facebook', 0, ''),
 (21, 1, 'Johnny Gold', 'Johnny Gold', '0730c6c19e8b4b77bd061e3cbec48f6a', 'atti00@freemail.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, 'dcd4e92266f7e5bd426354e16cb1cba8'),
 (22, 1, 'Richard GoldMájer', 'Richard GoldMájer', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@kreati.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, '85b885848ea43b0e053637d76b29a208'),
-(23, 1, 'DevDrummer', 'DevDrummer', '68d0d3c3e3fdc9fb0969e3acd9c00b73', 'attila.erdei87@gmail.com', 'user.jpg', 'user', 1344520274, 1344889699, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
+(23, 1, 'DevDrummer', 'DevDrummer', '68d0d3c3e3fdc9fb0969e3acd9c00b73', 'attila.erdei87@gmail.com', 'user.jpg', 'user', 1344520274, 1344954438, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
