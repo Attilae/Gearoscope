@@ -54,6 +54,13 @@ class Form_Band extends Zend_Form {
                 ->addFilter('StringTrim')
                 ->addValidator($validatorNotEmpty)
                 ->setDecorators( array( 'ViewHelper', 'Errors' ) );
+        
+        $description = new Zend_Form_Element_Textarea('description');
+        $description->setAttrib('class', 'textarea')
+                    ->setAttrib('rows', '30')
+                    ->setAttrib('resize', 'none')
+                    ->setDecorators(array('Viewhelper', 'Errors'))				
+                    ->setRequired(true);
 
         $photo = $this->createElement('file', 'photo');
         $photo->setLabel('Kép: ');
@@ -68,7 +75,7 @@ class Form_Band extends Zend_Form {
         $submit->setDecorators(array('ViewHelper'));
 
 
-        $this->addElements(array($id, $band_name, $formation_year, $style, $website, $photo, $submit));
+        $this->addElements(array($id, $band_name, $formation_year, $style, $website, $description, $photo, $submit));
     }
 
 }

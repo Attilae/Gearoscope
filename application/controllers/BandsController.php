@@ -81,6 +81,7 @@ class BandsController extends Zend_Controller_Action {
                 $formation_year = $form->getValue('formation_year');
                 $style = $form->getValue('style');
                 $website = $form->getValue('website');
+                $description = $form->getValue('description');
                 $date = time();
                 $active = "1";
 
@@ -106,7 +107,7 @@ class BandsController extends Zend_Controller_Action {
                 }
 
                 $bandModel = new Model_DbTable_Bands();
-                $band_id = $bandModel->addBand($user_id, $active, $band_name, $formation_year, $style_id, $website, $photo_url, $date);
+                $band_id = $bandModel->addBand($user_id, $active, $band_name, $formation_year, $style_id, $website, $description, $photo_url, $date);
 
                 $random = md5($_SERVER['REMOTE_ADDR'] . time());
                 
@@ -156,6 +157,7 @@ class BandsController extends Zend_Controller_Action {
         $form->getElement('formation_year')->setValue($band[0]["formation_year"]);
         $form->getElement('style')->setValue($band[0]["style"]);
         $form->getElement('website')->setValue($band[0]["website"]);
+        $form->getElement('description')->setValue($band[0]["description"]);
 
         $locale = Zend_Registry::get('Zend_Locale');
 
@@ -168,6 +170,7 @@ class BandsController extends Zend_Controller_Action {
                 $formation_year = $form->getValue('formation_year');
                 $style = $form->getValue('style');
                 $website = $form->getValue('website');
+                $description = $form->getValue('description');
                 $date = time();
                 $active = "1";
 
@@ -196,7 +199,7 @@ class BandsController extends Zend_Controller_Action {
                 }
 
                 $bandModel = new Model_DbTable_Bands();
-                $bandModel->editBand($band_id, $user_id, $band_name, $formation_year, $style_id, $website);
+                $bandModel->editBand($band_id, $user_id, $band_name, $formation_year, $style_id, $website, $description);
                 $bodyText = "<body>";
                 $bodyText .= "<p>Új bejegyzést küldtek be a Samsung Mobilers oldalon.</p>";
                 $bodyText .= "<p>Beküldő: " . $identity->username . "</p>";

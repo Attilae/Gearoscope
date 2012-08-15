@@ -5,18 +5,22 @@
 </div>
 
 <div class="paged-data">
-    <?php if (count($this->paginator)) : 
-            foreach ($this->paginator as $comment) :
-    ?>
-    <li>
-                <?php echo $this->escape($comment["description"]); ?>
-    </li>
-            <?php endforeach ?>        
+    <?php
+    if (count($this->paginator)) :
+        foreach ($this->paginator as $comment) :
+            ?>
+            <li style="width: 100%;">
+                <strong><?php print $comment["user_username"]; ?></strong><br>
+            <?php echo $this->escape($comment["description"]); ?>
+                <br>
+                <br>
+            </li>            
+        <?php endforeach ?>        
     <?php else : ?>
-    <p class="notice">No items found</p>
-    <?php endif ?>
+        <p class="notice">No items found</p>
+<?php endif ?>
 </div>
 
 <div class="pagination-control">
-    <?php echo $paginationControl ?>
+<?php echo $paginationControl ?>
 </div>

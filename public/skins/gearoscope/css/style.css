@@ -6434,3 +6434,14 @@ ul.errors  {
     height: 270px;
     resize: none;
 }
+
+.paginationControl a {
+    cursor: pointer;
+}
+
+.loading {
+    background: url(../images/ajax-loader.gif) center center no-repeat;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+}

@@ -1,5 +1,9 @@
-<?php foreach ($this->images as $image): ?>
-    <li>
-        <img width="80" src="<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $image["url"]; ?>" />
-    </li>					
-<?php endforeach; ?>
+<?php if($this->images) { ?>
+    <?php foreach ($this->images as $image): ?>
+        <li>
+            <img width="80" src="<?php print $this->baseUrl(); ?>/public/uploads/gears/<?php print $image["url"]; ?>" />
+        </li>					
+    <?php endforeach; ?>
+<?php } else { ?>        
+        No items found.
+<?php } ?>

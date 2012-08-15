@@ -43,7 +43,7 @@ class GearsController extends Zend_Controller_Action {
         $this->view->headScript()->prependScript('
 			$(document).ready(function(){                                                        
                         
-                                $("#gallery-images").html("Loading...");
+                                $("#gallery-images").html("<div class=\"loading\"></div>");
 
                                 $("#gallery-images").load(
                                                     "'.$baseUrl.'/hu/gears/images/format/html",
@@ -56,7 +56,7 @@ class GearsController extends Zend_Controller_Action {
                                                      }
                                 );
                                 
-                                $("#comments").html("Loading...");
+                                $("#comments").html("<div class=\"loading\"></div>");
 
                                 $("#comments").load(
                                                     "'.$baseUrl.'/hu/comments/gear/format/html",

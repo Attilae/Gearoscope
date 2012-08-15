@@ -19,14 +19,7 @@ class CommentsController extends Zend_Controller_Action {
         
         $commentsModel = new Model_DbTable_Comments();
         
-        $comments = $commentsModel->getComments($gear_id);
-        /*$this->view->comments = $comments;
-        $page = $this->_getParam('page', 1);
-        $paginator = Zend_Paginator::factory($comments);
-        $paginator->setItemCountPerPage(4);
-        $paginator->setCurrentPageNumber($page);
-        $this->view->paginator = $paginator;*/
-        
+        $comments = $commentsModel->getComments($gear_id);        
         
         $paginator = Zend_Paginator::factory($comments);
         $paginator->setItemCountPerPage(4);

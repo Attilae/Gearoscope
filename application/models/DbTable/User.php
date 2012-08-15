@@ -35,7 +35,22 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 
         if ($rowUser) {
             // update the row values
-            $rowUser->photo_url = $photo_url;
+            $rowUser->user_photo = $photo_url;
+            $rowUser->save();
+            //return the updated user
+            return $rowUser;
+        } else {
+            throw new Zend_Exception("User update failed.  User not found!");
+        }
+    }
+    
+    public function updateBio($id, $bio) {
+        // fetch the user's row
+        $rowUser = $this->find($id)->current();
+
+        if ($rowUser) {
+            // update the row values
+            $rowUser->user_bio = $bio;
             $rowUser->save();
             //return the updated user
             return $rowUser;

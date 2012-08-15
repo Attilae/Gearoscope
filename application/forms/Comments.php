@@ -16,9 +16,9 @@ class Form_Comments extends Zend_Form {
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 ->addValidator('NotEmpty');
-        $submit = new Zend_Form_Element_Submit('submit');
+        $submit = new Zend_Form_Element_Submit('Send');
         $submit->setAttrib('id', 'submitbutton');
-        $this->addElements(array($id, $name, $email, $webpage, $comment, $submit));
+        $this->addElements(array($id, $comment, $submit));
     }
 
 }

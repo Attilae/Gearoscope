@@ -380,6 +380,9 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function editbioAction() {
+        
+        $baseUrl = $this->view->baseUrl();
+        
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
 
@@ -407,7 +410,7 @@ class UserController extends Zend_Controller_Action {
         $photoPreview->setAttrib('style', 'width:270px;height:auto;cursor:default;');
         $photoPreview->setDecorators(array('ViewHelper', 'Errors'));
 
-        $photoPreview->setImage("/gearoscope/public/uploads/users/" . $user ["user_photo"]);
+        $photoPreview->setImage($baseUrl."/public/uploads/users/" . $user ["user_photo"]);
         $form->addElement($photoPreview);
 
         $photo = $form->createElement('file', 'photo');
@@ -421,11 +424,26 @@ class UserController extends Zend_Controller_Action {
         $photo->addValidator('Extension', false, 'jpg');
         //$photo->setDecorators( array( 'ViewHelper', 'Errors' ) );
         $form->addElement($photo);
-
+        
+        $description = new Zend_Form_Element_Textarea('description');
+        $description->setLabel('Új profilkép: ');
+        $description->setValue($user ["user_bio"]);
+        $description->setAttrib('class', 'textarea')
+                    ->setAttrib('rows', '30')
+                    ->setAttrib('resize', 'none')
+                    ->setDecorators(array('Viewhelper', 'Errors'))				
+                    ->setRequired(true);
+        $form->addElement($description);
+        
         $translate = Zend_Registry::get('Zend_Translate');
 
         if ($this->_request->isPost()) {
             if ($form->isValid($_POST)) {
+                
+                $bio = $form->getValue('description');
+                
+                $modelUser->updateBio($id, $bio);
+                
                 if ($form->photo->isUploaded()) {
                     $form->photo->receive();
                     $photo = basename($form->photo->getFileName());

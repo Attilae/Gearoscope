@@ -27,8 +27,11 @@ class Model_DbTable_Comments extends Zend_Db_Table_Abstract {
 
     public function getComments($gear_id) {
         $select = $this->select()
-                        ->where("gear_id = ?", $gear_id)
-                        ->order('comment_id DESC');
+                        ->from(array('gearoscope_comments'), array('gearoscope_comments.*'))
+                        ->joinLeft(array('gearoscope_users'), 'gearoscope_users.user_id=gearoscope_comments.user_id', array('gearoscope_users.user_username'))
+                        ->where("gearoscope_comments.gear_id = ?", $gear_id)
+                        ->order('gearoscope_comments.comment_id DESC')
+                        ->setIntegrityCheck(false);
         $result = $this->fetchAll($select);
         return $result->toArray();
     }

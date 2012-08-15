@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Hoszt: localhost
--- Létrehozás ideje: 2012. aug. 14. 18:15
+-- Létrehozás ideje: 2012. aug. 15. 16:16
 -- Szerver verzió: 5.5.25a
 -- PHP verzió: 5.4.4
 
@@ -35,8 +35,10 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
   `formation_year` int(4) NOT NULL,
   `style` int(3) NOT NULL,
   `website` varchar(255) NOT NULL,
+  `description` text NOT NULL,
   `band_photo_url` varchar(255) NOT NULL,
   `active_member` int(1) NOT NULL,
+  `date_modified` int(11) NOT NULL,
   PRIMARY KEY (`band_id`),
   FULLTEXT KEY `band_name_2` (`band_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
@@ -45,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
 -- A tábla adatainak kiíratása `gearoscope_bands`
 --
 
-INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_name`, `formation_year`, `style`, `website`, `band_photo_url`, `active_member`) VALUES
-(1, 5, 1, 1334917392, 'Superbutt', 2002, 2, 'www.superbutt.net', '1334917392.jpg', 0),
-(2, 5, 1, 1334917560, 'Autumn Twilight', 2000, 1, 'www.autumntwilight.hu', '1334917560.jpg', 0),
-(3, 5, 1, 1339335007, 'Agregator', 2000, 3, 'www.agregator.hu', '1339335007.jpg', 0),
-(5, 23, 1, 1344524475, 'Neck Sprain', 1992, 1, 'necksprain.hu', '1344525435.jpg', 0);
+INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_name`, `formation_year`, `style`, `website`, `description`, `band_photo_url`, `active_member`, `date_modified`) VALUES
+(1, 5, 1, 1334917392, 'Superbutt', 2002, 2, 'www.superbutt.net', '', '1334917392.jpg', 0, 0),
+(2, 5, 1, 1334917560, 'Autumn Twilight', 2000, 1, 'www.autumntwilight.hu', '', '1334917560.jpg', 0, 0),
+(3, 5, 1, 1339335007, 'Agregator', 2000, 3, 'www.agregator.hu', '', '1339335007.jpg', 0, 0),
+(5, 23, 1, 1344524475, 'Neck Sprain', 1992, 1, 'necksprain.hu', 'Acer has a new affordable Android option out in the UK today. ', '1344525435.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -92,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_comments` (
   `description` text NOT NULL,
   `created_date` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_comments`
@@ -103,7 +105,9 @@ INSERT INTO `gearoscope_comments` (`comment_id`, `gear_id`, `user_id`, `descript
 (2, 4, 23, 'Szerintem is szép!', 1344954930),
 (3, 4, 23, 'Nagyon jó vagyok!', 1344955125),
 (4, 4, 23, 'Félelmetesen jó vagyok!', 1344955146),
-(5, 4, 23, 'Köcsög vagyok!', 1344955160);
+(5, 4, 23, 'Köcsög vagyok!', 1344955160),
+(6, 1, 23, 'Nem is ez a kép való ide!', 1345035317),
+(7, 1, 23, 'Na, ez a kép már jó.', 1345035371);
 
 -- --------------------------------------------------------
 
@@ -148,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
 --
 
 INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcategory_id`, `gears_subsubcategory_id`, `user_id`, `gear_name`, `serial_number`, `description`, `gear_photo_url`, `gear_thumbnail_url`, `active`, `featured`, `create_date`, `last_edit_date`) VALUES
-(1, 1, 1, 8, 23, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'dummy.jpg', 'thumbnail_1344608434.png', 1, 0, 1344608618, 1344608618),
+(1, 1, 1, 8, 23, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'resize_1345035334.png', 'thumbnail_1345035334.png', 1, 0, 1344608618, 1345035360),
 (2, 1, 1, 8, 23, 'Ibanez S570', 'S570', 'The Ibanez S series first appeared in 1987. Ever since, it has changed in appearance and function to represent the cutting edge of Ibanez design. Famous for its lightweight carved mahogany body, the S can take a beating while still providing the resonance of guitars twice its size. The S series comes equipped with the ZR tremolo system, featuring a smooth ball bearing pivot for ultra-smooth arm control - same as ZR-2 tremolo system.', 'resize_1344608797.png', 'thumbnail_1344608797.png', 1, 0, 1344608721, 1344608857),
 (3, 2, 6, 9, 23, 'Meinl MB 10 18" Crash', 'MB10-18MC-B', 'Bright, warm and well-balanced sound in a wide dynamic range. Full, even and soft responsive feel with an extensive spread. Versatile, all-purpose classic rock crash.', 'resize_1344889828.jpg', 'thumbnail_1344889828.jpg', 1, 0, 1344847169, 1344889946),
 (4, 2, 6, 11, 1, 'Turkish Sehzade Hi-hat 13"', 'SH-H', 'Great chick performance. Warm, dark, earthy. Round & full sound. These soft and sensible hi-hats have excellent stick definition with a woody feel.', 'resize_1344872403.png', 'thumbnail_1344872403.png', 1, 0, 1344864223, 1344872422);
@@ -440,6 +444,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_users` (
   `user_password` varchar(250) DEFAULT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_photo` varchar(255) NOT NULL,
+  `user_bio` text,
   `user_role` varchar(25) DEFAULT NULL,
   `user_register_date` int(11) NOT NULL,
   `user_login_date` int(11) NOT NULL,
@@ -453,14 +458,14 @@ CREATE TABLE IF NOT EXISTS `gearoscope_users` (
 -- A tábla adatainak kiíratása `gearoscope_users`
 --
 
-INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_username`, `user_password`, `user_email`, `user_photo`, `user_role`, `user_register_date`, `user_login_date`, `user_oauth_provider`, `user_oauth_id`, `code`) VALUES
-(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', '', 'Administrator', 0, 1344862970, 'facebook', 0, ''),
-(4, 1, 'Erdei Attila', 'Kisatti00', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, ''),
-(5, 1, 'Erdei Attila', 'Attilae', '0730c6c19e8b4b77bd061e3cbec48f6a', 'skinnerscag@gmail.com', 'user.jpg', 'user', 0, 1344553468, 'facebook', 0, ''),
-(16, 1, 'LFCaptain', 'LFCaptain', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail', 'user.jpg', 'user', 0, 1339361721, 'facebook', 0, ''),
-(21, 1, 'Johnny Gold', 'Johnny Gold', '0730c6c19e8b4b77bd061e3cbec48f6a', 'atti00@freemail.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, 'dcd4e92266f7e5bd426354e16cb1cba8'),
-(22, 1, 'Richard GoldMájer', 'Richard GoldMájer', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@kreati.hu', 'user.jpg', 'user', 0, 0, 'facebook', 0, '85b885848ea43b0e053637d76b29a208'),
-(23, 1, 'DevDrummer', 'DevDrummer', '68d0d3c3e3fdc9fb0969e3acd9c00b73', 'attila.erdei87@gmail.com', 'user.jpg', 'user', 1344520274, 1344954438, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
+INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_username`, `user_password`, `user_email`, `user_photo`, `user_bio`, `user_role`, `user_register_date`, `user_login_date`, `user_oauth_provider`, `user_oauth_id`, `code`) VALUES
+(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', 'user.jpg', NULL, 'Administrator', 0, 1344862970, 'facebook', 0, ''),
+(4, 1, 'Erdei Attila', 'Kisatti00', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, ''),
+(5, 1, 'Erdei Attila', 'Attilae', '0730c6c19e8b4b77bd061e3cbec48f6a', 'skinnerscag@gmail.com', 'user.jpg', NULL, 'user', 0, 1344553468, 'facebook', 0, ''),
+(16, 1, 'LFCaptain', 'LFCaptain', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail', 'user.jpg', NULL, 'user', 0, 1339361721, 'facebook', 0, ''),
+(21, 1, 'Johnny Gold', 'Johnny Gold', '0730c6c19e8b4b77bd061e3cbec48f6a', 'atti00@freemail.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, 'dcd4e92266f7e5bd426354e16cb1cba8'),
+(22, 1, 'Richard GoldMájer', 'Richard GoldMájer', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@kreati.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, '85b885848ea43b0e053637d76b29a208'),
+(23, 1, 'DevDrummer', 'DevDrummer', 'cb542fe52780420a170498b02153abf6', 'attila.erdei87@gmail.com', '1345036591.1873.jpg', 'Még a videójátékoknál is gyorsabban nő a népszerűségük, egyre kevesebb az mp3-lejátszó.', 'user', 1344520274, 1345035127, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
