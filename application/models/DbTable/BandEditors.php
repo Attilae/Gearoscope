@@ -24,6 +24,15 @@ class Model_DbTable_BandEditors extends Zend_Db_Table_Abstract {
         $result = $this->fetchAll($select);
         return $result->toArray();
     }
+    
+    public function getEditorIds($band_id) {
+        $band_id = (int) $band_id;
+        $select = $this->select()
+                ->from(array('gearoscope_band_editors'), array('gearoscope_band_editors.user_id'))                
+                ->where('gearoscope_band_editors.band_id = ?', $band_id);
+        $result = $this->fetchAll($select);
+        return $result->toArray();
+    }
 
     public function getEditor($id) {
         $id = (int) $id;

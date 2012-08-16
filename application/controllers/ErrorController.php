@@ -14,7 +14,7 @@ public function init() {
         $layout->setLayoutPath(APPLICATION_PATH . '/layouts/scripts');
         $layout->setLayout('layout');                
 
-        $errors = $this->_getParam('error_handler');
+        $errors = $this->_getParam('error_handler');        
         switch ($errors->type) {
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
@@ -32,7 +32,7 @@ public function init() {
         $this->view->request = $errors->request;
         
         $logger = Zend_Registry::get('logger');
-        $logger->log($errors->exception->getTraceAsString(), Zend_Log::ERR);
+        $logger->log($errors->exception, Zend_Log::ERR);
     }
 
     public function noauthAction() {

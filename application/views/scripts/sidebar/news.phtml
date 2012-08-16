@@ -1,4 +1,8 @@
 <div id="sidebar-2" class="right">
+    <?php 
+        $auth = Zend_Auth::getInstance();
+        if(!$auth->hasIdentity()) {
+    ?>
 	<div class="moduletable">
 		<h3>Login Form</h3>
 		<form action="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/login" method="post" id="login-form">
@@ -45,7 +49,9 @@
 		</form>
 
 	</div>
-	
+	<?php 
+        }
+        ?>
 	<div class="moduletable-news">
 		<h3>
 			most popular gears

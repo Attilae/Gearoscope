@@ -8,43 +8,9 @@
 					<h3>most popular gears</h3>
 					<div class="custom-artists">
 						<ul class="artists">
-
-							<li><a href="#">Gibson Les Paul</a>
-							</li>
-
-							<li><a href="#">Fender Stratocaster</a>
-							</li>
-
-							<li><a href="#">Gibson SG</a>
-							</li>
-
-							<li><a href="#">Fender Telecaster</a>
-							</li>
-
-							<li><a href="#">Ibanez S Prestige</a>
-							</li>
-
-							<li><a href="#">Fender Jazz Bass</a>
-							</li>
-
-							<li><a href="#">Tama Starclassic Bubinga</a>
-							</li>
-
-							<li><a href="#">Pearl Masters Custom</a>
-							</li>
-
-							<li><a href="#">Marshall JCM 900</a>
-							</li>
-
-							<li><a href="#">Peavey 5150</a>
-							</li>
-
-							<li><a href="#">Gibson Flying V</a>
-							</li>
-
-							<li><a href="#">Zildjian K Custom</a>
-							</li>
-
+<?php foreach($this->gears as $gears): ?>
+                                                    <li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/gears/view/id/<?php print $gears["gear_id"] ?>"><?php print $gears["gear_name"]; ?></a></li>
+<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>
@@ -124,8 +90,8 @@
 						<h2><?php print $entry["title"]; ?></h2>
 						<dl class="article-info">
 							<dt class="article-info-term">Details</dt>
-							<dd class="create">Created on <?php print $entry["dateModified"]; ?></dd>
-							<dd class="createdby">Written by Super User</dd>
+							<dd class="create">Created on <?php print date("Y. m. d.", $entry["dateModified"]); ?></dd>
+							<dd class="createdby">Written by LangoloGitarok</dd>
 						</dl>
 						<!-- <img class="img-indent border"
 							src="/joomla_34465/images/stories/video-img1.jpg" alt="" /> -->

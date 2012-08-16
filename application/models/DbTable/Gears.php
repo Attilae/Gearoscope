@@ -52,18 +52,36 @@ class Model_DbTable_Gears extends Zend_Db_Table_Abstract {
         $result = $this->fetchAll($select);
         return $result->toArray();
     }
+    
+    public function getGearOrderByHits() {
+        $id = (int) $id;
+        $select = $this->select()
+                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.hits', 'gearoscope_gears.gear_name'))
+                ->order('hits DESC')
+                ->limit(12);
+        $result = $this->fetchAll($select);
+        if ($result) {
+            return $result->toArray();
+        } else {
+            throw new Zend_Exception("Password update failed.  User not found!");
+        }
+    }
 
     public function getGear($id) {
         $id = (int) $id;
         $select = $this->select()
-                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_category_id', 'gearoscope_gears.gears_subcategory_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.description', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.gear_thumbnail_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
+                ->from(array('gearoscope_gears'), array('gearoscope_gears.gear_id', 'gearoscope_gears.gears_category_id', 'gearoscope_gears.gears_subcategory_id', 'gearoscope_gears.gears_subsubcategory_id', 'gearoscope_gears.user_id', 'gearoscope_gears.hits', 'gearoscope_gears.gear_name', 'gearoscope_gears.serial_number', 'gearoscope_gears.description', 'gearoscope_gears.gear_photo_url', 'gearoscope_gears.gear_thumbnail_url', 'gearoscope_gears.create_date', 'gearoscope_gears.featured'))
                 ->joinLeft(array('gearoscope_gears_subsubcategories'), 'gearoscope_gears_subsubcategories.gears_subsubcategory_id=gearoscope_gears.gears_subsubcategory_id', array('gearoscope_gears_subsubcategories.subsubcategory'))
                 ->joinLeft(array('gearoscope_gears_subcategories'), 'gearoscope_gears_subcategories.gears_subcategory_id=gearoscope_gears.gears_subcategory_id', array('gearoscope_gears_subcategories.subcategory'))
                 ->joinLeft(array('gearoscope_gears_categories'), 'gearoscope_gears_categories.gears_category_id=gearoscope_gears.gears_category_id', array('gearoscope_gears_categories.category'))
                 ->where('gearoscope_gears.gear_id = ?', $id)
                 ->setIntegrityCheck(false);
         $result = $this->fetchRow($select);
-        return $result->toArray();
+        if ($result) {
+            return $result->toArray();
+        } else {
+            throw new Zend_Exception("Password update failed.  User not found!");
+        }
     }
 
     public function getByUser($user_id) {
@@ -135,6 +153,17 @@ class Model_DbTable_Gears extends Zend_Db_Table_Abstract {
         );
         $where = 'gear_id = ' . $gear_id;
         $this->update($data, $where);
+    }
+    
+    public function aggregateHits($gear_id, $hits) {
+        $rowGear = $this->find($gear_id)->current();
+        if ($rowGear) {
+            //update the password
+            $rowGear->hits = $hits;
+            $rowGear->save();
+        } else {
+            throw new Zend_Exception("Gear update failed.  Gear not found!");
+        }
     }
 
     public function setActive($id) {

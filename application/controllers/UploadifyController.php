@@ -25,11 +25,15 @@ class UploadifyController extends Zend_Controller_Action {
         $this->view->headScript()->prependScript('
 			$(function() {
                             $("#file_upload_1").uploadify({
+                                "fileTypeDesc" : "Image Files",
+                                "fileTypeExts"  : "*.gif; *.jpg; *.png",                
+                                "fileSizeLimit" : "2MB",
                                 "formData"      : {"gear" : ' . $gear . ', "user" : ' . $identity->user_id .'},
                                 "height"        : 30,
                                 "swf"           : "' . $this->view->baseUrl() . '/public/uploadify/uploadify.swf",
                                 "uploader"      : "'.$baseUrl.'/'.$locale.'/uploadify/uploadify",
-                                "width"         : 120
+                                "width"         : 120,
+                                "uploadLimit"   : 10
                             });
                         });'
         );

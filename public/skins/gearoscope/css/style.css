@@ -2113,7 +2113,6 @@ a.title {
 .moduletable-news {
 	margin-bottom: 27px;
 	overflow: hidden;
-	height: 248px;
 	background: none repeat scroll 0 0 #1E1E1E;
 }
 
@@ -6420,13 +6419,27 @@ ul.errors  {
 }
 
 .user-view-img {
-    max-width: 150px;
-    max-height: 150px;
+    width: 100%;
 }
 
 .gear-view-img {
     max-width: 300px;
     max-height: 300px;
+}
+
+.gear-gallery img {
+    max-width: 100%;
+display: block;
+margin: 5px auto;
+}
+
+h3 a {
+    color: #FFF;
+}
+
+.band-view-img {
+    max-width: 400px;
+    max-height: 400px;
 }
 
 .textarea {
@@ -6444,4 +6457,8 @@ ul.errors  {
     width: 30px;
     height: 30px;
     margin: 0 auto;
+}
+
+#comment {
+    width: 100%;
 }

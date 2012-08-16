@@ -34,7 +34,7 @@ class Model_DbTable_News extends Zend_Db_Table_Abstract {
 
 	public function getActive() {
 		$select = $this->select()
-		->from(array('gearoscope_news'), array('gearoscope_news.news_id', 'gearoscope_news.active', 'gearoscope_news.title', 'gearoscope_news.description', 'gearoscope_news.link'))				
+		->from(array('gearoscope_news'), array('gearoscope_news.news_id', 'gearoscope_news.active', 'gearoscope_news.title', 'gearoscope_news.dateModified', 'gearoscope_news.description', 'gearoscope_news.link'))				
 		->order('gearoscope_news.news_id DESC')
 		->where('gearoscope_news.active = ?', "1");
 		$result = $this->fetchAll($select);

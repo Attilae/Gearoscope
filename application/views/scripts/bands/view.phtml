@@ -1,21 +1,64 @@
 <div id="content">
 
-<div class="wrapper">
 
-<div class="item-page">
-<h2><?php print $this->band[0]["band_name"]; ?></h2>
+    <div class="wrapper">
+        <div id="sidebar-2" class="right">
+            <div class="moduletable-video">
+                <h3><?php print $this->user["user_username"]; ?></h3>
+                <img class="img-indent border user-view-img"
+                     src="<?php print $this->baseUrl(); ?>/public/uploads/users/<?php print $this->user['user_photo']; ?>" alt="" />
+            </div>		
+            <div class="clear"></div>
+            <div class="moduletable-news">
+                <h3></h3>
 
-<dl class="article-info">
-	<dt class="article-info-term">Details</dt>
-	<dd class="category-name">Style: <?php print $this->band[0]["style"]; ?></dd>
-	<dd class="create">Created on <?php print date("Y.m.d.", $this->band[0]["date"]); ?></dd>
-</dl>
 
-<img class="img-indent border"
-	src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/bands/<?php print $this->band[0]['band_photo_url']; ?>&h=300&w=400" alt="" />
 
-</div>
+                <div class="-news ">
+                </div>
 
-</div>
 
+            </div>
+            <div class="moduletable-perfomance">
+                <h3></h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="blog">
+
+
+
+
+
+
+            <div class="items-row cols-1 row-0">
+                <div class="item column-1">
+
+                    <h2><?php print $this->band["band_name"]; ?></h2>    
+
+
+
+
+
+                    <dl class="article-info">
+                        <dt class="article-info-term">Details</dt>
+                        <dd class="category-name">Style: <?php print $this->band["style"]; ?></dd>
+                        <dd class="create">Created on <?php print date("Y.m.d.", $this->band["date_modified"]); ?></dd>
+                    </dl>
+
+                    <img class="img-indent border band-view-img"
+                         src="<?php print $this->baseUrl(); ?>/public/uploads/bands/<?php print $this->band['band_photo_url']; ?>" alt="" />
+                    <p><?php print $this->band["description"]; ?></p>                    
+
+
+                    <div class="item-separator"></div>
+                </div>
+                <span class="row-separator"></span>
+            </div>                                    
+        </div>
+
+    </div>
 </div>

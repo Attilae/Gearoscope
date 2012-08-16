@@ -45,11 +45,12 @@ class Model_DbTable_Bands extends Zend_Db_Table_Abstract {
 
     public function getByUser($user_id) {
         $user_id = (int) $user_id;
-        $select = $this->select()
+        $select = $this->select()->distinct()
                 ->from(array('gearoscope_bands'), array('gearoscope_bands.band_id', 'gearoscope_bands.user_id', 'gearoscope_bands.band_name', 'gearoscope_bands.active', 'gearoscope_bands.band_photo_url'))
                 ->joinLeft(array('gearoscope_styles'), 'gearoscope_bands.style=gearoscope_styles.style_id', array('gearoscope_styles.style'))
+                ->joinLeft(array('gearoscope_band_editors'), 'gearoscope_band_editors.band_id=gearoscope_bands.band_id', array('gearoscope_band_editors.*'))
                 ->order('gearoscope_bands.band_name ASC')
-                ->where('gearoscope_bands.user_id = ?', $user_id)
+                ->Where('gearoscope_band_editors.user_id = ?', $user_id)
                 ->setIntegrityCheck(false);
         $result = $this->fetchAll($select);
         return $result->toArray();
@@ -154,13 +155,17 @@ class Model_DbTable_Bands extends Zend_Db_Table_Abstract {
     public function getBand($id) {
         $id = (int) $id;
         $select = $this->select()
-                ->from(array('gearoscope_bands'), array('gearoscope_bands.band_id', 'gearoscope_bands.band_name', 'gearoscope_bands.formation_year', 'gearoscope_bands.website', 'gearoscope_bands.description', 'gearoscope_bands.date', 'gearoscope_bands.active', 'gearoscope_bands.band_photo_url'))
+                ->from(array('gearoscope_bands'), array('gearoscope_bands.band_id', 'gearoscope_bands.user_id', 'gearoscope_bands.band_name', 'gearoscope_bands.formation_year', 'gearoscope_bands.website', 'gearoscope_bands.description', 'gearoscope_bands.date_modified', 'gearoscope_bands.active', 'gearoscope_bands.band_photo_url'))
                 ->joinLeft(array('gearoscope_styles'), 'gearoscope_bands.style=gearoscope_styles.style_id', array('gearoscope_styles.style'))
                 ->order('gearoscope_bands.band_id DESC')
                 ->where('gearoscope_bands.band_id = ?', $id)
                 ->setIntegrityCheck(false);
-        $result = $this->fetchAll($select);
-        return $result->toArray();
+        $result = $this->fetchRow($select);
+        if ($result) {
+            return $result->toArray();
+        } else {
+            throw new Zend_Exception("Password update failed.  User not found!");
+        }
     }
 
     public function getMorePostsByMobiler($user_id, $post_id) {

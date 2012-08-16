@@ -11,11 +11,9 @@
 						<h2><?php print $entry["title"]; ?></h2>
 						<dl class="article-info">
 							<dt class="article-info-term">Details</dt>
-							<dd class="create">Created on <?php print $entry["dateModified"]; ?></dd>
-							<dd class="createdby">Written by Super User</dd>
-						</dl>
-						<!-- <img class="img-indent border"
-							src="/joomla_34465/images/stories/video-img1.jpg" alt="" /> -->
+							<dd class="create">Created on <?php print date("D, d M Y", $entry["dateModified"]); ?></dd>
+							<dd class="createdby">Written by LangoloGitarok</dd>
+						</dl>						                                                
 						<p><?php print $entry["description"]; ?></p>
 						<p class="readmore">
 							<a href="<?php print $entry["link"]; ?>" target="_blank"> MORE</a>

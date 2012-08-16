@@ -15,7 +15,7 @@ class Form_BandsAddEditor extends Zend_Form {
 		$this->setName ( 'Posts' );
 		
 		$editor = new Zend_Form_Element_Text ( 'editor' );
-		$editor->setLabel ( 'Admin neve' )->setAttrib ( "class", "login-inp form-input" )->setAttrib ( 'title', 'Admin neve' )->setRequired ( true )->addFilter ( 'StripTags' )->addFilter ( 'StringTrim' )->addValidator ( $validatorNotEmpty )->addValidator ( $validatorEmail );
+		$editor->setLabel ( 'Admin e-mail címe' )->setAttrib ( "class", "login-inp form-input" )->setAttrib ( 'title', 'Admin neve' )->setRequired ( true )->addFilter ( 'StripTags' )->addFilter ( 'StringTrim' )->addValidator ( $validatorNotEmpty )->addValidator ( $validatorEmail );
 		
 		$submit = new Zend_Form_Element_Submit ( 'submit' );
 		$submit->setAttrib ( 'id', 'submitbutton' );

@@ -17,21 +17,43 @@ class UserController extends Zend_Controller_Action {
         $this->view->id = $id;
 
         $modelUser = new Model_DbTable_User ();
+        try {
+            $currentUser = $modelUser->find($id)->current();            
+            if (!empty($currentUser)) {
+                $user = $currentUser->toArray();
 
-        $currentUser = $modelUser->find($id)->current();
-        $user = $currentUser->toArray();
+                $auth = Zend_Auth::getInstance();
+                $identity = $auth->getIdentity();
+                $user_id = $identity->user_id;
 
-        $this->view->user = $user;
+                if ($id == $user_id) {
+                    $this->view->editable = "1";
+                }
 
-        $modelGears = new Model_DbTable_Gears();
-        $gears = $modelGears->getByUser($id);
+                $this->view->user = $user;
 
-        $this->view->gears = $gears;
+                $modelGears = new Model_DbTable_Gears();
+                $gears = $modelGears->getByUser($id);
 
-        $modelBands = new Model_DbTable_Bands();
-        $bands = $modelBands->getByUser($id);
+                $this->view->gears = $gears;
 
-        $this->view->bands = $bands;
+                $modelBands = new Model_DbTable_Bands();
+                $bands = $modelBands->getByUser($id);
+
+                $this->view->bands = $bands;
+            } else {
+                throw new Exception("Nincs ilyen felhasználó!");
+            }
+        } catch (Exception $e) {            
+            $request= $this->_request;
+            $request->setModuleName('default');
+
+            $request->setControllerName('error');
+
+            $request->setActionName('error');
+            $this->view->errorMessage = "Nincs ilyen regisztrált felhasználó";
+            $this->view->errorMessage = $e->getMessage();
+        }
     }
 
     public function createAction() {
@@ -114,7 +136,7 @@ class UserController extends Zend_Controller_Action {
         $userModel = new Model_DbTable_User ();
         if ($this->_request->isPost()) {
             if ($passwordForm->isValid($_POST)) {
-                try {                    
+                try {
                     $pass = $this->generatePassword(8);
                     $email = $passwordForm->getValue('email');
 
@@ -308,6 +330,8 @@ class UserController extends Zend_Controller_Action {
 
     public function registerAction() {
 
+        $baseUrl = $this->view->baseUrl();
+        
         parent::init();
         $layout = Zend_Layout::getMvcInstance();
         $layout->setLayoutPath(APPLICATION_PATH . '/layouts/scripts');
@@ -347,7 +371,7 @@ class UserController extends Zend_Controller_Action {
                 $bodyText .= "<p>Felhasználóneved: " . $username . "</p>";
                 $bodyText .= "<p>Jelszavad: " . $password . "</p>";
                 $bodyText .= "<p>Az alábbi linken aktiválhatod regisztrációdat:</p>";
-                $bodyText .= "<p><a href='http://superbutt.net/gearoscope/" . $locale->getLanguage() . "/activate/index/user/" . $user ["user_id"] . "/code/" . $random . "' target='_blank'>Aktiválás</a></p>";
+                $bodyText .= "<p><a href='http://superbutt.net/".$baseUrl."/" . $locale->getLanguage() . "/activate/index/user/" . $user ["user_id"] . "/code/" . $random . "' target='_blank'>Aktiválás</a></p>";
                 $bodyText .= "<p>Üdv,<br/>gearoscope.hu</p>";
                 $bodyText .= "</body>";
 
@@ -380,9 +404,9 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function editbioAction() {
-        
+
         $baseUrl = $this->view->baseUrl();
-        
+
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
 
@@ -410,7 +434,7 @@ class UserController extends Zend_Controller_Action {
         $photoPreview->setAttrib('style', 'width:270px;height:auto;cursor:default;');
         $photoPreview->setDecorators(array('ViewHelper', 'Errors'));
 
-        $photoPreview->setImage($baseUrl."/public/uploads/users/" . $user ["user_photo"]);
+        $photoPreview->setImage($baseUrl . "/public/uploads/users/" . $user ["user_photo"]);
         $form->addElement($photoPreview);
 
         $photo = $form->createElement('file', 'photo');
@@ -424,26 +448,26 @@ class UserController extends Zend_Controller_Action {
         $photo->addValidator('Extension', false, 'jpg');
         //$photo->setDecorators( array( 'ViewHelper', 'Errors' ) );
         $form->addElement($photo);
-        
+
         $description = new Zend_Form_Element_Textarea('description');
         $description->setLabel('Új profilkép: ');
         $description->setValue($user ["user_bio"]);
         $description->setAttrib('class', 'textarea')
-                    ->setAttrib('rows', '30')
-                    ->setAttrib('resize', 'none')
-                    ->setDecorators(array('Viewhelper', 'Errors'))				
-                    ->setRequired(true);
+                ->setAttrib('rows', '30')
+                ->setAttrib('resize', 'none')
+                ->setDecorators(array('Viewhelper', 'Errors'))
+                ->setRequired(true);
         $form->addElement($description);
-        
+
         $translate = Zend_Registry::get('Zend_Translate');
 
         if ($this->_request->isPost()) {
             if ($form->isValid($_POST)) {
-                
+
                 $bio = $form->getValue('description');
-                
+
                 $modelUser->updateBio($id, $bio);
-                
+
                 if ($form->photo->isUploaded()) {
                     $form->photo->receive();
                     $photo = basename($form->photo->getFileName());

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Hoszt: localhost
--- Létrehozás ideje: 2012. aug. 15. 16:16
+-- Létrehozás ideje: 2012. aug. 16. 17:57
 -- Szerver verzió: 5.5.25a
 -- PHP verzió: 5.4.4
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
   `band_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `active` int(1) NOT NULL,
-  `date` int(11) NOT NULL,
+  `date_created` int(11) NOT NULL,
   `band_name` varchar(255) NOT NULL,
   `formation_year` int(4) NOT NULL,
   `style` int(3) NOT NULL,
@@ -41,17 +41,14 @@ CREATE TABLE IF NOT EXISTS `gearoscope_bands` (
   `date_modified` int(11) NOT NULL,
   PRIMARY KEY (`band_id`),
   FULLTEXT KEY `band_name_2` (`band_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_bands`
 --
 
-INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date`, `band_name`, `formation_year`, `style`, `website`, `description`, `band_photo_url`, `active_member`, `date_modified`) VALUES
-(1, 5, 1, 1334917392, 'Superbutt', 2002, 2, 'www.superbutt.net', '', '1334917392.jpg', 0, 0),
-(2, 5, 1, 1334917560, 'Autumn Twilight', 2000, 1, 'www.autumntwilight.hu', '', '1334917560.jpg', 0, 0),
-(3, 5, 1, 1339335007, 'Agregator', 2000, 3, 'www.agregator.hu', '', '1339335007.jpg', 0, 0),
-(5, 23, 1, 1344524475, 'Neck Sprain', 1992, 1, 'necksprain.hu', 'Acer has a new affordable Android option out in the UK today. ', '1344525435.jpg', 0, 0);
+INSERT INTO `gearoscope_bands` (`band_id`, `user_id`, `active`, `date_created`, `band_name`, `formation_year`, `style`, `website`, `description`, `band_photo_url`, `active_member`, `date_modified`) VALUES
+(1, 24, 1, 1345122819, 'Superbutt', 2000, 1, 'superbutt.net', 'Superbutt is a Hungarian rock and heavy metal band. The Budapest based five-piece combo started up in 2000, and has released five full length albums in English, an EP in Hungarian. Superbutt has toured all across Europe since 2001 and played over 600 concerts, sharing the stage with Clawfinger, Ignite, Pro-Pain, Soulfly, In Flames, Prong, Mucky Pup, Helmet and Rollins Band, among others.', '1345122819.jpg', 0, 1345122819);
 
 -- --------------------------------------------------------
 
@@ -66,20 +63,15 @@ CREATE TABLE IF NOT EXISTS `gearoscope_band_editors` (
   `active` int(1) NOT NULL COMMENT '0 - pending, 1 - acitve',
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`band_editor_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_band_editors`
 --
 
 INSERT INTO `gearoscope_band_editors` (`band_editor_id`, `user_id`, `band_id`, `active`, `code`) VALUES
-(16, 5, 3, 1, ''),
-(18, 16, 3, 0, ''),
-(24, 21, 1, 0, '1d65bd745760bf78069598dfa051bcc3'),
-(23, 22, 1, 0, '6d97506abef2c7f0498a931c864dc4f5'),
-(25, 23, 5, 1, '24750b340162135231d71c48906d78ec'),
-(26, 22, 5, 1, '809287dafb0e8b69513d8bd3c04646be'),
-(27, 21, 5, 1, '389a50f2f3813005be54572a05728b62');
+(1, 24, 1, 1, 'a11d246381f59d1b238dfc530e0804eb'),
+(2, 23, 1, 1, '581c158d72c0725d06cbefc5ce68f825');
 
 -- --------------------------------------------------------
 
@@ -94,20 +86,14 @@ CREATE TABLE IF NOT EXISTS `gearoscope_comments` (
   `description` text NOT NULL,
   `created_date` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_comments`
 --
 
 INSERT INTO `gearoscope_comments` (`comment_id`, `gear_id`, `user_id`, `description`, `created_date`) VALUES
-(1, 4, 23, 'Szép ez a cintányér!', 1344954517),
-(2, 4, 23, 'Szerintem is szép!', 1344954930),
-(3, 4, 23, 'Nagyon jó vagyok!', 1344955125),
-(4, 4, 23, 'Félelmetesen jó vagyok!', 1344955146),
-(5, 4, 23, 'Köcsög vagyok!', 1344955160),
-(6, 1, 23, 'Nem is ez a kép való ide!', 1345035317),
-(7, 1, 23, 'Na, ez a kép már jó.', 1345035371);
+(8, 5, 24, 'Gyönyörű gitár!', 1345121563);
 
 -- --------------------------------------------------------
 
@@ -135,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
   `gears_subcategory_id` int(11) NOT NULL,
   `gears_subsubcategory_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `hits` int(11) DEFAULT NULL,
   `gear_name` varchar(255) NOT NULL,
   `serial_number` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -145,17 +132,19 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears` (
   `create_date` int(11) NOT NULL,
   `last_edit_date` int(11) NOT NULL,
   PRIMARY KEY (`gear_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_gears`
 --
 
-INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcategory_id`, `gears_subsubcategory_id`, `user_id`, `gear_name`, `serial_number`, `description`, `gear_photo_url`, `gear_thumbnail_url`, `active`, `featured`, `create_date`, `last_edit_date`) VALUES
-(1, 1, 1, 8, 23, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'resize_1345035334.png', 'thumbnail_1345035334.png', 1, 0, 1344608618, 1345035360),
-(2, 1, 1, 8, 23, 'Ibanez S570', 'S570', 'The Ibanez S series first appeared in 1987. Ever since, it has changed in appearance and function to represent the cutting edge of Ibanez design. Famous for its lightweight carved mahogany body, the S can take a beating while still providing the resonance of guitars twice its size. The S series comes equipped with the ZR tremolo system, featuring a smooth ball bearing pivot for ultra-smooth arm control - same as ZR-2 tremolo system.', 'resize_1344608797.png', 'thumbnail_1344608797.png', 1, 0, 1344608721, 1344608857),
-(3, 2, 6, 9, 23, 'Meinl MB 10 18" Crash', 'MB10-18MC-B', 'Bright, warm and well-balanced sound in a wide dynamic range. Full, even and soft responsive feel with an extensive spread. Versatile, all-purpose classic rock crash.', 'resize_1344889828.jpg', 'thumbnail_1344889828.jpg', 1, 0, 1344847169, 1344889946),
-(4, 2, 6, 11, 1, 'Turkish Sehzade Hi-hat 13"', 'SH-H', 'Great chick performance. Warm, dark, earthy. Round & full sound. These soft and sensible hi-hats have excellent stick definition with a woody feel.', 'resize_1344872403.png', 'thumbnail_1344872403.png', 1, 0, 1344864223, 1344872422);
+INSERT INTO `gearoscope_gears` (`gear_id`, `gears_category_id`, `gears_subcategory_id`, `gears_subsubcategory_id`, `user_id`, `hits`, `gear_name`, `serial_number`, `description`, `gear_photo_url`, `gear_thumbnail_url`, `active`, `featured`, `create_date`, `last_edit_date`) VALUES
+(1, 1, 1, 8, 23, 2, 'Ibanez S5470F Prestige', 'S5470F', 'The cutting edge of Ibanez design, the S series, continues to be a marvel of form and function. Its signature body shape - sculpted, lightweight, and mahogany - is stronger and more musically responsive than guitars weighing twice as much. Though no longer called by its original name, the Saber, the S series is still a rock ''n'' roll version of that quick, graceful and potentially lethal weapon. The S Prestige is "Made in Japan" by the finest Ibanez craftsmen and from top-of-the-line components.', 'resize_1345035334.png', 'thumbnail_1345035334.png', 1, 0, 1344608618, 1345035360),
+(2, 1, 1, 8, 23, 0, 'Ibanez S570', 'S570', 'The Ibanez S series first appeared in 1987. Ever since, it has changed in appearance and function to represent the cutting edge of Ibanez design. Famous for its lightweight carved mahogany body, the S can take a beating while still providing the resonance of guitars twice its size. The S series comes equipped with the ZR tremolo system, featuring a smooth ball bearing pivot for ultra-smooth arm control - same as ZR-2 tremolo system.', 'resize_1344608797.png', 'thumbnail_1344608797.png', 1, 0, 1344608721, 1344608857),
+(3, 2, 6, 9, 23, 0, 'Meinl MB 10 18" Crash', 'MB10-18MC-B', 'Bright, warm and well-balanced sound in a wide dynamic range. Full, even and soft responsive feel with an extensive spread. Versatile, all-purpose classic rock crash.', 'resize_1344889828.jpg', 'thumbnail_1344889828.jpg', 1, 0, 1344847169, 1344889946),
+(4, 2, 6, 11, 1, 0, 'Turkish Sehzade Hi-hat 13"', 'SH-H', 'Great chick performance. Warm, dark, earthy. Round & full sound. These soft and sensible hi-hats have excellent stick definition with a woody feel.', 'resize_1344872403.png', 'thumbnail_1344872403.png', 1, 0, 1344864223, 1345119624),
+(5, 1, 1, 2, 24, 0, 'Gibson Les Paul Gothic', '00+8004GIBSON1', 'Popular as a stripped down, no-nonsense rocker since its introduction in 1983, the Les Paul Studio receives what might be its most radical rebirth yet in the form of the new Les Paul Gothic Morte. Brand new from Gibson USA, the Les Paul Gothic Morte points the way forward for both extreme style and unprecedented depths of tone and power, taking the single-cutaway Les Paul design roaring into the future even as it approaches its 60th anniversary. Employing a sustainable new tonewood variety, and carrying Gibson USA''s powerful new GEM active humbucking pickups—all dressed in extreme black styling—the Les Paul Gothic Morte is simply one of the most powerful and appealing Les Paul Studio models ever created. \r\n\r\nThe beating heart of the Les Paul Gothic Morte is represented by a pair of Gibson USA''s amazing new GEM (Gibson Electronics Manufacturing) active pickups. Made in the image of the greatest traditional passive pickups of all time, Gibson''s own PAF ("Patent Applied For") humbuckers, the GEMs have Alnico II magnets and coils wound with 42 AWG enamel-coated wire. They also include active electronics for greatly improved output and extremely low-noise performance. The GEMs are powered by a single 9v battery that yields approximately 1500 hours of service. They have a voice and playing feel akin to Gibson''s popular Burstbuckers, with all of that humbucker''s characteristic "smooth with edge" tonal response, and they are immune to the loading effects of volume and tone potentiometers. They offer an extremely fast transient response for unprecedented articulation (yet with all the classic humbucker warmth and smoothness), and are extremely compatible with both effects pedals and clean amp settings. Suitable for all styles of music, the GEM active pickups represent a huge leap forward in performance and versatility. \r\n\r\nThe skeleton of the Les Paul Gothic Morte is crafted from the same ingredients that have helped to make the Les Paul legendary for nearly 60 years. A carved maple top is joined to a mahogany body that has been strategically chambered for improved resonance and weight relief, and a solid mahogany neck carved to a comfortable rounded "50s" profile is glued in Gibson''s time-tested tradition. The most exciting ingredient of the entire tonewood package, however, is the exotic African Obeche used for the guitar''s fingerboard. A dark, dense alternative to Ebony, African Obeche is FSC certified and, therefore, fully sustainable. As used on the Les Paul Gothic Morte, the African Obeche fingerboard carries no inlays or binding to extend the model''s radical styling. In addition to the guitar''s Satin Ebony nitrocellulose finish, the Les Paul Morte wears a black Tune-o-matic bridge with a black stopbar tailpiece, black Grover tuners, and a black Corian nut which has been precision cut on the PLEK for optimum intonation. All in all, it''s a powerful reincarnation of the world''s premier solidbody electric guitar—now propelled to greater extremes than ever with new active pickups, sustainable exotic woods and all-black styling. \r\n\r\nEvery Les Paul Gothic Morte includes a padded Gibson gigbag and owner''s manual, and is covered by Gibson''s Limited Lifetime Warranty and 24/7/365 Customer Service.', 'resize_1345121319.jpg', 'thumbnail_1345121319.jpg', 1, 0, 1345121367, 1345121367),
+(6, 2, 4, 12, 24, 4, 'Basix Custom Fusion Set', 'BSX-CF', 'What is the reason for the incredible success of the Custom Series? It is not any one thing, but a combination of many. Check out these and many more features on the following page.\r\nBut remember, pictures can’t make sound though. It’s better you go to a Basix dealer and play a Custom Series set for yourself, with it’s thundering 18" deep bass drum.\r\nYou will hear the phenomenal sound from these drums with your own ears, and see the outstanding quality with your own eyes. All of these features combined are what have made the Custom Series an incredible success worldwide.\r\n \r\nNote - the Custom series has been discontinued for several european countries, still available all America.', 'resize_1345128593.jpg', 'thumbnail_1345128593.jpg', 1, 0, 1345128620, 1345129477);
 
 -- --------------------------------------------------------
 
@@ -216,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_gears_subsubcategories` (
   `gears_subcategory_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`gears_subsubcategory_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_gears_subsubcategories`
@@ -233,7 +222,8 @@ INSERT INTO `gearoscope_gears_subsubcategories` (`gears_subsubcategory_id`, `sub
 (8, 'Ibanez', 1, 23),
 (9, 'Meinl', 6, 23),
 (10, 'Sabian', 6, 23),
-(11, 'Turkish', 6, 1);
+(11, 'Turkish', 6, 1),
+(12, 'Basix', 4, 24);
 
 -- --------------------------------------------------------
 
@@ -247,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_images` (
   `url` varchar(255) NOT NULL,
   `created_date` int(11) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_images`
@@ -255,7 +245,17 @@ CREATE TABLE IF NOT EXISTS `gearoscope_images` (
 
 INSERT INTO `gearoscope_images` (`image_id`, `gear_id`, `url`, `created_date`) VALUES
 (1, 3, 'gallery_3_23_DV019_Jpg_Regular_449868005080001_USD1.jpg', 1344889930),
-(2, 3, 'gallery_3_23_meinl-mb10-mb10-20mr-b.jpg', 1344889931);
+(2, 3, 'gallery_3_23_meinl-mb10-mb10-20mr-b.jpg', 1344889931),
+(3, 4, 'gallery_4_1_9290587.jpg', 1345119604),
+(4, 5, 'gallery_5_24__c729014_image_0.jpg', 1345121527),
+(5, 5, 'gallery_5_24_83037_l.jpg', 1345121528),
+(6, 5, 'gallery_5_24_EpiphoneGothLesPaulStudioWithFloydRose.jpg', 1345121529),
+(7, 5, 'gallery_5_24_Splash-02.jpg', 1345121530),
+(10, 6, 'gallery_6_24_basix.jpg', 1345129251),
+(11, 6, 'gallery_6_24_CU_800HW_01.jpg', 1345129252),
+(12, 6, 'gallery_6_24_CU_BDclaw_01.jpg', 1345129253),
+(13, 6, 'gallery_6_24_e4faaabd06.jpg', 1345129254),
+(14, 6, 'gallery_6_24_fa2786e8bb.jpg', 1345129256);
 
 -- --------------------------------------------------------
 
@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `gearoscope_news` (
   `link` varchar(255) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_news`
@@ -391,7 +391,27 @@ INSERT INTO `gearoscope_news` (`news_id`, `active`, `guid`, `title`, `descriptio
 (57, 1, 4667849, 'Pete Dohertyt eltanácsolták egy thaiföldi drogelvonóról', '', 1342778760, '[MTI] Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/07/20/pete_dohertyt_eltanacsoltak_egy_thaifoldi_drogelvonorol', ''),
 (58, 1, 4668182, 'A Spice Girls újjáalakul az olimpiára', '', 1342791360, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/07/20/a_spice_girls_ujjaalakul_az_olimpiara', ''),
 (59, 1, 4668301, 'Az utóbbi idôk Szigete - Programfüzetek 2008-2011', '', 1342793520, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/07/20/_programfuzetek_2008-2011', ''),
-(60, 1, 4668636, 'Fiam, ez mind bolond! A világnak el kell pusztulnia! - Nosztalgiázás a 20. Sziget alkalmából (+ játék)', '', 1342803600, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/07/20/-_nosztalgiazas_a_20_sziget_alkalmabol_jatek', '');
+(60, 1, 4668636, 'Fiam, ez mind bolond! A világnak el kell pusztulnia! - Nosztalgiázás a 20. Sziget alkalmából (+ játék)', '', 1342803600, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/07/20/-_nosztalgiazas_a_20_sziget_alkalmabol_jatek', ''),
+(61, 1, 4708138, 'Strange Man & Long Progression - Két új Red Hot Chili Peppers-dal', '', 1344769277, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/12/strange_man_long_progression_ket_uj_red_hot_chili_peppers-dal', ''),
+(62, 1, 4709519, 'Untouchable (Part 1) - Új Anathema-videó', '', 1344846163, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/13/untouchable_part_1_uj_anathema-video', ''),
+(63, 1, 4711369, 'A mai koncert, amir&#244;l ne maradj le: Listener az Akváriumban', '', 1344924300, 'Valuska', 'http://langologitarok.blog.hu/2012/08/14/a_mai_koncert_amirol_ne_maradj_le_listener_az_akvariumban', ''),
+(64, 1, 4711473, 'Meghallgatható a Bloc Party új lemeze', '', 1344928140, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/14/hallgasd_meg_az_uj_bloc_party-albumot', ''),
+(65, 1, 4711514, 'Gesztenyefák alatt - Heaven Street Seven-dal és -klippremier', '', 1344934800, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/14/gesztenyefak_alatt_heaven_street_seven-dal_es_-klippremier', ''),
+(66, 1, 4711860, 'Purple Kisses - Új A$AP Rocky-videó (18+)', '', 1344941400, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/14/purple_kisses_uj_a_ap_rocky-video', ''),
+(67, 1, 4711970, 'Kill the DJ - Új Green Day-kislemez', '', 1344948610, 'sajó d.', 'http://langologitarok.blog.hu/2012/08/14/kill_the_dj_uj_green_day-lemez', ''),
+(68, 1, 4712120, 'Új Sigur Rós-videó a Varðeldurra, Melika Bass rendezésében', '', 1344950903, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/14/uj_sigur_ros-video_a_var_eldurra_melika_bass_rendezeseben', ''),
+(69, 1, 4712149, '&#212;sszel jön az új Neurosis-nagylemez', '', 1344954555, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/14/osszel_jon_az_uj_neurosis-nagylemez', ''),
+(70, 1, 4713389, 'DJ Obama rádtolja a basszust', '', 1345019700, 'sajó d.', 'http://langologitarok.blog.hu/2012/08/15/dj_obama_radtolja_a_basszust', ''),
+(71, 1, 4713532, 'Slash ellátogatna a Szezám utcába', '', 1345024860, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/15/slash_ellatogatna_a_szezam_utcaba', ''),
+(72, 1, 4713699, 'Most igazán nagy dolgok történnek - Gojira-lemezkritika', '', 1345032237, 'dr_rodopszin', 'http://langologitarok.blog.hu/2012/08/15/gojira-lemezkritika', ''),
+(73, 1, 4713570, 'Kihányta a szívét - Listener-koncertbeszámoló', '', 1345035650, 'Valuska', 'http://langologitarok.blog.hu/2012/08/15/kihanyta_a_szivet', ''),
+(74, 1, 4713793, 'Noel Gallagher szerint öccse együttese a legjobb Oasis tribute zenekar', '', 1345039980, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/15/noel_gallagher_szerint_occse_egyuttese_a_legjobb_oasis_tribute_zenekar', ''),
+(75, 1, 4714011, 'Súlyos balesetet szenvedett a Baroness turnébusza, kilenc sérült', '', 1345042681, 'Gitárok', 'http://langologitarok.blog.hu/2012/08/15/balesetet_szenvedett_a_baroness_busza', ''),
+(76, 1, 4713899, 'Az Alabama Shakes Jimmy Kimmelnél', '', 1345096800, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/16/alabama_shakes_a_jimmy_fallonban', ''),
+(77, 1, 4714083, 'Grimes Jimmy Fallonnál járt', '', 1345100400, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/16/grimes_a_jimmy_fallonban', ''),
+(78, 1, 4714133, 'A friss brit lottómilliomos egy eredeti felállású Guns ''N Roses-koncertre költené a pénzét', '', 1345104000, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/16/a_friss_brit_lottomilliomos_egy_rendes_guns_n_roses-koncertre_koltene_a_penzet', ''),
+(79, 1, 4715346, 'Novemberben jön az új Soundgarden-nagylemez', '', 1345107600, 'Lángoló Gitárok', 'http://langologitarok.blog.hu/2012/08/16/novemberben_uj_soundgarden-nagylemez', ''),
+(80, 1, 4714082, 'Garcia és Bjork csak koncerten használhatja a Kyuss Lives! nevet', '', 1345114800, 'Gitárok', 'http://langologitarok.blog.hu/2012/08/16/csak_koncerten_hasznalhatjak_john_garciaek_a_kyuss_nevet', '');
 
 -- --------------------------------------------------------
 
@@ -452,20 +472,21 @@ CREATE TABLE IF NOT EXISTS `gearoscope_users` (
   `user_oauth_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- A tábla adatainak kiíratása `gearoscope_users`
 --
 
 INSERT INTO `gearoscope_users` (`user_id`, `user_active`, `user_name`, `user_username`, `user_password`, `user_email`, `user_photo`, `user_bio`, `user_role`, `user_register_date`, `user_login_date`, `user_oauth_provider`, `user_oauth_id`, `code`) VALUES
-(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', 'user.jpg', NULL, 'Administrator', 0, 1344862970, 'facebook', 0, ''),
-(4, 1, 'Erdei Attila', 'Kisatti00', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, ''),
-(5, 1, 'Erdei Attila', 'Attilae', '0730c6c19e8b4b77bd061e3cbec48f6a', 'skinnerscag@gmail.com', 'user.jpg', NULL, 'user', 0, 1344553468, 'facebook', 0, ''),
+(1, 1, '', 'Gearoscope', '21232f297a57a5a743894a0e4a801fc3', '', 'user.jpg', NULL, 'Administrator', 0, 1345123789, 'facebook', 0, ''),
+(4, 1, 'Erdei Attila', 'Kisatti007', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, ''),
+(5, 1, 'Erdei Attila', 'Attilae', '0abdbfee3c84ae9454446fa96e34a51b', 'skinnerscage@gmail.com', 'user.jpg', NULL, 'user', 0, 1345124841, 'facebook', 0, ''),
 (16, 1, 'LFCaptain', 'LFCaptain', '0730c6c19e8b4b77bd061e3cbec48f6a', 'attila.erdei87@gmail', 'user.jpg', NULL, 'user', 0, 1339361721, 'facebook', 0, ''),
 (21, 1, 'Johnny Gold', 'Johnny Gold', '0730c6c19e8b4b77bd061e3cbec48f6a', 'atti00@freemail.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, 'dcd4e92266f7e5bd426354e16cb1cba8'),
 (22, 1, 'Richard GoldMájer', 'Richard GoldMájer', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@kreati.hu', 'user.jpg', NULL, 'user', 0, 0, 'facebook', 0, '85b885848ea43b0e053637d76b29a208'),
-(23, 1, 'DevDrummer', 'DevDrummer', 'cb542fe52780420a170498b02153abf6', 'attila.erdei87@gmail.com', '1345036591.1873.jpg', 'Még a videójátékoknál is gyorsabban nő a népszerűségük, egyre kevesebb az mp3-lejátszó.', 'user', 1344520274, 1345035127, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b');
+(23, 1, 'DevDrummer', 'DevDrummer', 'd32d21b46f8749e68e1dbd2880be8db3', 'attila.erdei87@gmail.com', '1345036591.1873.jpg', 'Még a videójátékoknál is gyorsabban nő a népszerűségük, egyre kevesebb az mp3-lejátszó.', 'user', 1344520274, 1345123540, 'facebook', 0, 'ed00fa74b2f8a39d5d2ac6e2c748f75b'),
+(24, 1, 'Erdei Attila', 'KisAtti00', '0730c6c19e8b4b77bd061e3cbec48f6a', 'erdei.attila@carpedm.hu', '1345120543.1962.jpg', 'Dobolok itt: Superbutt\r\nPróbálkozom zenét írni itt: Snapshot of Life\r\nWebet és mobil fejlesztek itt: CarpeDM, App2U, Kreati', 'user', 1345120111, 1345127722, 'facebook', 0, '40c03f79e73546073882b10f1f63df22');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

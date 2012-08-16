@@ -7,6 +7,9 @@
 
 <dl class="article-info">
 	<dt class="article-info-term">Details</dt>
+        <?php if ($this->editable == "1") { ?>
+                            <a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/user/editbio">Edit</a>
+        <?php } ?>
 	<!-- <dd class="category-name">Style: <?php print $this->band[0]["style"]; ?></dd> -->
 	<dd class="create">Created on <?php print date("Y.m.d.", $this->user["user_register_date"]); ?></dd>
 </dl>

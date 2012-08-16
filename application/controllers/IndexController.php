@@ -48,6 +48,11 @@ class IndexController extends Zend_Controller_Action
         $paginator->setItemCountPerPage(7);
         $paginator->setCurrentPageNumber($page);
         $this->view->paginator = $paginator;
+        
+        $modelGears = new Model_DbTable_Gears();
+        $gears = $modelGears->getGearOrderByHits();
+        
+        $this->view->gears = $gears;
 
 		//$this->view->headLink()->appendStylesheet($baseUrl."/public/skins/gearoscope/css/moo_maximenuH_CK.css");
 

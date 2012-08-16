@@ -47,9 +47,9 @@ class Form_Gear extends Zend_Form {
 		$subsubcategory->setRegisterInArrayValidator(false);
 		$subsubcategory->addValidator($validatorNotEmpty);
 
-        $photo = $this->createElement('text', 'photo');
+        $photo = $this->createElement('hidden', 'photo')->setDecorators(array('Viewhelper'));
 
-        $thumbnail = $this->createElement('text', 'thumbnail');  
+        $thumbnail = $this->createElement('hidden', 'thumbnail')->setDecorators(array('Viewhelper'));  
         
         $description = new Zend_Form_Element_Textarea('description');
         $description->setAttrib('class', 'textarea')

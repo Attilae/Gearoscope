@@ -49,9 +49,7 @@ abstract class Application_BaseController extends Zend_Controller_Action {
      */
 
     public function preDispatch() {
-        if ($this->_request->isPost()) {
-            die("Kao");
-        }
+  
     }
 
     public function postDispatch() {
