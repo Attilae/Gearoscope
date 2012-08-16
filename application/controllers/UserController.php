@@ -227,11 +227,13 @@ class UserController extends Zend_Controller_Action {
                 $mail->setHeaderEncoding(Zend_Mime::ENCODING_BASE64);
                 $mail->setFrom('noreply@gearoscope.com', 'gearoscope.com');
                 $mail->addTo($identity->user_email);
-                $mail->addBcc("attila.erdei87@gmail.com");
+                //$mail->addBcc("attila.erdei87@gmail.com");
                 $mail->setSubject('Gearoscope új jelszó');
                 $mail->send($transport);
 
-                $this->_redirect('/user/edit');
+                $locale = Zend_Registry::get('Zend_Locale');
+                
+                $this->_redirect($locale . '/user/edit');
             } else {
                 print_r($form->getErrorMessages());
                 print_r($form->getErrors());

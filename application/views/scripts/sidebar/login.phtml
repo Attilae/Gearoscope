@@ -10,6 +10,9 @@ if($auth->hasIdentity()) {
 	<li><a
 		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/index/id/<?php print $identity->user_id; ?>"
 		title="edit"><?php print $this->translate('profile'); ?> </a></li>
+        <li><a
+		href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/user/edit"
+		title="edit">Edit </a></li>
 	<li><a href="#" title="edit"><?php print $this->translate('gears'); ?></a>
 		<ul>
 			<li><a href="<?php print $this->baseUrl(); ?>/<?php print $this->locale(); ?>/gears/add"><?php print $this->translate('add gear'); ?> </a></li>
