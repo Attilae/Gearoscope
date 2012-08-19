@@ -80,6 +80,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $logger = new Zend_Log($writer);
 
         $this->_registry->logger = $logger;
+        
+        $registry = Zend_Registry::getInstance();
+        $registry->set('Zend_Logger', $logger);
     }
 
     protected function _initAutoload() {

@@ -31,7 +31,7 @@ public function init() {
         $this->view->exception = $errors->exception;
         $this->view->request = $errors->request;
         
-        $logger = Zend_Registry::get('logger');
+        $logger = Zend_Registry::get('Zend_Logger');
         $logger->log($errors->exception, Zend_Log::ERR);
     }
 

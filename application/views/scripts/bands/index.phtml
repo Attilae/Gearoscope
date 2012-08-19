@@ -5,7 +5,7 @@
 
 <ul id="artists">
 	<?php foreach($this->bands as $band): ?>
-	<li data-genre="<?php print $band['style']; ?>">
+	<li data-band-filter="<?php print $band['style']; ?>">
 		<a href="<?php print $this->baseUrl(); ?>/<?php print Zend_Registry::get('Zend_Locale'); ?>/bands/view/id/<?php print $band['band_id']; ?>">
 			<strong><?php print $band['band_name']; ?></strong>		
 			<img src="<?php print $this->baseUrl(); ?>/public/timthumb.php?src=<?php print $this->baseUrl(); ?>/public/uploads/bands/<?php print $band['band_photo_url']; ?>&w=160&w=160&zc=1">

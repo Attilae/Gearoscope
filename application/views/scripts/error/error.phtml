@@ -16,7 +16,7 @@
         </div>
 
         <?php
-        if ('development' == APPLICATION_ENV) :
+        //if ('development' == APPLICATION_ENV) :
             ?>
 
             <h3>Exception information:</h3>
@@ -31,7 +31,7 @@
             <pre><?php echo var_export($this->request->getParams(), true) ?>
             </pre>
 
-        <?php endif ?>
+        <?php //endif ?>
 
     </body>
 </html>

@@ -21,8 +21,17 @@ class GearsController extends Zend_Controller_Action {
 
         $this->view->headScript()->prependScript('$(function() {
 			$.filtrify("artists", "placeHolder", {
-				close : true
-			});
+                            hide : false,
+                            callback : function( query, match, mismatch ) {
+                                if ( mismatch.length ) {
+                                    $( mismatch ).removeClass("highlight").addClass("fade");
+                                    $( match ).removeClass("fade").addClass("highlight");
+                                } else {
+                                    $( match ).removeClass("fade highlight");
+                                };
+        }
+    });
+
 		});');
 
         $this->view->headLink()->appendStylesheet($baseUrl . "/public/skins/gearoscope/css/filtrify.css");
@@ -186,16 +195,6 @@ class GearsController extends Zend_Controller_Action {
                                 });
 			});'
         );
-
-        /*
-         * onClosed : function() {
-          $("dd#uploader").hide();
-          $("dd#uploaded").fadeIn();
-          $("dd#uploaded").append("<img src=\"'.$baseUrl.'/public/uploads/gears/'.$_SESSION["uploader"]["thumbnail"].'\">");
-          $("#photo").val("'.$_SESSION["uploader"]["photo"].'");
-          $("#thumbnail").val("'.$_SESSION["uploader"]["thumbnail"].'");
-          }
-         */
 
         $this->view->headScript()->prependFile($baseUrl . "/public/skins/gearoscope/js/jquery.colorbox-min.js");
 

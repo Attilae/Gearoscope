@@ -56,6 +56,17 @@ class BandsController extends Zend_Controller_Action {
         }
     }
 
+    public function listAction() {
+        parent::init();
+        $layout = Zend_Layout::getMvcInstance();
+        $layout->setLayoutPath(APPLICATION_PATH . '/layouts/scripts');
+        $layout->setLayout('admin');
+
+        $modelBands = new Model_DbTable_Bands();
+        
+        $this->view->bands = $bands;
+    }
+
     public function collectAction() {
 
         $this->_helper->layout()->disableLayout();
@@ -84,7 +95,7 @@ class BandsController extends Zend_Controller_Action {
     public function addAction() {
 
         $form = new Form_Band();
-        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'bands/addform.phtml'))));
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'bands/form.phtml'))));
 
         $locale = Zend_Registry::get('Zend_Locale');
 
@@ -167,7 +178,7 @@ class BandsController extends Zend_Controller_Action {
             $this->view->headLink()->appendStylesheet($baseUrl . "/public/skins/gearoscope/css/colorbox.css");
 
             $form = new Form_Band();
-            $form->setDecorators(array(array('ViewScript', array('viewScript' => 'bands/addform.phtml'))));
+            $form->setDecorators(array(array('ViewScript', array('viewScript' => 'bands/form.phtml'))));
 
             $band_id = $this->_request->getParam("id");
             $this->view->band_id = $band_id;
@@ -178,7 +189,7 @@ class BandsController extends Zend_Controller_Action {
             $modelEditors = new Model_DbTable_BandEditors();
             $editors = $modelEditors->getEditorIds($band_id);
 
-            if (!in_array(array("user_id" => $user_id), $editors)) {                
+            if (!in_array(array("user_id" => $user_id), $editors)) {
                 throw new Exception("Váratlan hiba történt");
             }
 
@@ -261,7 +272,7 @@ class BandsController extends Zend_Controller_Action {
             $request->setControllerName('error');
 
             $request->setActionName('error');
-            
+
             $this->view->errorMessage = "Nincs ilyen regisztrált felhasználó";
             $this->view->errorMessage = $e->getMessage();
         }

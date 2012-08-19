@@ -10,7 +10,8 @@ class Form_Gear extends Zend_Form {
 
         $gear_name = new Zend_Form_Element_Text('gear_name');
         $gear_name->setRequired(true)
-        		->setDecorators(array('Viewhelper', 'Errors'))
+                ->removeDecorator('HtmlTag')
+                ->removeDecorator('Label')
                 ->setAttrib('class', 'form-input')
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
@@ -56,14 +57,15 @@ class Form_Gear extends Zend_Form {
                     ->setAttrib('rows', '30')
                     ->setAttrib('resize', 'none')
                     ->setDecorators(array('Viewhelper', 'Errors'))				
-                    ->setRequired(true);		
+                    ->setRequired(true)
+                    ->addValidator($validatorNotEmpty);		
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
         $submit->setLabel("Mentés");
         $submit->setAttrib('style', 'clear: both;');
 
-        $this->addElements(array($id, $gear_name, $serial_number, $category, $subcategory, $subsubcategory, $description, $photo, $thumbnail, $submit));
+        $this->addElements(array($gear_name, $serial_number, $category, $subcategory, $subsubcategory, $description, $photo, $thumbnail, $submit));
     }
 
 }

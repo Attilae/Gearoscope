@@ -373,7 +373,7 @@ class UserController extends Zend_Controller_Action {
                 $bodyText .= "<p>Felhasználóneved: " . $username . "</p>";
                 $bodyText .= "<p>Jelszavad: " . $password . "</p>";
                 $bodyText .= "<p>Az alábbi linken aktiválhatod regisztrációdat:</p>";
-                $bodyText .= "<p><a href='http://superbutt.net/".$baseUrl."/" . $locale->getLanguage() . "/activate/index/user/" . $user ["user_id"] . "/code/" . $random . "' target='_blank'>Aktiválás</a></p>";
+                $bodyText .= "<p><a href='http://superbutt.net".$baseUrl."/" . $locale->getLanguage() . "/activate/index/user/" . $user ["user_id"] . "/code/" . $random . "' target='_blank'>Aktiválás</a></p>";
                 $bodyText .= "<p>Üdv,<br/>gearoscope.hu</p>";
                 $bodyText .= "</body>";
 

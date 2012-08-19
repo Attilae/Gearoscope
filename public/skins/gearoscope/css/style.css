@@ -6462,3 +6462,13 @@ h3 a {
 #comment {
     width: 100%;
 }
+
+.highlight { 
+    box-shadow: black 0 0 20px; 
+    box-shadow: rgba(0, 0, 0, 0.7) 0 0 20px; 
+}
+
+.fade { 
+    opacity: 0.1; 
+    filter: alpha(opacity=10); 
+}
